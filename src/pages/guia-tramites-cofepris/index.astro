@@ -1,0 +1,270 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const etapas = [
+  {
+    num:      '01',
+    titulo:   'Diagnóstico previo',
+    duracion: '1–3 días',
+    descripcion: 'Antes de preparar cualquier documento, analizamos la situación real del establecimiento: tipo de servicios, infraestructura, estado de la documentación previa y perfil del Responsable Sanitario propuesto.',
+    acciones: [
+      'Identificar el trámite exacto según los servicios del establecimiento',
+      'Verificar si se requiere Permiso Sanitario de Construcción previo',
+      'Revisar el perfil y vigencia del Responsable Sanitario',
+      'Detectar brechas documentales antes de iniciar el expediente',
+    ],
+    alerta: 'Un diagnóstico incompleto es la causa raíz de la mayoría de los rechazos. Identificar problemas en esta etapa cuesta días; identificarlos después de presentar el expediente, meses.',
+  },
+  {
+    num:      '02',
+    titulo:   'Trámites previos obligatorios',
+    duracion: '30–60 días hábiles',
+    descripcion: 'Según el tipo de licencia, pueden requerirse uno o más trámites previos que deben estar resueltos antes de presentar la solicitud principal.',
+    acciones: [
+      'Permiso Sanitario de Construcción (si aplica) — COFEPRIS-05-033',
+      'Aviso de Responsable Sanitario — homoclave específica por tipo',
+      'Constancias de idoneidad del personal especializado',
+      'Pago de derechos gubernamentales ante la Secretaría de Hacienda',
+    ],
+    alerta: 'El Aviso de RS y el Permiso de Construcción son los trámites previos más comunes. Iniciar la licencia sin ellos resulta en rechazo inmediato.',
+  },
+  {
+    num:      '03',
+    titulo:   'Preparación del expediente',
+    duracion: '5–20 días',
+    descripcion: 'Elaboración y revisión de todos los documentos técnicos y administrativos del expediente. Esta es la etapa más crítica: la calidad del expediente determina directamente el resultado ante COFEPRIS.',
+    acciones: [
+      'Memoria descriptiva alineada con los planos aprobados',
+      'Manual de Procedimientos o Sistema de Gestión de Calidad (según licencia)',
+      'Programa médico y organización interna',
+      'Listado de personal con documentación de idoneidad',
+      'Formato oficial COFEPRIS correctamente requisitado',
+    ],
+    alerta: null,
+  },
+  {
+    num:      '04',
+    titulo:   'Revisión interna y presentación',
+    duracion: '1–2 días',
+    descripcion: 'Antes de presentar, realizamos una revisión cruzada de congruencia entre todos los documentos. Verificamos que no haya inconsistencias que COFEPRIS pueda observar.',
+    acciones: [
+      'Verificar congruencia entre memoria descriptiva y planos',
+      'Confirmar que el perfil del RS es compatible con los servicios declarados',
+      'Validar vigencia de todos los documentos del personal',
+      'Presentar ante la Subdirección Ejecutiva de Autorizaciones en Servicios de Salud',
+      'Obtener acuse de recibo y número de folio',
+    ],
+    alerta: null,
+  },
+  {
+    num:      '05',
+    titulo:   'Seguimiento y resolución',
+    duracion: '30–90 días hábiles',
+    descripcion: 'COFEPRIS revisa el expediente y emite una resolución. El seguimiento activo permite responder de forma inmediata a cualquier requerimiento dentro del plazo establecido.',
+    acciones: [
+      'Monitoreo periódico del estatus del expediente',
+      'Atención inmediata de requerimientos adicionales',
+      'Comunicación permanente con el cliente sobre avances',
+      'Recepción y verificación de la licencia oficial',
+      'Orientación sobre obligaciones post-licencia',
+    ],
+    alerta: 'Los requerimientos adicionales tienen un plazo de respuesta. Si no se atienden a tiempo, el trámite puede desecharse y debe reiniciarse desde cero.',
+  },
+];
+
+const errores = [
+  { titulo: 'Memoria descriptiva genérica',   descripcion: 'Copiar una memoria de otro establecimiento sin adaptarla. COFEPRIS verifica dimensiones contra los planos aprobados.' },
+  { titulo: 'Responsable Sanitario incompatible', descripcion: 'Proponer un RS cuya especialidad no corresponde a los actos médicos declarados. El perfil debe ser coherente con cada servicio.' },
+  { titulo: 'Documentos del personal vencidos', descripcion: 'Presentar cédulas profesionales o certificados de especialidad con vigencia expirada al momento de la presentación.' },
+  { titulo: 'Obra sin permiso sanitario',      descripcion: 'Construir o remodelar sin el Permiso Sanitario de Construcción. Invalida el proceso y puede requerir regularización costosa.' },
+  { titulo: 'Omitir trámites previos',         descripcion: 'Presentar la licencia sin el Aviso de RS o sin el Permiso de Construcción. Son requisitos del expediente, no documentos opcionales.' },
+  { titulo: 'Manuales sin firma autógrafa',    descripcion: 'En algunos trámites COFEPRIS exige firma autógrafa en manuales y programas. La firma digitalizada no es aceptada.' },
+];
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'Cómo obtener una Licencia Sanitaria COFEPRIS para establecimientos médicos en México',
+  description: 'Proceso en 5 etapas para obtener licencias sanitarias COFEPRIS para establecimientos médicos.',
+  totalTime: 'P90D',
+  step: etapas.map((e, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: e.titulo,
+    text: e.descripcion,
+  })),
+};
+---
+
+<Layout
+  title="Guía Completa: Cómo Obtener Licencias COFEPRIS 2026"
+  description="Proceso paso a paso en 5 etapas para obtener licencias sanitarias COFEPRIS: diagnóstico, trámites previos, expediente, presentación y resolución. Errores frecuentes y tiempos reales incluidos."
+  canonical="/guia-tramites-cofepris/"
+  pageSchema={[howToSchema]}
+  breadcrumbs={[{ name: 'Guía de Trámites', url: '/guia-tramites-cofepris/' }]}
+>
+
+  <!-- Hero -->
+  <section class="bg-carbon-950 border-b border-carbon-800">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20">
+      <nav class="flex items-center gap-2 text-xs text-steel-600 mb-8" aria-label="Ruta de navegación">
+        <a href="/" class="hover:text-white transition-colors duration-150" style="font-family:var(--font-body);">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-steel-400" aria-current="page" style="font-family:var(--font-body);">Guía de Trámites</span>
+      </nav>
+      <div class="grid lg:grid-cols-[1fr_260px] gap-10 items-end">
+        <div>
+          <p class="text-[10px] font-semibold tracking-[0.2em] uppercase text-cofepris-500 mb-4 flex items-center gap-2" style="font-family:var(--font-body);">
+            <span class="w-6 h-px bg-cofepris-700 inline-block" aria-hidden="true"></span>
+            Guía completa
+          </p>
+          <h1 class="text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight mb-4" style="font-family:var(--font-display);">
+            Guía de Trámites<br />
+            <span class="text-cofepris-500">COFEPRIS</span><br />
+            para Establecimientos Médicos
+          </h1>
+          <p class="text-steel-400 text-sm leading-relaxed max-w-xl" style="font-family:var(--font-body);">
+            5 etapas desde el diagnóstico previo hasta la licencia en mano. Incluye los 6 errores más frecuentes y cómo evitarlos.
+          </p>
+        </div>
+        <!-- Mini resumen -->
+        <div class="grid grid-cols-2 gap-px bg-carbon-800">
+          {[
+            { valor: '5',     etiqueta: 'Etapas'          },
+            { valor: '30–90', etiqueta: 'Días hábiles'    },
+            { valor: '6',     etiqueta: 'Errores a evitar'},
+            { valor: '100%',  etiqueta: 'Gestionado'      },
+          ].map((s) => (
+            <div class="bg-carbon-900 px-5 py-4 text-center">
+              <p class="text-xl font-bold text-white" style="font-family:var(--font-display);">{s.valor}</p>
+              <p class="text-[9px] text-steel-500 uppercase tracking-widest mt-0.5" style="font-family:var(--font-body);">{s.etiqueta}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Etapas -->
+  <section class="bg-off-white" aria-labelledby="etapas-heading">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8 lg:py-10">
+      <div class="mb-12">
+        <p class="text-[10px] font-semibold tracking-[0.2em] uppercase text-cofepris-700 mb-3 flex items-center gap-2" style="font-family:var(--font-body);">
+          <span class="w-6 h-px bg-cofepris-700 inline-block" aria-hidden="true"></span>
+          Proceso
+        </p>
+        <h2 id="etapas-heading" class="text-2xl lg:text-3xl font-bold text-carbon-900 tracking-tight" style="font-family:var(--font-display);">
+          Las 5 etapas del trámite
+        </h2>
+      </div>
+
+      <ol class="space-y-3">
+        {etapas.map((etapa) => (
+          <li class="bg-white border border-steel-200 rounded-xl overflow-hidden">
+            <button
+              class="etapa-btn w-full flex items-center gap-5 px-6 py-5 text-left group hover:bg-steel-50 transition-colors duration-150 cursor-pointer"
+              aria-expanded="false"
+              aria-controls={`etapa-${etapa.num}`}
+            >
+              <span class="shrink-0 w-9 h-9 rounded-full bg-cofepris-700 text-white text-sm font-bold flex items-center justify-center" style="font-family:var(--font-display);" aria-hidden="true">
+                {etapa.num}
+              </span>
+              <div class="flex-1 min-w-0 text-left">
+                <p class="text-sm font-bold text-carbon-900 group-hover:text-cofepris-700 transition-colors duration-150" style="font-family:var(--font-display);">
+                  {etapa.titulo}
+                </p>
+                <p class="text-xs text-steel-400 mt-0.5" style="font-family:var(--font-body);">
+                  {etapa.duracion}
+                </p>
+              </div>
+              <svg class="etapa-chevron shrink-0 w-4 h-4 text-steel-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div id={`etapa-${etapa.num}`} class="etapa-body hidden border-t border-steel-100 px-6 py-6">
+              <p class="text-sm text-steel-600 leading-relaxed mb-5" style="font-family:var(--font-body);">{etapa.descripcion}</p>
+              <ul class="space-y-2 mb-4">
+                {etapa.acciones.map((a: string) => (
+                  <li class="flex items-start gap-2.5 text-sm text-carbon-800" style="font-family:var(--font-body);">
+                    <svg class="shrink-0 w-4 h-4 text-cofepris-700 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    {a}
+                  </li>
+                ))}
+              </ul>
+              {etapa.alerta && (
+                <div class="flex items-start gap-3 bg-amber-50 border border-amber-100 rounded-lg px-4 py-3 mt-2">
+                  <svg class="shrink-0 w-4 h-4 text-amber-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                  </svg>
+                  <p class="text-xs text-amber-800 leading-relaxed" style="font-family:var(--font-body);">{etapa.alerta}</p>
+                </div>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Errores frecuentes -->
+  <section class="bg-white border-t border-steel-100" aria-labelledby="errores-heading">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+      <div class="mb-10">
+        <p class="text-[10px] font-semibold tracking-[0.2em] uppercase text-cofepris-700 mb-3 flex items-center gap-2" style="font-family:var(--font-body);">
+          <span class="w-6 h-px bg-cofepris-700 inline-block" aria-hidden="true"></span>
+          Lo que retrasa los trámites
+        </p>
+        <h2 id="errores-heading" class="text-2xl lg:text-3xl font-bold text-carbon-900 tracking-tight" style="font-family:var(--font-display);">
+          6 errores que invalidan el expediente
+        </h2>
+      </div>
+      <ul class="grid sm:grid-cols-2 gap-px bg-steel-100">
+        {errores.map((e) => (
+          <li class="bg-white p-6">
+            <div class="flex items-start gap-3 mb-2">
+              <span class="shrink-0 w-5 h-5 rounded-full bg-red-50 border border-red-100 flex items-center justify-center mt-0.5" aria-hidden="true">
+                <svg class="w-2.5 h-2.5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </span>
+              <h3 class="text-sm font-bold text-carbon-900" style="font-family:var(--font-display);">{e.titulo}</h3>
+            </div>
+            <p class="text-xs text-steel-500 leading-relaxed pl-8" style="font-family:var(--font-body);">{e.descripcion}</p>
+          </li>
+        ))}
+      </ul>
+
+      <!-- CTA -->
+      <div class="mt-10 bg-carbon-900 rounded-xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <h2 class="text-base font-bold text-white mb-1" style="font-family:var(--font-display);">¿Prefieres que lo gestionemos por ti?</h2>
+          <p class="text-sm text-steel-400" style="font-family:var(--font-body);">Nos encargamos del expediente completo. Consulta sin costo.</p>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/contacto/" class="inline-flex items-center gap-2 bg-cofepris-700 hover:bg-cofepris-600 text-white font-semibold px-6 py-2.5 rounded text-sm transition-colors duration-150" style="font-family:var(--font-body);">
+            Consultar gratis
+          </a>
+          <a href="/requisitos/" class="inline-flex items-center gap-2 border border-carbon-700 text-steel-300 hover:text-white hover:border-steel-500 font-medium px-6 py-2.5 rounded text-sm transition-colors duration-150" style="font-family:var(--font-body);">
+            Ver requisitos
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.etapa-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const body    = btn.closest('li')?.querySelector('.etapa-body');
+      const chevron = btn.querySelector('.etapa-chevron');
+      btn.setAttribute('aria-expanded', String(!expanded));
+      body?.classList.toggle('hidden', expanded);
+      chevron?.classList.toggle('rotate-180', !expanded);
+    });
+  });
+</script>

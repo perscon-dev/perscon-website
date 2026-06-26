@@ -1,0 +1,453 @@
+---
+const navLinks = [
+  { label: "Inicio", href: "/" },
+  {
+    label: "Licencias COFEPRIS",
+    href: "/licencias-cofepris/",
+    hasDropdown: true,
+    children: [
+      {
+        label: "Permiso Sanitario de Construcción",
+        href: "/licencias-cofepris/permiso-construccion/",
+        desc: "Establecimientos médicos nuevos o remodelados",
+      },
+      {
+        label: "Licencia para Actos Quirúrgicos",
+        href: "/licencias-cofepris/licencia-actos-quirurgicos/",
+        desc: "Clínicas y hospitales con cirugía u obstetricia",
+      },
+      {
+        label: "Licencia para Fuentes de Radiación",
+        href: "/licencias-cofepris/licencia-radiacion/",
+        desc: "Rayos X, tomografía y equipos de diagnóstico",
+      },
+      {
+        label: "Licencia para Bancos de Sangre",
+        href: "/licencias-cofepris/licencia-sanguinea/",
+        desc: "Bancos de sangre y servicios de transfusión",
+      },
+      {
+        label: "Licencia de Transfusión Hospitalaria",
+        href: "/licencias-cofepris/licencia-transfusion-hospitalaria/",
+        desc: "Licencia sanitaria COFEPRIS para servicios de transfusión de sangre",
+      },
+      {
+        label: "Licencia de Hemodiálisis",
+        href: "/licencias-cofepris/licencia-hemodialisis/",
+        desc: "Centros y unidades de hemodiálisis",
+      },
+    ],
+  },
+  { label: "Nosotros", href: "/nosotros/" },
+  { label: "Casos de Éxito", href: "/casos-exito/" },
+  { label: "Guía COFEPRIS", href: "/guia-tramites-cofepris/" },
+  { label: "Requisitos por Licencia", href: "/requisitos/" },
+];
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/" ? currentPath === "/" : currentPath.startsWith(href);
+---
+
+<!-- Skip to content -->
+<a
+  href="#main-content"
+  class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:bg-cofepris-700 focus:text-white focus:px-4 focus:py-2 focus:rounded focus:font-semibold focus:shadow-lg"
+>
+  Ir al contenido principal
+</a>
+
+<!-- Top bar -->
+<div class="hidden md:block bg-carbon-900 border-b border-carbon-700">
+  <div
+    class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-9 text-xs text-steel-400"
+  >
+    <span>Ciudad de México · República Mexicana</span>
+    <div class="flex items-center gap-6">
+      <a
+        href="mailto:contacto@perscon.com.mx"
+        class="hover:text-white transition-colors duration-150"
+      >
+        contacto@perscon.com.mx
+      </a>
+      <a
+        href="https://wa.me/5215579113086?text=Hola%2C%20necesito%20información%20sobre%20trámites%20COFEPRIS"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-1.5 hover:text-white transition-colors duration-150"
+      >
+        <svg
+          class="w-3 h-3"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+          ></path><path
+            d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.534 5.856L.057 23.57a.75.75 0 00.914.914l5.714-1.477A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.713 9.713 0 01-4.964-1.363l-.356-.213-3.694.954.974-3.583-.232-.368A9.75 9.75 0 1112 21.75z"
+          ></path>
+        </svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Header principal -->
+<header
+  id="site-header"
+  class="sticky top-0 z-50 bg-white/70 backdrop-blur-md transition-shadow duration-300"
+  role="banner"
+>
+  <div
+    class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16"
+  >
+    <!-- Logo -->
+    <a
+      href="/"
+      class="flex items-center gap-3 group"
+      aria-label="Perscon — Asesoría COFEPRIS, ir al inicio"
+    >
+      <img
+        src="/images/Logo/Logo.webp"
+        alt="Perscon logo"
+        class="h-22 w-auto"
+        width="36"
+        height="36"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="leading-none">
+        <span
+          class="block text-[15px] font-bold tracking-[0.2em] uppercase text-carbon-900"
+          style="font-family: var(--font-display);"
+        >
+          PERSCON
+        </span>
+        <span
+          class="block text-[9px] tracking-[0.12em] uppercase text-steel-500 mt-0.5"
+          style="font-family: var(--font-body);"
+        >
+          Asesoría COFEPRIS
+        </span>
+      </div>
+    </a>
+
+    <!-- Nav desktop -->
+    <nav
+      class="hidden lg:flex items-center gap-0.5"
+      aria-label="Navegación principal"
+    >
+      {
+        navLinks.map((link) =>
+          link.hasDropdown ? (
+            <div class="relative group">
+              <button
+                class:list={[
+                  "flex items-center gap-1 px-3.5 py-2 text-sm font-medium rounded transition-colors duration-150",
+                  "focus-visible:outline-2 focus-visible:outline-cofepris-700",
+                  isActive(link.href)
+                    ? "text-cofepris-700"
+                    : "text-carbon-700 hover:text-carbon-900 hover:bg-steel-50",
+                ]}
+                style="font-family: var(--font-body);"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                {link.label}
+                <svg
+                  class="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2.5"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+
+              <div
+                class="absolute top-full left-0 right-0 h-2 opacity-0 pointer-events-none group-hover:pointer-events-auto"
+                aria-hidden="true"
+              />
+
+              <div
+                class="dropdown-panel absolute top-full left-1/2 -translate-x-1/2 mt-2 w-125 bg-white border border-steel-100 rounded-xl shadow-xl opacity-0 invisible pointer-events-none transition-all duration-200 translate-y-1 group-hover:translate-y-0"
+                role="menu"
+              >
+                <div class="px-4 pt-3.5 pb-2 border-b border-steel-100">
+                  <span
+                    class="text-[10px] font-semibold tracking-[0.15em] uppercase text-steel-400"
+                    style="font-family: var(--font-body);"
+                  >
+                    Licencias y Trámites COFEPRIS
+                  </span>
+                </div>
+                <ul class="p-2">
+                  {link.children?.map((child) => (
+                    <li role="none">
+                      <a
+                        href={child.href}
+                        class="flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-cofepris-50 group/item transition-colors duration-150"
+                        role="menuitem"
+                      >
+                        <div
+                          class="shrink-0 w-1 h-1 rounded-full bg-cofepris-700 mt-2.5 opacity-0 group-hover/item:opacity-100 transition-opacity duration-150"
+                          aria-hidden="true"
+                        />
+                        <div>
+                          <span
+                            class="block text-sm font-semibold text-carbon-800 group-hover/item:text-cofepris-700 transition-colors duration-150"
+                            style="font-family: var(--font-body);"
+                          >
+                            {child.label}
+                          </span>
+                          <span
+                            class="block text-xs text-steel-500 mt-0.5"
+                            style="font-family: var(--font-body);"
+                          >
+                            {child.desc}
+                          </span>
+                        </div>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <div class="px-4 py-2.5 bg-steel-50 rounded-b-xl border-t border-steel-100">
+                  <a
+                    href="/licencias-cofepris/"
+                    class="text-xs font-semibold text-cofepris-700 hover:text-cofepris-800 transition-colors duration-150 flex items-center gap-1"
+                    style="font-family: var(--font-body);"
+                  >
+                    Ver todas las licencias COFEPRIS
+                    <svg
+                      class="w-3.5 h-3.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a
+              href={link.href}
+              class:list={[
+                "px-3.5 py-2 text-sm font-medium rounded transition-colors duration-150",
+                "focus-visible:outline-2 focus-visible:outline-cofepris-700",
+                isActive(link.href)
+                  ? "text-cofepris-700"
+                  : "text-carbon-700 hover:text-carbon-900 hover:bg-steel-50",
+              ]}
+              style="font-family: var(--font-body);"
+              aria-current={isActive(link.href) ? "page" : undefined}
+            >
+              {link.label}
+            </a>
+          ),
+        )
+      }
+    </nav>
+
+    <!-- CTA + mobile button -->
+    <div class="flex items-center gap-3">
+      <a
+        href="/contacto/"
+        class="hidden lg:inline-flex items-center gap-2 bg-cofepris-700 hover:bg-cofepris-800 text-white text-sm font-semibold px-5 py-2.5 rounded transition-colors duration-150"
+        style="font-family: var(--font-body);"
+        aria-label="Solicitar asesoría para trámites COFEPRIS"
+      >
+        Solicitar Asesoría
+      </a>
+
+      <button
+        id="mobile-menu-btn"
+        class="lg:hidden w-9 h-9 flex items-center justify-center rounded border border-steel-200 text-carbon-700 hover:bg-steel-50 transition-colors duration-150"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg
+          class="w-5 h-5 menu-icon"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg
+          class="w-5 h-5 close-icon hidden"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden hidden border-t border-steel-100 bg-white"
+    role="navigation"
+    aria-label="Menú móvil"
+  >
+    <div class="max-w-7xl mx-auto px-6 py-4 space-y-0.5">
+      {
+        navLinks.map((link) =>
+          link.hasDropdown ? (
+            <div class="mobile-accordion">
+              <button
+                class="mobile-accordion-btn w-full flex items-center justify-between px-3 py-2.5 rounded text-sm font-medium text-carbon-700 hover:bg-steel-50 transition-colors duration-150"
+                style="font-family: var(--font-body);"
+                aria-expanded="false"
+              >
+                {link.label}
+                <svg
+                  class="w-4 h-4 accordion-arrow transition-transform duration-200"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <div class="mobile-accordion-content hidden pl-3 mt-0.5 space-y-0.5 border-l-2 border-steel-100 ml-3">
+                {link.children?.map((child) => (
+                  <a
+                    href={child.href}
+                    class="block px-3 py-2 rounded text-sm text-steel-600 hover:text-cofepris-700 hover:bg-cofepris-50 transition-colors duration-150"
+                    style="font-family: var(--font-body);"
+                  >
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a
+              href={link.href}
+              class:list={[
+                "block px-3 py-2.5 rounded text-sm font-medium transition-colors duration-150",
+                isActive(link.href)
+                  ? "text-cofepris-700 bg-cofepris-50"
+                  : "text-carbon-700 hover:bg-steel-50",
+              ]}
+              style="font-family: var(--font-body);"
+              aria-current={isActive(link.href) ? "page" : undefined}
+            >
+              {link.label}
+            </a>
+          ),
+        )
+      }
+      <div class="pt-3 border-t border-steel-100 mt-2 space-y-2">
+        <a
+          href="/contacto/"
+          class="flex items-center justify-center w-full bg-cofepris-700 hover:bg-cofepris-800 text-white font-semibold px-4 py-3 rounded text-sm transition-colors duration-150"
+          style="font-family: var(--font-body);"
+        >
+          Solicitar Asesoría COFEPRIS
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+
+  btn?.addEventListener("click", () => {
+    const open = !menu?.classList.contains("hidden");
+    menu?.classList.toggle("hidden");
+    btn.setAttribute("aria-expanded", String(!open));
+    btn.querySelector(".menu-icon")?.classList.toggle("hidden", !open);
+    btn.querySelector(".close-icon")?.classList.toggle("hidden", open);
+  });
+
+  document.querySelectorAll(".mobile-accordion-btn").forEach((b) => {
+    b.addEventListener("click", () => {
+      const content = b.nextElementSibling as HTMLElement;
+      const arrow = b.querySelector(".accordion-arrow") as HTMLElement;
+      const open = content?.classList.toggle("hidden") === false;
+      b.setAttribute("aria-expanded", String(open));
+      if (arrow) arrow.style.transform = open ? "rotate(180deg)" : "";
+    });
+  });
+
+  const header = document.getElementById("site-header");
+  window.addEventListener(
+    "scroll",
+    () => {
+      header?.classList.toggle("shadow-md", window.scrollY > 8);
+    },
+    { passive: true },
+  );
+
+  document.querySelectorAll(".relative.group").forEach((wrapper) => {
+    const panel = wrapper.querySelector(".dropdown-panel") as HTMLElement;
+    if (!panel) return;
+
+    let closeTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const showPanel = () => {
+      if (closeTimer) {
+        clearTimeout(closeTimer);
+        closeTimer = null;
+      }
+      panel.style.opacity = "1";
+      panel.style.visibility = "visible";
+      panel.style.pointerEvents = "auto";
+      panel.style.transform = "translateX(-0%) translateY(0)";
+    };
+
+    const hidePanel = () => {
+      closeTimer = setTimeout(() => {
+        panel.style.opacity = "0";
+        panel.style.visibility = "hidden";
+        panel.style.pointerEvents = "none";
+        panel.style.transform = "translateX(-50%) translateY(4px)";
+      }, 300);
+    };
+
+    wrapper.addEventListener("mouseenter", showPanel);
+    wrapper.addEventListener("mouseleave", hidePanel);
+    panel.addEventListener("mouseenter", showPanel);
+    panel.addEventListener("mouseleave", hidePanel);
+  });
+</script>

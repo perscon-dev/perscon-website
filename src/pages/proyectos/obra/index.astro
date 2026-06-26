@@ -1,0 +1,324 @@
+---
+/**
+ * src/pages/proyectos/obra/index.astro
+ * Ruta: /proyectos/obra/
+ */
+
+import Layout                  from '../../../layouts/Layout.astro';
+import ProyectosObraDetalle    from '../../../components/proyectos/ProyectosObraDetalle.astro';
+
+const SITE_URL = 'https://www.perscon.com.mx';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${SITE_URL}/proyectos/obra/#service`,
+  name: 'Proyectos de Obra para el Sector Salud',
+  description: 'Ejecución de obra para Unidades de Salud: planeación, dirección técnica, control de calidad, conservación y mantenimiento de edificaciones médicas en México.',
+  url: `${SITE_URL}/proyectos/obra/`,
+  provider: { '@id': `${SITE_URL}/#organization` },
+  areaServed: [
+    { '@type': 'Country', name: 'México' },
+    { '@type': 'State', name: 'Estado de México' }
+  ],
+  serviceType: 'Construcción de Establecimientos de Salud',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Servicios de Construcción y Supervisión',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        name: 'Planeación de Obra Médica',
+        description: 'Cronogramas, presupuestos y planificación integral de proyectos constructivos',
+        url: `${SITE_URL}/contacto/`
+      },
+      {
+        '@type': 'Offer',
+        name: 'Dirección de Obra',
+        description: 'Supervisión técnica, coordinación de subcontratistas y control de calidad',
+        url: `${SITE_URL}/contacto/`
+      },
+      {
+        '@type': 'Offer',
+        name: 'Control de Calidad',
+        description: 'Inspección y pruebas de conformidad con normas COFEPRIS y especificaciones',
+        url: `${SITE_URL}/contacto/`
+      },
+      {
+        '@type': 'Offer',
+        name: 'Conservación y Mantenimiento',
+        description: 'Mantenimiento preventivo y correctivo de edificaciones sanitarias',
+        url: `${SITE_URL}/contacto/`
+      },
+      {
+        '@type': 'Offer',
+        name: 'Optimización de Espacios',
+        description: 'Rediseño de layouts para maximizar funcionalidad y seguridad',
+        url: `${SITE_URL}/contacto/`
+      },
+      {
+        '@type': 'Offer',
+        name: 'Obra Nueva y Remodelación',
+        description: 'Proyectos públicos y privados con cumplimiento normativo COFEPRIS',
+        url: `${SITE_URL}/contacto/`
+      }
+    ]
+  },
+  potentialAction: {
+    '@type': 'TradeAction',
+    target: `${SITE_URL}/contacto/`,
+    name: 'Solicitar Consulta de Obra'
+  }
+};
+
+---
+
+<Layout
+  title="Proyectos de Obra Médicos | Dirección y Supervisión de Obra | Perscon"
+  description="Dirección y supervisión de obra para clínicas, hospitales y centros médicos en México. Planeación, control de calidad y cumplimiento COFEPRIS en construcción y remodelación de establecimientos."
+  canonical="/proyectos/obra/"
+  pageSchema={[serviceSchema]}
+  breadcrumbs={[
+    { name: 'Proyectos',         url: '/proyectos/' },
+    { name: 'Proyectos de Obra', url: '/proyectos/obra/' },
+  ]}
+>
+
+  <!-- ── Hero ── -->
+  <section class="bg-[var(--color-carbon-950)] border-b border-[var(--color-carbon-800)]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20">
+
+      <nav
+        class="po-fade-up po-delay-1 flex items-center gap-2 text-xs text-[var(--color-steel-600)] mb-8"
+        aria-label="Ruta de navegación"
+      >
+        <a href="/" class="hover:text-white transition-colors duration-150" style="font-family: var(--font-body);">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <a href="/proyectos/" class="hover:text-white transition-colors duration-150" style="font-family: var(--font-body);">Proyectos</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-[var(--color-steel-400)]" aria-current="page" style="font-family: var(--font-body);">Proyectos de Obra</span>
+      </nav>
+
+      <div class="grid lg:grid-cols-[1fr_300px] gap-10 items-start">
+        <div>
+          <p
+            class="po-fade-up po-delay-2 text-[10px] font-semibold tracking-[0.18em] uppercase text-[var(--color-cofepris-500)] mb-4 flex items-center gap-2"
+            style="font-family: var(--font-body);"
+          >
+            <span class="w-6 h-px bg-[var(--color-cofepris-700)] inline-block" aria-hidden="true"></span>
+            Sector Salud
+          </p>
+
+          <h1
+            class="po-fade-up po-delay-3 text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight mb-5 max-w-2xl"
+            style="font-family: var(--font-display);"
+          >
+            Ejecución de Obra para<br />
+            Unidades de Salud
+          </h1>
+
+          <p
+            class="po-fade-up po-delay-4 text-[var(--color-steel-400)] text-base leading-relaxed max-w-xl mb-6"
+            style="font-family: var(--font-body);"
+          >
+            Desde la planeación, dirección y control, garantizamos que los
+            procedimientos constructivos se apeguen a la normatividad vigente
+            para establecimientos del sector salud en instituciones públicas
+            y privadas en México.
+          </p>
+
+          <p
+            class="po-fade-up po-delay-4 text-[var(--color-steel-400)] text-sm leading-relaxed max-w-xl mb-8"
+            style="font-family: var(--font-body);"
+          >
+            Incluimos conservación y mantenimiento de edificaciones para la salud,
+            así como optimización de espacios que maximizan la funcionalidad
+            y seguridad de las instalaciones.
+          </p>
+
+          <!-- Tags de servicios -->
+          <ul class="po-fade-up po-delay-5 flex flex-wrap gap-2" role="list" aria-label="Tipos de obra">
+            {['Obra nueva', 'Remodelación', 'Conservación', 'Mantenimiento', 'Pública', 'Privada'].map((tag: string) => (
+              <li
+                class="text-[10px] font-medium text-[var(--color-steel-400)] border border-[var(--color-carbon-700)] bg-[var(--color-carbon-800)] px-2.5 py-1 rounded"
+                style="font-family: var(--font-body);"
+              >
+                {tag}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Card CTA -->
+        <div class="po-scroll-right border border-[var(--color-carbon-700)] rounded-lg overflow-hidden">
+          <div class="px-5 py-4 bg-[var(--color-carbon-800)] border-b border-[var(--color-carbon-700)]">
+            <p
+              class="text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-500)]"
+              style="font-family: var(--font-body);"
+            >
+              ¿Tienes un proyecto de obra?
+            </p>
+          </div>
+          <div class="p-5 space-y-3 bg-[var(--color-carbon-900)]">
+            <a
+              href="/contacto/"
+              class="flex items-center justify-center gap-2 w-full bg-[var(--color-cofepris-700)] hover:bg-[var(--color-cofepris-600)] text-white font-semibold px-4 py-2.5 rounded text-sm transition-colors duration-150"
+              style="font-family: var(--font-body);"
+            >
+              Solicitar consulta
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Grid de servicios ── -->
+  <ProyectosObraDetalle />
+
+  <!-- ── Enfoque normativo ── -->
+  <section
+    class="bg-white border-t border-[var(--color-steel-100)]"
+    aria-labelledby="normativo-heading"
+  >
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+      <div class="grid lg:grid-cols-[340px_1fr] gap-14 items-start">
+
+        <!-- Lado izquierdo sticky -->
+        <div class="po-scroll-left lg:sticky lg:top-24">
+          <p
+            class="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-cofepris-700)] mb-3 flex items-center gap-2"
+            style="font-family: var(--font-body);"
+          >
+            <span class="w-6 h-px bg-[var(--color-cofepris-700)] inline-block" aria-hidden="true"></span>
+            Enfoque
+          </p>
+          <h2
+            id="normativo-heading"
+            class="text-2xl lg:text-3xl font-bold text-[var(--color-carbon-900)] tracking-tight mb-4"
+            style="font-family: var(--font-display);"
+          >
+            Obra que cumple desde el primer día
+          </h2>
+          <p
+            class="text-[var(--color-steel-500)] text-sm leading-relaxed mb-6"
+            style="font-family: var(--font-body);"
+          >
+            Cada procedimiento constructivo se ejecuta con la normatividad
+            del sector salud en mente: NOM aplicables, Reglamentos de
+            Construcción, especificaciones del proyecto ejecutivo y
+            requisitos del Permiso Sanitario de Construcción COFEPRIS.
+          </p>
+          <a
+            href="/licencias-cofepris/permiso-construccion/"
+            class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-cofepris-700)] hover:text-[var(--color-cofepris-800)] transition-colors duration-150"
+            style="font-family: var(--font-body);"
+          >
+            Ver Permiso Sanitario de Construcción →
+          </a>
+        </div>
+
+        <!-- Lado derecho: principios -->
+        <ul class="po-scroll-right grid sm:grid-cols-2 gap-px bg-[var(--color-steel-100)]" role="list">
+          {[
+            {
+              titulo:     'Normatividad vigente',
+              descripcion: 'NOM del sector salud, Reglamentos de Construcción municipales y federales aplicables a establecimientos médicos.',
+            },
+            {
+              titulo:     'Apego al proyecto ejecutivo',
+              descripcion: 'Supervisión técnica permanente para garantizar que la obra construida corresponde exactamente al proyecto autorizado por COFEPRIS.',
+            },
+            {
+              titulo:     'Calidad de materiales',
+              descripcion: 'Control de recepción de materiales, verificación de especificaciones técnicas y seguimiento de protocolos para instalaciones especializadas.',
+            },
+            {
+              titulo:     'Documentación de obra',
+              descripcion: 'Bitácora de obra, reportes de avance, registros fotográficos y documentación necesaria para la verificación de COFEPRIS.',
+            },
+            {
+              titulo:     'Instituciones públicas y privadas',
+              descripcion: 'Experiencia en obras para hospitales, clínicas, centros de salud y unidades médicas tanto del sector público como privado.',
+            },
+            {
+              titulo:     'Optimización de espacios',
+              descripcion: 'Soluciones de remodelación y redistribución que maximizan la funcionalidad sin comprometer los requisitos sanitarios.',
+            },
+          ].map((item) => (
+            <li class="bg-white px-6 py-5">
+              <p
+                class="text-sm font-bold text-[var(--color-carbon-900)] mb-2"
+                style="font-family: var(--font-display);"
+              >
+                {item.titulo}
+              </p>
+              <p
+                class="text-xs text-[var(--color-steel-500)] leading-relaxed"
+                style="font-family: var(--font-body);"
+              >
+                {item.descripcion}
+              </p>
+            </li>
+          ))}
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  @keyframes poFadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+
+  .po-fade-up {
+    opacity: 0;
+    animation: poFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .po-delay-1 { animation-delay: 0.05s; }
+  .po-delay-2 { animation-delay: 0.15s; }
+  .po-delay-3 { animation-delay: 0.28s; }
+  .po-delay-4 { animation-delay: 0.42s; }
+  .po-delay-5 { animation-delay: 0.55s; }
+
+  .po-scroll-left {
+    opacity: 0;
+    transform: translateX(-28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .po-scroll-left.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .po-scroll-right {
+    opacity: 0;
+    transform: translateX(28px);
+    transition: opacity 0.65s ease 0.15s, transform 0.65s ease 0.15s;
+  }
+  .po-scroll-right.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
+<script>
+  const poObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          poObserver.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  document.querySelectorAll('.po-scroll-left, .po-scroll-right').forEach((el) => poObserver.observe(el));
+</script>

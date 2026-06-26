@@ -1,0 +1,291 @@
+---
+
+import Layout                        from '../../../layouts/Layout.astro';
+import ProyectosEjecutivosDetalle    from '../../../components/proyectos/ProyectosEjecutivosDetalle.astro';
+
+const SITE_URL = 'https://www.perscon.com.mx';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${SITE_URL}/proyectos/ejecutivos/#service`,
+  name: 'Proyectos Ejecutivos para Unidades de Salud',
+  description: 'Diseño integral de instalaciones para Unidades de Atención a la Salud: hidráulico, sanitario, gases medicinales, eléctrico, HVAC, telecomunicaciones y automatización.',
+  url: `${SITE_URL}/proyectos/ejecutivos/`,
+  provider: { '@id': `${SITE_URL}/#organization` },
+  areaServed: [
+    { '@type': 'Country', name: 'México' },
+    { '@type': 'State', name: 'Estado de México' }
+  ],
+  serviceType: 'Diseño de Instalaciones Hospitalarias',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Servicios de Diseño Integral',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        name: 'Diseño de Instalaciones Hidráulicas y Sanitarias',
+        description: 'Planeación y cálculo de sistemas para agua, drenaje y tratamiento',
+        url: `${SITE_URL}/contacto/`
+      },
+      {
+        '@type': 'Offer',
+        name: 'Sistemas de Gases Medicinales',
+        description: 'Distribución segura de O2, N2O, N2, aire comprimido y vacío',
+        url: `${SITE_URL}/contacto/`
+      },
+      {
+        '@type': 'Offer',
+        name: 'Diseño de Instalaciones Eléctricas',
+        description: 'Sistemas de potencia, iluminación y respaldo con UPS/Generadores',
+        url: `${SITE_URL}/contacto/`
+      },
+      {
+        '@type': 'Offer',
+        name: 'Sistemas HVAC Médicos',
+        description: 'Climatización y presurización para áreas estériles y quirófanos',
+        url: `${SITE_URL}/contacto/`
+      },
+      {
+        '@type': 'Offer',
+        name: 'Telecomunicaciones e Informática',
+        description: 'Infraestructura de voz, datos, WiFi médico, PACS y redes de diagnóstico',
+        url: `${SITE_URL}/contacto/`
+      },
+      {
+        '@type': 'Offer',
+        name: 'Control y Automatización',
+        description: 'Sistemas BMS, control de ambiente, monitoreo y automatización hospitalaria',
+        url: `${SITE_URL}/contacto/`
+      }
+    ]
+  },
+  potentialAction: {
+    '@type': 'TradeAction',
+    target: `${SITE_URL}/contacto/`,
+    name: 'Consultar Proyecto Ejecutivo'
+  }
+};
+
+---
+
+<Layout
+  title="Proyectos Ejecutivos para Clínicas y Hospitales | Perscon"
+  description="Diseño completo de instalaciones médicas: sistemas hidráulicos, gases medicinales, eléctricos, HVAC, telecomunicaciones y automatización. Proyecto ejecutivo certificado con cumplimiento COFEPRIS."
+  canonical="/proyectos/ejecutivos/"
+  pageSchema={[serviceSchema]}
+  breadcrumbs={[
+    { name: 'Proyectos',           url: '/proyectos/' },
+    { name: 'Proyectos Ejecutivos', url: '/proyectos/ejecutivos/' },
+  ]}
+>
+
+  <!-- ── Hero ── -->
+  <section class="bg-[var(--color-carbon-950)] border-b border-[var(--color-carbon-800)]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20">
+
+      <nav
+        class="pe-fade-up pe-delay-1 flex items-center gap-2 text-xs text-[var(--color-steel-600)] mb-8"
+        aria-label="Ruta de navegación"
+      >
+        <a href="/" class="hover:text-white transition-colors duration-150" style="font-family: var(--font-body);">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <a href="/proyectos/" class="hover:text-white transition-colors duration-150" style="font-family: var(--font-body);">Proyectos</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-[var(--color-steel-400)]" aria-current="page" style="font-family: var(--font-body);">Proyectos Ejecutivos</span>
+      </nav>
+
+      <div class="grid lg:grid-cols-[1fr_300px] gap-10 items-start">
+        <div>
+          <p
+            class="pe-fade-up pe-delay-2 text-[10px] font-semibold tracking-[0.18em] uppercase text-[var(--color-cofepris-500)] mb-4 flex items-center gap-2"
+            style="font-family: var(--font-body);"
+          >
+            <span class="w-6 h-px bg-[var(--color-cofepris-700)] inline-block" aria-hidden="true"></span>
+            Desarrollo de Proyectos Integrales
+          </p>
+
+          <h1
+            class="pe-fade-up pe-delay-3 text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight mb-5 max-w-2xl"
+            style="font-family: var(--font-display);"
+          >
+            Proyectos Ejecutivos para<br />
+            Unidades de Atención a la Salud
+          </h1>
+
+          <p
+            class="pe-fade-up pe-delay-4 text-[var(--color-steel-400)] text-base leading-relaxed max-w-xl mb-8"
+            style="font-family: var(--font-body);"
+          >
+            Utilizamos conceptos normativos y procesos operativos para diseñar
+            soluciones que integren todos los aspectos de las Unidades de Atención
+            a la Salud. Garantizamos compatibilidad con el equipamiento médico,
+            confort del usuario y habitabilidad del espacio.
+          </p>
+
+          <!-- Tags de disciplinas -->
+          <ul class="pe-fade-up pe-delay-5 flex flex-wrap gap-2" role="list" aria-label="Disciplinas de diseño">
+            {['Hidráulico', 'Gases medicinales', 'Eléctrico', 'HVAC', 'Telecomunicaciones', 'Automatización'].map((tag: string) => (
+              <li
+                class="text-[10px] font-medium text-[var(--color-steel-400)] border border-[var(--color-carbon-700)] bg-[var(--color-carbon-800)] px-2.5 py-1 rounded"
+                style="font-family: var(--font-body);"
+              >
+                {tag}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Card CTA -->
+        <div class="pe-scroll-right border border-[var(--color-carbon-700)] rounded-lg overflow-hidden">
+          <div class="px-5 py-4 bg-[var(--color-carbon-800)] border-b border-[var(--color-carbon-700)]">
+            <p
+              class="text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-500)]"
+              style="font-family: var(--font-body);"
+            >
+              ¿Tienes un proyecto?
+            </p>
+          </div>
+          <div class="p-5 space-y-3 bg-[var(--color-carbon-900)]">
+            <a
+              href="/contacto/"
+              class="flex items-center justify-center gap-2 w-full bg-[var(--color-cofepris-700)] hover:bg-[var(--color-cofepris-600)] text-white font-semibold px-4 py-2.5 rounded text-sm transition-colors duration-150"
+              style="font-family: var(--font-body);"
+            >
+              Consultar proyecto
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Grid de servicios ── -->
+  <ProyectosEjecutivosDetalle />
+
+  <!-- ── Coordinación con equipamiento médico ── -->
+  <section
+    class="bg-white border-t border-[var(--color-steel-100)]"
+    aria-labelledby="coordinacion-heading"
+  >
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+      <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+        <div class="pe-scroll-left">
+          <p
+            class="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-cofepris-700)] mb-3 flex items-center gap-2"
+            style="font-family: var(--font-body);"
+          >
+            <span class="w-6 h-px bg-[var(--color-cofepris-700)] inline-block" aria-hidden="true"></span>
+            Integración Total
+          </p>
+          <h2
+            id="coordinacion-heading"
+            class="text-2xl lg:text-3xl font-bold text-[var(--color-carbon-900)] tracking-tight mb-4"
+            style="font-family: var(--font-display);"
+          >
+            Coordinación con Equipamiento Médico
+          </h2>
+          <p
+            class="text-[var(--color-steel-500)] text-sm leading-relaxed mb-6"
+            style="font-family: var(--font-body);"
+          >
+            Aseguramos que cada instalación sea compatible con el equipamiento médico
+            específico del establecimiento. Trabajamos con fichas técnicas del fabricante,
+            requerimientos de suministro eléctrico, gases y datos para garantizar
+            el funcionamiento óptimo de cada equipo desde el primer día de operación.
+          </p>
+          <p
+            class="text-[var(--color-steel-500)] text-sm leading-relaxed"
+            style="font-family: var(--font-body);"
+          >
+            El resultado: instalaciones que no requieren modificaciones post-entrega,
+            espacios que cumplen con la normatividad COFEPRIS y ambientes que garantizan
+            el confort del usuario y la habitabilidad del espacio clínico.
+          </p>
+        </div>
+
+        <!-- Puntos de valor -->
+        <ul class="pe-scroll-right grid grid-cols-2 gap-px bg-[var(--color-steel-100)]" role="list">
+          {[
+            { valor: 'Normativo',  etiqueta: 'Cumplimiento desde el diseño'     },
+            { valor: 'Integral',   etiqueta: 'Todas las disciplinas coordinadas' },
+            { valor: 'Compatible', etiqueta: 'Con el equipamiento médico'        },
+            { valor: 'Habitable',  etiqueta: 'Confort del usuario garantizado'   },
+          ].map((m) => (
+            <li class="bg-white px-6 py-6 text-center">
+              <p
+                class="text-lg font-bold text-[var(--color-cofepris-700)]"
+                style="font-family: var(--font-display);"
+              >
+                {m.valor}
+              </p>
+              <p
+                class="text-[10px] text-[var(--color-steel-500)] uppercase tracking-wide mt-1 leading-tight"
+                style="font-family: var(--font-body);"
+              >
+                {m.etiqueta}
+              </p>
+            </li>
+          ))}
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  @keyframes peFadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+
+  .pe-fade-up {
+    opacity: 0;
+    animation: peFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .pe-delay-1 { animation-delay: 0.05s; }
+  .pe-delay-2 { animation-delay: 0.15s; }
+  .pe-delay-3 { animation-delay: 0.28s; }
+  .pe-delay-4 { animation-delay: 0.42s; }
+  .pe-delay-5 { animation-delay: 0.55s; }
+
+  .pe-scroll-left {
+    opacity: 0;
+    transform: translateX(-28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .pe-scroll-left.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .pe-scroll-right {
+    opacity: 0;
+    transform: translateX(28px);
+    transition: opacity 0.65s ease 0.15s, transform 0.65s ease 0.15s;
+  }
+  .pe-scroll-right.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
+<script>
+  const peObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          peObserver.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  document.querySelectorAll('.pe-scroll-left, .pe-scroll-right').forEach((el) => peObserver.observe(el));
+</script>

@@ -1,0 +1,98 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  tiempo:      string;
+  relacionadas: CollectionEntry<'licencias'>[];
+}
+
+const { tiempo, relacionadas } = Astro.props;
+---
+
+<aside class="space-y-5 lg:sticky lg:top-24" aria-label="Información adicional">
+
+  <!-- CTA principal -->
+  <div class="border border-[var(--color-steel-200)] rounded-lg overflow-hidden">
+    <div class="px-5 py-4 bg-[var(--color-cofepris-700)]">
+      <p
+        class="text-white font-bold text-sm"
+        style="font-family: var(--font-display);"
+      >
+        ¿Necesitas esta licencia?
+      </p>
+      <p
+        class="text-[var(--color-cofepris-100)] text-xs mt-0.5"
+        style="font-family: var(--font-body);"
+      >
+        Consulta gratuita sin compromiso
+      </p>
+    </div>
+    <div class="p-5 space-y-2.5">
+      <a
+        href="/contacto/"
+        class="flex items-center justify-center w-full bg-[var(--color-carbon-900)] hover:bg-[var(--color-carbon-800)] text-white font-semibold px-4 py-2.5 rounded text-sm transition-colors duration-150"
+        style="font-family: var(--font-body);"
+      >
+        Solicitar Asesoría
+      </a>
+     
+    </div>
+  </div>
+
+  <!-- Tiempo estimado -->
+  <div class="border border-[var(--color-steel-200)] rounded-lg p-5">
+    <p
+      class="text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-400)] mb-2"
+      style="font-family: var(--font-body);"
+    >
+      Tiempo estimado
+    </p>
+    <p
+      class="text-xl font-bold text-[var(--color-carbon-900)]"
+      style="font-family: var(--font-display);"
+    >
+      {tiempo}
+    </p>
+    <p
+      class="text-xs text-[var(--color-steel-500)] mt-1"
+      style="font-family: var(--font-body);"
+    >
+      Desde la presentación del expediente completo.
+    </p>
+  </div>
+
+  <!-- Otras licencias COFEPRIS -->
+  {relacionadas.length > 0 && (
+    <div class="border border-[var(--color-steel-200)] rounded-lg overflow-hidden">
+      <div class="px-5 py-3.5 border-b border-[var(--color-steel-100)]">
+        <p
+          class="text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-400)]"
+          style="font-family: var(--font-body);"
+        >
+          Otras Licencias COFEPRIS
+        </p>
+      </div>
+      <ul class="divide-y divide-[var(--color-steel-100)]" role="list">
+        {relacionadas.map((lic: CollectionEntry<'licencias'>) => (
+          <li>
+            <a
+              href={`/licencias-cofepris/${lic.slug}/`}
+              class="flex items-center gap-3 px-5 py-3 text-sm text-[var(--color-steel-700)] hover:text-[var(--color-cofepris-700)] hover:bg-[var(--color-steel-50)] transition-colors duration-150 group"
+              style="font-family: var(--font-body);"
+            >
+              <svg
+                class="w-3.5 h-3.5 text-[var(--color-steel-300)] group-hover:text-[var(--color-cofepris-600)] flex-shrink-0 transition-colors duration-150"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+              {lic.data.nombre}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+</aside>

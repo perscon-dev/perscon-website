@@ -1,0 +1,69 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const costosReferencia = [
+  { tramite: 'Permiso Sanitario de Construcción', homoclave: 'COFEPRIS-05-033', slug: 'permiso-construccion' },
+  { tramite: 'Licencia Actos Quirúrgicos', homoclave: 'COFEPRIS-05-034', slug: 'licencia-actos-quirurgicos' },
+  { tramite: 'Licencia Fuentes de Radiación', homoclave: 'COFEPRIS-05-024-A', slug: 'licencia-radiacion' },
+  { tramite: 'Licencia Banco de Sangre', homoclave: 'COFEPRIS-09-025-A', slug: 'licencia-sanguinea' },
+  { tramite: 'Licencia Transfusión Hospitalaria', homoclave: 'COFEPRIS-09-025-E', slug: 'licencia-transfusion-hospitalaria' },
+  { tramite: 'Licencia Hemodiálisis', homoclave: 'COFEPRIS-05-123-A', slug: 'licencia-hemodialisis' },
+];
+---
+
+<Layout
+  title="Costos y Derechos COFEPRIS 2026 | Tarifas por Licencia"
+  description="Cuánto cuesta tramitar licencias COFEPRIS en México: derechos gubernamentales por homoclave, diferencia entre costo oficial y asesoría, y cómo presupuestar tu trámite sanitario."
+  canonical="/recursos/costos-tramites-cofepris/"
+  breadcrumbs={[
+    { name: 'Recursos', url: '/recursos/' },
+    { name: 'Costos de trámites', url: '/recursos/costos-tramites-cofepris/' },
+  ]}
+>
+  <article class="max-w-3xl mx-auto px-6 lg:px-8 py-14 lg:py-20 prose-licencia">
+    <h1 class="text-3xl lg:text-4xl font-bold text-carbon-900 mb-6" style="font-family: var(--font-display);">
+      Costos y derechos de trámites COFEPRIS en México
+    </h1>
+
+    <p>
+      Cada <strong>licencia sanitaria COFEPRIS</strong> tiene un monto de <strong>derechos gubernamentales</strong>
+      que se paga ante la Secretaría de Hacienda antes o durante el trámite. Es independiente del costo de
+      asesoría profesional para preparar el expediente. Los montos se actualizan; verifica siempre la tarifa
+      vigente en el acuerdo correspondiente.
+    </p>
+
+    <h2>Trámites y homoclaves</h2>
+    <ul>
+      {
+        costosReferencia.map((c) => (
+          <li>
+            <a href={`/licencias-cofepris/${c.slug}/`} class="text-cofepris-700 font-semibold hover:underline">
+              {c.tramite}
+            </a>
+            {' '}— {c.homoclave}
+          </li>
+        ))
+      }
+    </ul>
+
+    <h2>¿Qué incluye la asesoría Perscon?</h2>
+    <p>
+      La consulta inicial es sin costo. La propuesta de gestión cubre diagnóstico, preparación del expediente,
+      presentación, seguimiento y atención de requerimientos. Los <strong>derechos COFEPRIS</strong> se facturan
+      aparte según el trámite.
+    </p>
+
+    <h2>Cómo reducir costos ocultos</h2>
+    <ul>
+      <li>Evitar rechazos por documentación incompleta (re-tramitar duplica tiempos y gastos)</li>
+      <li>Resolver trámites previos (RS, permiso de construcción) antes de la licencia principal</li>
+      <li>Validar homoclave correcta según servicios del establecimiento</li>
+    </ul>
+
+    <p>
+      <a href="/contacto/" class="text-cofepris-700 font-semibold hover:underline">
+        Solicitar cotización personalizada →
+      </a>
+    </p>
+  </article>
+</Layout>

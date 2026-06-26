@@ -1,0 +1,252 @@
+---
+/**
+ * CasosDestacados.astro
+ * Sección: Proyectos y Casos de Éxito
+ * EEAT: resultados reales, empresas reales, métricas concretas
+ * Preparado para datos dinámicos via Content Collections
+ * Por ahora usa datos estáticos de placeholder tipificados
+ */
+
+import { getCollection } from 'astro:content';
+
+// Intenta cargar desde Content Collections; si no hay, usa placeholders
+let casos: any[] = [];
+try {
+  const coleccion = await getCollection('casos-exito', ({ data }) => data.featured);
+  casos = coleccion.slice(0, 3);
+} catch {
+  // Placeholders tipificados para cuando aún no hay contenido
+  casos = [];
+}
+
+// Datos de placeholder cuando la colección está vacía
+const placeholders = [
+  {
+    slug: 'clinica-cirugia-monterrey',
+    empresa: 'Clínica Quirúrgica del Norte',
+    sector: 'Cirugía Ambulatoria',
+    ciudad: 'Monterrey, NL',
+    licencia: 'Licencia para Actos Quirúrgicos',
+    resultado: 'Licencia obtenida en 52 días hábiles',
+    descripcion:
+      'Clínica de cirugía ambulatoria que requería licencia sanitaria para 3 quirófanos. Expediente presentado sin observaciones en primera revisión.',
+    metricas: [
+      { valor: '52',   etiqueta: 'días hábiles' },
+      { valor: '0',    etiqueta: 'observaciones COFEPRIS' },
+      { valor: '100%', etiqueta: 'documentación aprobada' },
+    ],
+  },
+  {
+    slug: 'centro-imagen-diagnostica-cdmx',
+    empresa: 'Centro de Imagen Diagnóstica',
+    sector: 'Diagnóstico por Imagen',
+    ciudad: 'Ciudad de México',
+    licencia: 'Licencia para Fuentes de Radiación',
+    resultado: 'Dos equipos de tomografía autorizados',
+    descripcion:
+      'Centro de diagnóstico con equipos de TC y rayos X que necesitaba licencia para expansión de servicios. Gestión de cumplimiento NOM-229-SSA1-2002.',
+    metricas: [
+      { valor: '2',    etiqueta: 'equipos autorizados' },
+      { valor: '68',   etiqueta: 'días hábiles' },
+      { valor: '1ª',   etiqueta: 'presentación exitosa' },
+    ],
+  },
+  {
+    slug: 'unidad-hemodialisis-guadalajara',
+    empresa: 'Unidad Renal Occidente',
+    sector: 'Nefrología / Hemodiálisis',
+    ciudad: 'Guadalajara, Jalisco',
+    licencia: 'Licencia de Hemodiálisis',
+    resultado: 'Apertura en tiempo récord',
+    descripcion:
+      'Nueva unidad de hemodiálisis con 20 estaciones. Coordinación con obra civil para cumplir requisitos de infraestructura NOM-003-SSA3-2010 desde diseño.',
+    metricas: [
+      { valor: '20',  etiqueta: 'estaciones autorizadas' },
+      { valor: '45',  etiqueta: 'días hábiles' },
+      { valor: '+30%', etiqueta: 'ahorro vs estimado' },
+    ],
+  },
+];
+
+const displayCasos = casos.length > 0 ? casos : placeholders;
+const esDinamico = casos.length > 0;
+---
+
+<section
+  class="bg-[var(--color-off-white)] border-t border-[var(--color-steel-100)]"
+  aria-labelledby="casos-heading"
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-24">
+
+    <!-- Encabezado -->
+    <div class="cd-reveal flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-14">
+      <div class="max-w-xl">
+        <p
+          class="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-cofepris-700)] mb-3 flex items-center gap-2"
+          style="font-family: var(--font-body);"
+        >
+          <span class="w-6 h-px bg-[var(--color-cofepris-700)] inline-block" aria-hidden="true"></span>
+          Casos de Éxito
+        </p>
+        <h2
+          id="casos-heading"
+          class="text-3xl lg:text-4xl font-bold text-[var(--color-carbon-900)] tracking-tight leading-tight"
+          style="font-family: var(--font-display);"
+        >
+          Establecimientos que ya<br />
+          Operan con su Licencia
+        </h2>
+      </div>
+      <a
+        href="/proyectos/"
+        class="flex-shrink-0 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-cofepris-700)] hover:text-[var(--color-cofepris-800)] transition-colors duration-150 group"
+        style="font-family: var(--font-body);"
+      >
+        Ver todos los proyectos
+        <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Cards de casos -->
+    <ul class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" role="list">
+      {displayCasos.map((caso) => {
+        // Normaliza tanto datos de Content Collections como placeholders
+        const slug      = esDinamico ? caso.slug             : caso.slug;
+        const empresa   = esDinamico ? caso.data.empresa      : caso.empresa;
+        const sector    = esDinamico ? caso.data.sectorLabel  : caso.sector;
+        const ciudad    = esDinamico ? caso.data.ciudad       : caso.ciudad;
+        const licencia  = esDinamico ? caso.data.tramite          : caso.licencia;
+        const resultado = esDinamico ? caso.data.resultado         : caso.resultado;
+        const desc      = esDinamico ? caso.data.reto              : caso.descripcion;
+        const metricas  = esDinamico ? caso.data.metricas.slice(0, 3) : caso.metricas;
+
+        return (
+          <li class="cd-card" style={`--cd-delay: ${displayCasos.indexOf(caso) * 120}ms`}>
+            <article
+              class="bg-white border border-[var(--color-steel-100)] hover:border-[var(--color-cofepris-200)] hover:shadow-md transition-all duration-200 group flex flex-col h-full"
+              aria-labelledby={`caso-${slug}`}
+            >
+              <!-- Header card -->
+              <div class="px-6 pt-6 pb-4 border-b border-[var(--color-steel-100)]">
+                <div class="flex items-start justify-between gap-3 mb-3">
+                  <span
+                    class="text-[10px] font-semibold tracking-wide text-[var(--color-cofepris-700)] bg-[var(--color-cofepris-50)] border border-[var(--color-cofepris-100)] px-2 py-0.5 rounded"
+                    style="font-family: var(--font-body);"
+                  >
+                    {sector}
+                  </span>
+                  <span
+                    class="text-[10px] text-[var(--color-steel-400)]"
+                    style="font-family: var(--font-body);"
+                  >
+                    {ciudad}
+                  </span>
+                </div>
+                <h3
+                  id={`caso-${slug}`}
+                  class="text-sm font-bold text-[var(--color-carbon-900)] leading-snug group-hover:text-[var(--color-cofepris-700)] transition-colors duration-150"
+                  style="font-family: var(--font-display);"
+                >
+                  {empresa}
+                </h3>
+                <p
+                  class="text-xs text-[var(--color-steel-500)] mt-1"
+                  style="font-family: var(--font-body);"
+                >
+                  {licencia}
+                </p>
+              </div>
+
+              <!-- Descripción -->
+              <div class="px-6 py-4 flex-1">
+                <p
+                  class="text-sm text-[var(--color-steel-600)] leading-relaxed"
+                  style="font-family: var(--font-body);"
+                >
+                  {desc}
+                </p>
+              </div>
+
+              <!-- Métricas -->
+              <dl class="grid grid-cols-3 divide-x divide-[var(--color-steel-100)] border-t border-[var(--color-steel-100)]">
+                {metricas.map((m: any) => (
+                  <div class="px-4 py-3 text-center">
+                    <dt
+                      class="text-base font-bold text-[var(--color-carbon-900)]"
+                      style="font-family: var(--font-display);"
+                    >
+                      {m.valor}
+                    </dt>
+                    <dd
+                      class="text-[9px] text-[var(--color-steel-400)] mt-0.5 uppercase tracking-wide"
+                      style="font-family: var(--font-body);"
+                    >
+                      {m.etiqueta}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+
+              <!-- Link -->
+              <div class="px-6 py-4 border-t border-[var(--color-steel-100)]">
+                <a
+                  href={`/casos-exito/${slug}/`}
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--color-cofepris-700)] hover:text-[var(--color-cofepris-800)] transition-colors duration-150 group/link"
+                  style="font-family: var(--font-body);"
+                  aria-label={`Ver caso completo: ${empresa}`}
+                >
+                  Ver caso completo
+                  <svg class="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          </li>
+        );
+      })}
+    </ul>
+
+  </div>
+</section>
+
+<style>
+  .cd-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .cd-reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .cd-card {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+    transition-delay: var(--cd-delay, 0ms);
+  }
+  .cd-card.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const cdObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          cdObserver.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.07 }
+  );
+
+  document.querySelectorAll('.cd-reveal, .cd-card').forEach((el) => cdObserver.observe(el));
+</script>

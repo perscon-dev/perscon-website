@@ -1,0 +1,79 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Página no encontrada"
+  description="La página que buscas no existe. Vuelve a la página principal o usa el menú de navegación."
+  ogType="website"
+  noindex={true}
+>
+  <main class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 px-4">
+    <div class="max-w-md w-full text-center">
+      <!-- Error Code -->
+      <div class="mb-8">
+        <h1 class="text-9xl font-bold text-cofepris-green mb-4">404</h1>
+        <div class="h-1 w-24 bg-cofepris-green mx-auto rounded-full"></div>
+      </div>
+
+      <!-- Message -->
+      <h2 class="text-3xl font-bold text-carbon-900 mb-4">
+        Página no encontrada
+      </h2>
+      <p class="text-lg text-carbon-600 mb-8">
+        Lo sentimos, la página que buscas no existe o ha sido movida. Por favor, verifica la URL e intenta nuevamente.
+      </p>
+
+      <!-- Helpful Links -->
+      <div class="space-y-3 mb-8">
+        <p class="text-sm text-carbon-500 font-medium">Quizás estés buscando:</p>
+        <nav class="flex flex-col gap-2">
+          <a
+            href="/"
+            class="px-6 py-3 bg-cofepris-green text-white rounded-lg font-semibold hover:bg-green-800 transition-colors"
+          >
+            Ir a Inicio
+          </a>
+          <a
+            href="/licencias-cofepris/"
+            class="px-6 py-3 bg-slate-200 text-carbon-900 rounded-lg font-semibold hover:bg-slate-300 transition-colors"
+          >
+            Licencias COFEPRIS
+          </a>
+          <a
+            href="/casos-exito/"
+            class="px-6 py-3 bg-slate-200 text-carbon-900 rounded-lg font-semibold hover:bg-slate-300 transition-colors"
+          >
+            Casos de Éxito
+          </a>
+          <a
+            href="/contacto/"
+            class="px-6 py-3 bg-slate-200 text-carbon-900 rounded-lg font-semibold hover:bg-slate-300 transition-colors"
+          >
+            Contactar
+          </a>
+        </nav>
+      </div>
+
+      <!-- Search Suggestion -->
+      <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+        <p class="text-sm text-carbon-600 mb-3">
+          ¿No encuentras lo que buscas?
+        </p>
+        <a
+          href="/preguntas-frecuentes/"
+          class="text-cofepris-green font-semibold hover:underline"
+        >
+          Ver Preguntas Frecuentes →
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  h1 {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -0.02em;
+  }
+</style>

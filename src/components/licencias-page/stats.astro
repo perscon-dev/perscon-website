@@ -1,0 +1,57 @@
+---
+const metricas = [
+  { valor: '+150', etiqueta: 'Licencias obtenidas'   },
+  { valor: '0',    etiqueta: 'Licencias rechazadas'  },
+  { valor: '-40%', etiqueta: 'Reducción de tiempos'  },
+  { valor: '5',    etiqueta: 'Tipos de licencia'     },
+] as const;
+---
+ 
+ <!-- ── Stats ── -->
+  <section class="bg-white border-t border-[var(--color-steel-100)]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2
+            class="text-2xl lg:text-3xl font-bold text-[var(--color-carbon-900)] tracking-tight mb-4"
+            style="font-family: var(--font-display);"
+          >
+            Nos encargamos de todo el trámite
+          </h2>
+          <p
+            class="text-[var(--color-steel-500)] text-sm leading-relaxed mb-6"
+            style="font-family: var(--font-body);"
+          >
+            Desde la revisión de documentos hasta la entrega de la licencia.
+            Sin errores, sin retrasos innecesarios.
+          </p>
+          <a
+            href="/nosotros/"
+            class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-cofepris-700)] hover:text-[var(--color-cofepris-800)] transition-colors duration-150"
+            style="font-family: var(--font-body);"
+          >
+            Conoce a nuestro equipo →
+          </a>
+        </div>
+
+        <ul class="grid grid-cols-2 gap-px bg-[var(--color-steel-100)]" role="list">
+          {metricas.map((m) => (
+            <li class="bg-white px-6 py-5 text-center">
+              <p
+                class="text-2xl font-bold text-[var(--color-carbon-900)]"
+                style="font-family: var(--font-display);"
+              >
+                {m.valor}
+              </p>
+              <p
+                class="text-[10px] text-[var(--color-steel-500)] uppercase tracking-wide mt-1"
+                style="font-family: var(--font-body);"
+              >
+                {m.etiqueta}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>

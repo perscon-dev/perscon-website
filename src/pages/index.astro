@@ -1,11 +1,77 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout      from '../layouts/Layout.astro';
+import Hero            from '../components/index/Hero.astro';
+import Stats           from '../components/index/Stats.astro';
+import ServiciosGrid   from '../components/index/ServiciosGrid.astro';
+import PorQueElegirnos from '../components/index/PorQueElegirnos.astro';
+import Proceso         from '../components/index/Proceso.astro';
+import CasosDestacados from '../components/index/CasosDestacados.astro';
+import FAQ             from '../components/index/FAQ.astro';
+import CTAFinal        from '../components/index/CTAFinal.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const title = 'Trámites COFEPRIS para Establecimientos Médicos en México';
+
+const description =
+  'Especialistas en licencias sanitarias COFEPRIS: actos quirúrgicos, fuentes de radiación, bancos de sangre y hemodiálisis. Gestión integral del trámite. Consulta gratuita.';
+
+// WebPage, WebSite y BreadcrumbList los emite Layout.astro.
+// HowTo completo vive en /guia-tramites-cofepris/
+const homeSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://www.perscon.com.mx/#service',
+  name: 'Asesoría en Trámites COFEPRIS',
+  description: description,
+  provider: {
+    '@id': 'https://www.perscon.com.mx/#organization',
+  },
+  areaServed: [
+    { '@type': 'Country', name: 'México' },
+    { '@type': 'State', name: 'Estado de México' },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Servicios de Asesoría Regulatoria',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        name: 'Licencias Sanitarias COFEPRIS',
+        description: 'Gestión integral de licencias sanitarias para establecimientos médicos',
+        url: 'https://www.perscon.com.mx/licencias-cofepris/',
+      },
+      {
+        '@type': 'Offer',
+        name: 'Proyectos Ejecutivos',
+        description: 'Diseño integral de instalaciones para unidades de salud',
+        url: 'https://www.perscon.com.mx/proyectos/ejecutivos/',
+      },
+      {
+        '@type': 'Offer',
+        name: 'Proyectos de Obra',
+        description: 'Dirección y supervisión de construcción y remodelación',
+        url: 'https://www.perscon.com.mx/proyectos/obra/',
+      },
+    ],
+  },
+  potentialAction: {
+    '@type': 'TradeAction',
+    target: 'https://www.perscon.com.mx/contacto/',
+    name: 'Solicitar Consulta Gratuita',
+  },
+};
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+  title={title}
+  description={description}
+  pageSchema={homeSchema}
+>
+  <Hero />
+  <Stats />
+  <ServiciosGrid />
+  <PorQueElegirnos />
+  <Proceso />
+  <CasosDestacados />
+  <FAQ />
+  <CTAFinal />
+</BaseLayout>

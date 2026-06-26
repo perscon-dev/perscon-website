@@ -1,0 +1,142 @@
+---
+/**
+ * FAQ.astro (Homepage)
+ * Importa datos desde src/data/faqData.ts
+ * NOTA: El FAQPageSchema completo está en /preguntas-frecuentes/
+ * Aquí mostramos solo preview (primeras 4) para evitar duplicación SEO
+ */
+
+import { faqs } from '../../data/faqData';
+
+// Mostrar solo las 4 primeras FAQs en homepage (preview)
+const topFaqs = faqs.slice(0, 4);
+---
+
+<section
+  class="bg-white border-t border-[var(--color-steel-100)]"
+  aria-labelledby="faq-heading"
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-24">
+
+    <div class="grid lg:grid-cols-[1fr_2fr] gap-16 items-start">
+
+      <!-- Columna izquierda: heading sticky -->
+      <div class="lg:sticky lg:top-24">
+        <p
+          class="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-cofepris-700)] mb-3 flex items-center gap-2"
+          style="font-family: var(--font-body);"
+        >
+          <span class="w-6 h-px bg-[var(--color-cofepris-700)] inline-block" aria-hidden="true"></span>
+          Preguntas Frecuentes
+        </p>
+        <h2
+          id="faq-heading"
+          class="text-3xl lg:text-4xl font-bold text-[var(--color-carbon-900)] tracking-tight leading-tight mb-5"
+          style="font-family: var(--font-display);"
+        >
+          Todo lo que<br />necesitas saber<br />
+          sobre trámites<br />
+          <span class="text-[var(--color-cofepris-700)]">COFEPRIS</span>
+        </h2>
+        <p
+          class="text-[var(--color-steel-500)] text-sm leading-relaxed mb-8"
+          style="font-family: var(--font-body);"
+        >
+          Respuestas a las preguntas más comunes. ¿Necesitas más información?
+        </p>
+        <div class="flex flex-col gap-3">
+          <a
+            href="/preguntas-frecuentes/"
+            class="inline-flex items-center gap-2 bg-cofepris-700 hover:bg-cofepris-600 text-white font-semibold px-5 py-2.5 rounded text-sm transition-colors duration-150"
+            style="font-family: var(--font-body);"
+          >
+            Ver todas las preguntas →
+          </a>
+          <a
+            href="/contacto/"
+            class="inline-flex items-center gap-2 border border-[var(--color-carbon-900)] text-[var(--color-carbon-900)] hover:bg-[var(--color-carbon-900)] hover:text-white font-semibold px-5 py-2.5 rounded text-sm transition-colors duration-150"
+            style="font-family: var(--font-body);"
+          >
+            Consultar con un experto
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna derecha: acordeón -->
+      <div>
+        <dl class="divide-y divide-[var(--color-steel-100)]">
+          {topFaqs.map((faq, idx) => (
+            <div class="faq-item py-5">
+              <dt>
+                <button
+                  class="faq-btn w-full cursor-pointer flex items-start justify-between gap-4 text-left group"
+                  aria-expanded="false"
+                  aria-controls={`faq-answer-${idx}`}
+                  id={`faq-question-${idx}`}
+                >
+                  <span
+                    class="text-sm font-semibold text-[var(--color-carbon-900)] group-hover:text-[var(--color-cofepris-700)] transition-colors duration-150 leading-snug"
+                    style="font-family: var(--font-display);"
+                  >
+                    {faq.pregunta}
+                  </span>
+                  <span
+                    class="faq-icon flex-shrink-0 w-5 h-5 rounded-full border border-[var(--color-steel-200)] flex items-center justify-center mt-0.5 group-hover:border-[var(--color-cofepris-700)] transition-colors duration-150"
+                    aria-hidden="true"
+                  >
+                    <svg class="w-2.5 h-2.5 text-[var(--color-steel-400)] faq-plus" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+                    </svg>
+                    <svg class="w-2.5 h-2.5 text-[var(--color-cofepris-700)] faq-minus hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 12H4" />
+                    </svg>
+                  </span>
+                </button>
+              </dt>
+              <dd
+                id={`faq-answer-${idx}`}
+                role="region"
+                aria-labelledby={`faq-question-${idx}`}
+                class="faq-answer hidden pt-3 pr-9"
+              >
+                <p
+                  class="text-sm text-[var(--color-steel-600)] leading-relaxed"
+                  style="font-family: var(--font-body);"
+                >
+                  {faq.respuesta}
+                </p>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      const answer = document.getElementById(btn.getAttribute('aria-controls')!);
+      const plus   = btn.querySelector('.faq-plus');
+      const minus  = btn.querySelector('.faq-minus');
+
+      // Cierra todos los demás
+      document.querySelectorAll('.faq-btn').forEach((b) => {
+        if (b !== btn) {
+          b.setAttribute('aria-expanded', 'false');
+          document.getElementById(b.getAttribute('aria-controls')!)?.classList.add('hidden');
+          b.querySelector('.faq-plus')?.classList.remove('hidden');
+          b.querySelector('.faq-minus')?.classList.add('hidden');
+        }
+      });
+
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      answer?.classList.toggle('hidden', isOpen);
+      plus?.classList.toggle('hidden', !isOpen);
+      minus?.classList.toggle('hidden', isOpen);
+    });
+  });
+</script>

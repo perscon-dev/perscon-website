@@ -1,0 +1,105 @@
+---
+// CookieBanner.astro
+// No props needed
+---
+
+<div
+  id="cookie-banner"
+  class="fixed bottom-0 left-0 right-0 bg-zinc-900 text-white shadow-2xl z-50 hidden"
+  role="dialog"
+  aria-live="polite"
+  aria-label="Aviso de cookies"
+>
+  <div
+    class="max-w-7xl mx-auto px-4 py-6 sm:py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+  >
+    <!-- Message -->
+    <div class="flex-1">
+      <p class="text-sm sm:text-base">
+        Usamos cookies para mejorar tu experiencia y analizar nuestro sitio.
+        <a href="/privacidad/" class="font-semibold underline hover:no-underline">
+          Conoce más
+        </a>
+      </p>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex gap-3 w-full sm:w-auto">
+      <button
+        id="cookie-accept"
+        type="button"
+        class="flex-1 cursor-pointer sm:flex-none px-6 py-2 bg-green-700 hover:bg-green-800 text-white rounded font-semibold transition-colors"
+      >
+        Aceptar
+      </button>
+      <button
+        id="cookie-decline"
+        type="button"
+        class="flex-1 cursor-pointer sm:flex-none px-6 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded font-semibold transition-colors"
+      >
+        Rechazar
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const COOKIE_NAME = 'perscon_cookies_accepted';
+  const COOKIE_EXPIRY = 365;
+
+  function setCookie(name: string, value: string, days: number): void {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
+  }
+
+  function sendConsentToGTM(accepted: boolean) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'cookie_consent',
+      consent_status: accepted ? 'granted' : 'denied'
+    });
+  }
+
+  function init(): void {
+    const accepted = document.cookie.includes(`${COOKIE_NAME}=true`);
+    const declined = document.cookie.includes(`${COOKIE_NAME}=false`);
+
+    if (accepted || declined) return; 
+
+    const banner = document.getElementById('cookie-banner');
+    banner?.classList.remove('hidden');
+
+    document.getElementById('cookie-accept')?.addEventListener('click', () => {
+      setCookie(COOKIE_NAME, 'true', COOKIE_EXPIRY);
+      banner?.classList.add('hidden');
+      sendConsentToGTM(true);
+    });
+
+    document.getElementById('cookie-decline')?.addEventListener('click', () => {
+      setCookie(COOKIE_NAME, 'false', COOKIE_EXPIRY);
+      banner?.classList.add('hidden');
+      sendConsentToGTM(false);
+    });
+  }
+
+  document.addEventListener('astro:page-load', init);
+</script>
+
+<style>
+  #cookie-banner:not(.hidden) {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+</style>

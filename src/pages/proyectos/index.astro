@@ -1,0 +1,206 @@
+---
+import ProyectosHero from "../../components/proyectos/ProyectosHero.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const SITE_URL = "https://www.perscon.com.mx";
+
+const categorias = [
+  {
+    num: "01",
+    slug: "ejecutivos",
+    titulo: "Proyectos Ejecutivos",
+    subtitulo: "Desarrollo de Proyectos Integrales",
+    descripcion:
+      "Diseño integral de instalaciones para Unidades de Atención a la Salud: sistemas hidráulicos, gases medicinales, energía eléctrica, aire acondicionado, telecomunicaciones y automatización.",
+    servicios: [
+      "Instalaciones hidráulicas y sanitarias",
+      "Gases medicinales",
+      "Instalaciones eléctricas",
+      "Aire acondicionado y HVAC",
+      "Telecomunicaciones e informática",
+      "Control y automatización",
+    ],
+  },
+  {
+    num: "02",
+    slug: "obra",
+    titulo: "Proyectos de Obra",
+    subtitulo: "Sector Salud",
+    descripcion:
+      "Ejecución de obra para Unidades de Salud desde la planeación, dirección y control. Garantizamos que los procedimientos constructivos se apeguen a la normatividad vigente del sector.",
+    servicios: [
+      "Planeación y dirección de obra",
+      "Control de calidad",
+      "Conservación y mantenimiento",
+      "Optimización de espacios",
+      "Cumplimiento normativo COFEPRIS",
+      "Obras públicas y privadas",
+    ],
+  },
+];
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": `${SITE_URL}/proyectos/#itemlist`,
+  name: "Proyectos de Construcción y Diseño para el Sector Salud — Perscon",
+  numberOfItems: categorias.length,
+  itemListElement: categorias.map((c, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: c.titulo,
+    item: {
+      "@id": `${SITE_URL}/proyectos/${c.slug}/`,
+    },
+  })),
+};
+const collectionPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${SITE_URL}/proyectos/#collection`,
+  url: `${SITE_URL}/proyectos/`,
+  name: "Proyectos para el Sector Salud",
+  description:
+    "Servicios de diseño y construcción de proyectos para unidades de salud en México.",
+  mainEntity: {
+    "@id": `${SITE_URL}/proyectos/#itemlist`,
+  },
+};
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Proyectos para el Sector Salud",
+  description:
+    "Diseño y ejecución de proyectos integrales para unidades médicas en México.",
+  provider: {
+    "@id": `${SITE_URL}/#organization`,
+  },
+  areaServed: {
+    "@type": "Country",
+    name: "México",
+  },
+};
+---
+
+<Layout
+  title="Proyectos Ejecutivos y Obra para Establecimientos Médicos | Perscon"
+  description="Diseño integral de instalaciones (hidráulico, gases medicinales, eléctrico, HVAC) y dirección de obra para clínicas y hospitales. Cumplimiento normativo COFEPRIS. Consulta gratuita."
+  canonical="/proyectos/"
+  pageSchema={[itemListSchema, collectionPageSchema, serviceSchema]}
+  breadcrumbs={[{ name: "Proyectos", url: "/proyectos/" }]}
+>
+  <!-- ── Hero ── -->
+  <ProyectosHero />
+
+  <!-- ── Categorías ── -->
+  <section
+    id="categorias"
+    class="bg-white"
+    aria-labelledby="categorias-heading"
+  >
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+      <h2
+        id="categorias-heading"
+        class="text-2xl lg:text-3xl font-bold text-carbon-900 tracking-tight mb-12"
+        style="font-family: var(--font-display);"
+      >
+        Nuestras Áreas de Proyecto
+      </h2>
+
+      <ul
+        class="grid lg:grid-cols-2 gap-px bg-steel-200 rounded-lg"
+        role="list"
+        aria-label="Categorías de proyectos para el sector salud"
+      >
+        {
+          categorias.map((cat) => (
+            <li class="bg-white group ">
+              <div class="flex flex-col h-full  lg:p-10 hover:bg-steel-50 transition-colors duration-200 p-5 rounded-lg">
+                <div class="flex items-start justify-between mb-6">
+                  <span
+                    class="text-[11px] font-bold tracking-[0.2em] text-steel-300"
+                    style="font-family: var(--font-display);"
+                    aria-hidden="true"
+                  >
+                    {cat.num}
+                  </span>
+                  <span
+                    class="text-[10px] font-semibold text-cofepris-700 bg-cofepris-50 border border-cofepris-100 px-2 py-0.5 rounded uppercase tracking-wide"
+                    style="font-family: var(--font-body);"
+                  >
+                    {cat.subtitulo}
+                  </span>
+                </div>
+
+                <h3
+                  class="text-xl font-bold text-carbon-900 mb-3 leading-snug group-hover:text-cofepris-700 transition-colors duration-150"
+                  style="font-family: var(--font-display);"
+                >
+                  {cat.titulo}
+                </h3>
+
+                <p
+                  class="text-sm text-steel-500 leading-relaxed mb-7"
+                  style="font-family: var(--font-body);"
+                >
+                  {cat.descripcion}
+                </p>
+
+                <ul
+                  class="grid grid-cols-2 gap-1.5 mb-8"
+                  role="list"
+                  aria-label={`Servicios de ${cat.titulo}`}
+                >
+                  {cat.servicios.map((s: string) => (
+                    <li
+                      class="flex items-center gap-2 text-xs text-steel-600"
+                      style="font-family: var(--font-body);"
+                    >
+                      <svg
+                        class="w-3 h-3 text-cofepris-700 shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2.5"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                      {s}
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href={`/proyectos/${cat.slug}/`}
+                  class="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-cofepris-700 hover:text-cofepris-800 transition-colors duration-150 group/link"
+                  style="font-family: var(--font-body);"
+                  aria-label={`Ver más sobre ${cat.titulo}`}
+                >
+                  Ver servicios completos
+                  <svg
+                    class="w-4 h-4 group-hover/link:translate-x-0.5 transition-transform duration-150"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Layout>

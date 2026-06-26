@@ -1,0 +1,76 @@
+  <!-- ── Hero ── -->
+  <section class="bg-carbon-950 border-b border-carbon-800">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+
+      <nav
+        class="ph-fade-up ph-delay-1 flex items-center gap-2 text-xs text-steel-600 mb-8"
+        aria-label="Ruta de navegación"
+      >
+        <a href="/" class="hover:text-white transition-colors duration-150" style="font-family: var(--font-body);">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-steel-400" aria-current="page" style="font-family: var(--font-body);">Proyectos</span>
+      </nav>
+
+      <div class="max-w-3xl">
+        <p
+          class="ph-fade-up ph-delay-2 text-[10px] font-semibold tracking-[0.2em] uppercase text-cofepris-500 mb-4 flex items-center gap-2"
+          style="font-family: var(--font-body);"
+        >
+          <span class="w-6 h-px bg-cofepris-700 inline-block" aria-hidden="true"></span>
+          Diseño y Construcción
+        </p>
+
+        <h1
+          class="ph-fade-up ph-delay-3 text-3xl lg:text-5xl font-bold text-white tracking-tight leading-tight mb-5"
+          style="font-family: var(--font-display);"
+        >
+          Proyectos para el<br />
+          <span class="text-cofepris-500">Sector Salud</span>
+        </h1>
+
+        <p
+          class="ph-fade-up ph-delay-4 text-steel-400 text-base lg:text-lg leading-relaxed mb-8 max-w-xl"
+          style="font-family: var(--font-body);"
+        >
+          Desde el diseño integral de instalaciones hasta la ejecución y supervisión
+          de obra. Soluciones normativas y operativas para Unidades de Atención
+          a la Salud en México.
+        </p>
+
+        <div class="ph-fade-up ph-delay-5 flex flex-wrap gap-3">
+          <a
+            href="/contacto/"
+            class="inline-flex items-center gap-2 bg-cofepris-700 hover:bg-cofepris-600 text-white font-semibold px-6 py-2.5 rounded text-sm transition-colors duration-150"
+            style="font-family: var(--font-body);"
+          >
+            Consultar mi proyecto
+          </a>
+          <a
+            href="#categorias"
+            class="inline-flex items-center gap-2 border border-carbon-700 text-steel-300 hover:text-white hover:border-steel-500 font-medium px-6 py-2.5 rounded text-sm transition-colors duration-150"
+            style="font-family: var(--font-body);"
+          >
+            Ver servicios
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<style>
+  @keyframes phFadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+
+  .ph-fade-up {
+    opacity: 0;
+    animation: phFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .ph-delay-1 { animation-delay: 0.05s; }
+  .ph-delay-2 { animation-delay: 0.15s; }
+  .ph-delay-3 { animation-delay: 0.28s; }
+  .ph-delay-4 { animation-delay: 0.42s; }
+  .ph-delay-5 { animation-delay: 0.55s; }
+</style>

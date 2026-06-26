@@ -1,0 +1,120 @@
+---
+/**
+ * NosotrosValores.astro
+ * Valores y principios operativos de Perscon
+ */
+
+const valores = [
+  {
+    num:         '01',
+    titulo:      'Especialización',
+    descripcion: 'Solo trabajamos trámites COFEPRIS para el sector salud. No somos gestores generales. Esa especialización nos permite conocer cada homoclave, cada norma y cada criterio de la autoridad sanitaria en profundidad.',
+  },
+  {
+    num:         '02',
+    titulo:      'Rigor técnico',
+    descripcion: 'Cada expediente pasa por una revisión interna antes de presentarse. Verificamos congruencia entre documentos, vigencia de permisos previos y apego a los criterios actuales de COFEPRIS antes de ingresar cualquier trámite.',
+  },
+  {
+    num:         '03',
+    titulo:      'Transparencia',
+    descripcion: 'El cliente sabe en todo momento en qué etapa está su trámite, qué sigue y cuándo esperar resolución. No hay cajas negras en nuestro proceso ni actualizaciones que el cliente tenga que solicitar.',
+  },
+  {
+    num:         '04',
+    titulo:      'Responsabilidad',
+    descripcion: 'Nos hacemos cargo. Si COFEPRIS emite un requerimiento adicional, lo atendemos. Si hay un error en el expediente, lo corregimos. El trámite es nuestra responsabilidad hasta la entrega de la licencia.',
+  },
+  {
+    num:         '05',
+    titulo:      'Trato directo',
+    descripcion: 'Sin intermediarios ni call centers. Cada cliente tiene contacto directo con el especialista que gestiona su trámite. Las preguntas se responden con conocimiento técnico, no con guiones.',
+  },
+  {
+    num:         '06',
+    titulo:      'Asesoría previa honesta',
+    descripcion: 'Si tu caso no requiere el trámite que crees necesitar, te lo decimos. Si hay una ruta más eficiente, la recomendamos. Preferimos la relación a largo plazo sobre el ingreso de corto plazo.',
+  },
+];
+---
+
+<section
+  class="bg-[var(--color-off-white)] border-t border-[var(--color-steel-100)]"
+  aria-labelledby="valores-heading"
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-24">
+
+    <div class="grid lg:grid-cols-[320px_1fr] gap-14 items-start">
+
+      <!-- Encabezado sticky -->
+      <div class="lg:sticky lg:top-24">
+        <p
+          class="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-cofepris-700)] mb-3 flex items-center gap-2"
+          style="font-family: var(--font-body);"
+        >
+          <span class="w-6 h-px bg-[var(--color-cofepris-700)] inline-block" aria-hidden="true"></span>
+          Cómo trabajamos
+        </p>
+        <h2
+          id="valores-heading"
+          class="text-2xl lg:text-3xl font-bold text-[var(--color-carbon-900)] tracking-tight mb-4"
+          style="font-family: var(--font-display);"
+        >
+          Principios que guían cada trámite
+        </h2>
+        <p
+          class="text-sm text-[var(--color-steel-500)] leading-relaxed mb-8"
+          style="font-family: var(--font-body);"
+        >
+          No son valores de pared. Son los criterios con los que tomamos
+          decisiones en cada expediente, cada reunión y cada respuesta
+          que damos a un cliente.
+        </p>
+        <a
+          href="/contacto/"
+          class="inline-flex items-center gap-2 bg-[var(--color-cofepris-700)] hover:bg-[var(--color-cofepris-600)] text-white font-semibold px-5 py-2.5 rounded text-sm transition-colors duration-150"
+          style="font-family: var(--font-body);"
+        >
+          Consulta gratuita
+        </a>
+      </div>
+
+      <!-- Grid de valores -->
+      <ul class="grid sm:grid-cols-2 gap-px bg-[var(--color-steel-200)]" role="list">
+        {valores.map((v) => (
+          <li class="bg-white group hover:bg-[var(--color-steel-50)] transition-colors duration-150">
+            <div class="p-7">
+              <div class="flex items-center justify-between mb-4">
+                <span
+                  class="text-[10px] font-bold tracking-widest text-[var(--color-steel-300)]"
+                  style="font-family: var(--font-display);"
+                  aria-hidden="true"
+                >
+                  {v.num}
+                </span>
+                <div
+                  class="w-1.5 h-1.5 rounded-full bg-[var(--color-cofepris-700)] opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                  aria-hidden="true"
+                >
+                </div>
+              </div>
+              <h3
+                class="text-sm font-bold text-[var(--color-carbon-900)] mb-2 group-hover:text-[var(--color-cofepris-700)] transition-colors duration-150"
+                style="font-family: var(--font-display);"
+              >
+                {v.titulo}
+              </h3>
+              <p
+                class="text-xs text-[var(--color-steel-500)] leading-relaxed"
+                style="font-family: var(--font-body);"
+              >
+                {v.descripcion}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+    </div>
+  </div>
+</section>

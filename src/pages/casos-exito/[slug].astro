@@ -1,0 +1,341 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const SITE_URL = 'https://www.perscon.com.mx';
+
+export async function getStaticPaths() {
+  const casos: CollectionEntry<'casos-exito'>[] = await getCollection('casos-exito');
+  return casos.map((entry: CollectionEntry<'casos-exito'>) => ({
+    params: { slug: entry.slug },
+    props:  { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'casos-exito'>;
+}
+
+const { entry }   = Astro.props;
+const { Content } = await render(entry);
+const { data }    = entry;
+const slug        = entry.slug;
+const pageUrl     = `${SITE_URL}/casos-exito/${slug}/`;
+
+const caseStudySchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${pageUrl}#article`,
+  headline: data.title,
+  alternateName: data.empresa,
+  description: data.description,
+  url: pageUrl,
+  inLanguage: 'es-MX',
+  author: {
+    '@type': 'Organization',
+    '@id': `${SITE_URL}/#organization`,
+    name: 'Perscon',
+    url: SITE_URL,
+  },
+  publisher: { '@id': `${SITE_URL}/#organization` },
+  datePublished: '2025-01-01',
+  dateModified: new Date().toISOString().split('T')[0],
+  mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
+  ...(data.imagen && { image: {
+    '@type': 'ImageObject',
+    url: `${SITE_URL}${data.imagen}`,
+    width: 1200,
+    height: 630
+  }}),
+  keywords: [
+    data.empresa,
+    data.tramite,
+    data.sector,
+    'COFEPRIS',
+    'establecimiento médico',
+    'México'
+  ].filter(Boolean).join(', '),
+  articleBody: data.reto && data.solucion && data.resultado
+    ? `Reto: ${data.reto}\n\nSolución: ${data.solucion}\n\nResultado: ${data.resultado}`
+    : data.description,
+  about: {
+    '@type': 'Service',
+    name: data.tramite,
+    provider: { '@id': `${SITE_URL}/#organization` },
+  },
+  ...(data.testimonioTexto && {
+    review: {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5'
+      },
+      reviewBody: data.testimonioTexto,
+      author: {
+        '@type': 'Person',
+        name: data.testimonioNombre ?? 'Cliente',
+        jobTitle: data.testimonioCargo,
+      },
+    },
+  }),
+};
+
+const heroPadding = data.imagen ? 'py-16 lg:py-24' : 'py-14 lg:py-20';
+---
+
+<Layout
+  title={data.title}
+  description={data.description}
+  canonical={`/casos-exito/${slug}/`}
+  ogImage={data.imagen ?? data.ogImage}
+  ogTitle={data.empresa}
+  articlePublishedTime="2025-01-01"
+  articleModifiedTime={new Date().toISOString()}
+  articleAuthor="Perscon"
+  articleSection="Casos de Éxito"
+  pageSchema={[caseStudySchema]}
+  breadcrumbs={[
+    { name: 'Casos de Éxito', url: '/casos-exito/' },
+    { name: data.empresa,     url: `/casos-exito/${slug}/` },
+  ]}
+>
+
+  <!-- ── Hero ── -->
+<section class="bg-[var(--color-carbon-950)] border-b border-[var(--color-carbon-800)]">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20">
+
+    <!-- Breadcrumb -->
+    <nav
+      class="flex items-center gap-2 text-xs text-[var(--color-steel-600)] mb-8"
+      aria-label="Ruta de navegación"
+    >
+      <a href="/" class="hover:text-white transition-colors duration-150" style="font-family:var(--font-body);">Inicio</a>
+      <span aria-hidden="true">/</span>
+      <a href="/casos-exito/" class="hover:text-white transition-colors duration-150" style="font-family:var(--font-body);">Casos de Éxito</a>
+      <span aria-hidden="true">/</span>
+      <span class="text-[var(--color-steel-400)]" aria-current="page" style="font-family:var(--font-body);">{data.empresa}</span>
+    </nav>
+
+    <!-- Badges + título -->
+    <div class="max-w-3xl">
+      <div class="flex flex-wrap items-center gap-2 mb-5">
+        <span
+          class="text-[10px] font-semibold tracking-wide text-[var(--color-cofepris-400)] bg-[var(--color-cofepris-950)] border border-[var(--color-cofepris-800)] px-2.5 py-1 rounded"
+          style="font-family:var(--font-body);"
+        >
+          {data.sectorLabel}
+        </span>
+        <span class="text-[10px] text-[var(--color-steel-500)]" style="font-family:var(--font-body);">
+          {data.ciudad}, {data.estado}
+        </span>
+        {data.homoclave && (
+          <span class="text-[10px] font-mono text-[var(--color-steel-600)]">{data.homoclave}</span>
+        )}
+      </div>
+
+      <h1
+        class="text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight mb-5"
+        style="font-family:var(--font-display);"
+      >
+        {data.title}
+      </h1>
+
+      <p
+        class="text-[var(--color-steel-400)] text-base leading-relaxed"
+        style="font-family:var(--font-body);"
+      >
+        {data.description}
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- ── Bloque de datos clave ── -->
+  <section class="bg-[var(--color-carbon-900)] border-b border-[var(--color-carbon-800)]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <dl class="grid sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[var(--color-carbon-800)]">
+        {[
+          { label: 'Trámite',   valor: data.tramite,   icon: '📋' },
+          { label: 'El reto',   valor: data.reto,      icon: '⚡' },
+          { label: 'Solución',  valor: data.solucion,  icon: '🔧' },
+          { label: 'Resultado', valor: data.resultado, icon: '✅' },
+        ].map((item) => (
+          <div class="px-6 py-6">
+            <dt
+              class="flex items-center gap-1.5 text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-500)] mb-2"
+              style="font-family:var(--font-body);"
+            >
+              <span aria-hidden="true">{item.icon}</span>
+              {item.label}
+            </dt>
+            <dd
+              class="text-sm text-[var(--color-steel-300)] leading-relaxed"
+              style="font-family:var(--font-body);"
+            >
+              {item.valor}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- ── Métricas ── -->
+  <section class="bg-[var(--color-carbon-950)] border-b border-[var(--color-carbon-800)]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-10">
+      <div class="grid grid-cols-3 gap-px bg-[var(--color-carbon-800)]">
+        {data.metricas.map((m) => (
+          <div class="bg-[var(--color-carbon-950)] px-8 py-8 text-center">
+            <p
+              class="text-3xl lg:text-4xl font-bold text-white mb-1"
+              style="font-family:var(--font-display);"
+            >
+              {m.valor}
+            </p>
+            <p
+              class="text-[11px] text-[var(--color-steel-500)] uppercase tracking-widest leading-tight"
+              style="font-family:var(--font-body);"
+            >
+              {m.etiqueta}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contenido del .md + Sidebar ── -->
+  <section class="bg-[var(--color-off-white)]" aria-labelledby="caso-detalle-heading">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+      <div class="grid lg:grid-cols-[1fr_300px] gap-14 items-start">
+
+        <!-- Cuerpo -->
+        <div>
+          <h2 id="caso-detalle-heading" class="sr-only">Detalle del caso</h2>
+          <div class="prose-licencia">
+            <Content />
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+<aside class="lg:sticky lg:top-24 space-y-5">
+
+  <!-- Imagen del caso -->
+  {data.imagen && (
+    <div class="rounded-xl overflow-hidden border border-[var(--color-steel-200)]">
+      <img
+        src={data.imagen}
+        alt={`${data.empresa} — ${data.tramite}`}
+        class="w-full h-52 object-cover"
+        loading="lazy"
+      />
+    </div>
+  )}
+
+  <!-- Ficha del caso -->
+  <div class="border border-[var(--color-steel-200)] rounded-xl overflow-hidden">
+    <div class="px-5 py-4 bg-[var(--color-steel-50)] border-b border-[var(--color-steel-100)]">
+      <p
+        class="text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-500)]"
+        style="font-family:var(--font-body);"
+      >
+        Ficha del caso
+      </p>
+    </div>
+    <dl class="divide-y divide-[var(--color-steel-100)]">
+      <div class="px-5 py-3 flex justify-between gap-4">
+        <dt class="text-[10px] font-semibold tracking-wide uppercase text-[var(--color-steel-400)] shrink-0" style="font-family:var(--font-body);">Empresa</dt>
+        <dd class="text-xs text-[var(--color-carbon-900)] text-right font-medium" style="font-family:var(--font-body);">{data.empresa}</dd>
+      </div>
+      <div class="px-5 py-3 flex justify-between gap-4">
+        <dt class="text-[10px] font-semibold tracking-wide uppercase text-[var(--color-steel-400)] shrink-0" style="font-family:var(--font-body);">Sector</dt>
+        <dd class="text-xs text-[var(--color-carbon-900)] text-right font-medium" style="font-family:var(--font-body);">{data.sectorLabel}</dd>
+      </div>
+      <div class="px-5 py-3 flex justify-between gap-4">
+        <dt class="text-[10px] font-semibold tracking-wide uppercase text-[var(--color-steel-400)] shrink-0" style="font-family:var(--font-body);">Ubicación</dt>
+        <dd class="text-xs text-[var(--color-carbon-900)] text-right font-medium" style="font-family:var(--font-body);">{data.ciudad}, {data.estado}</dd>
+      </div>
+      {data.homoclave && (
+        <div class="px-5 py-3 flex justify-between gap-4">
+          <dt class="text-[10px] font-semibold tracking-wide uppercase text-[var(--color-steel-400)] shrink-0" style="font-family:var(--font-body);">Homoclave</dt>
+          <dd class="text-xs text-[var(--color-carbon-900)] text-right font-medium font-mono" style="font-family:var(--font-body);">{data.homoclave}</dd>
+        </div>
+      )}
+    </dl>
+  </div>
+
+  <!-- Testimonio -->
+  {data.testimonioTexto && (
+    <figure class="border border-[var(--color-steel-200)] rounded-xl overflow-hidden">
+      <div class="px-5 py-4 bg-[var(--color-steel-50)] border-b border-[var(--color-steel-100)]">
+        <p
+          class="text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-500)]"
+          style="font-family:var(--font-body);"
+        >
+          Testimonio
+        </p>
+      </div>
+      <blockquote class="px-5 py-5">
+        <span class="text-4xl leading-none text-[var(--color-steel-200)] font-serif select-none" aria-hidden="true">"</span>
+        <p
+          class="text-sm text-[var(--color-steel-600)] leading-relaxed italic -mt-2 mb-4"
+          style="font-family:var(--font-body);"
+        >
+          {data.testimonioTexto}
+        </p>
+        <figcaption>
+          <p class="text-xs font-semibold text-[var(--color-carbon-900)]" style="font-family:var(--font-display);">
+            {data.testimonioNombre}
+          </p>
+          {data.testimonioCargo && (
+            <p class="text-[10px] text-[var(--color-steel-400)] mt-0.5" style="font-family:var(--font-body);">
+              {data.testimonioCargo}
+            </p>
+          )}
+        </figcaption>
+      </blockquote>
+    </figure>
+  )}
+
+  <!-- CTA -->
+  <div class="border border-[var(--color-steel-200)] rounded-xl overflow-hidden">
+    <div class="px-5 py-4 bg-[var(--color-carbon-900)] border-b border-[var(--color-carbon-800)]">
+      <p
+        class="text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-500)]"
+        style="font-family:var(--font-body);"
+      >
+        ¿Necesitas este trámite?
+      </p>
+    </div>
+    <div class="p-5 space-y-3 bg-[var(--color-carbon-950)]">
+      <p class="text-xs text-[var(--color-steel-400)] leading-relaxed" style="font-family:var(--font-body);">
+        Consulta gratuita. Analizamos tu caso y te decimos exactamente qué necesitas.
+      </p>
+      <a
+        href="/contacto/"
+        class="flex items-center justify-center gap-2 w-full bg-[var(--color-cofepris-700)] hover:bg-[var(--color-cofepris-600)] text-white font-semibold px-4 py-2.5 rounded text-sm transition-colors duration-150"
+        style="font-family:var(--font-body);"
+      >
+        Solicitar consulta
+      </a>
+      {data.homoclave && (
+        <a
+          href="/licencias-cofepris/"
+          class="flex items-center justify-center gap-2 w-full border border-[var(--color-carbon-700)] hover:border-[var(--color-steel-600)] text-[var(--color-steel-400)] hover:text-white font-medium px-4 py-2.5 rounded text-sm transition-colors duration-150"
+          style="font-family:var(--font-body);"
+        >
+          Ver licencias COFEPRIS
+        </a>
+      )}
+    </div>
+  </div>
+
+</aside>
+      </div>
+    </div>
+  </section>
+
+</Layout>

@@ -1,0 +1,297 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const licencias = [
+  {
+    id:        'permiso-construccion',
+    nombre:    'Permiso Sanitario de Construcción',
+    homoclave: 'COFEPRIS-05-033',
+    tiempo:    '30–60 días hábiles',
+    slug:      'permiso-construccion',
+    aplica:    ['Obra nueva', 'Ampliaciones', 'Remodelaciones mayores', 'Cambio de uso médico'],
+    requisitos: [
+      'Formato oficial de Permiso de Construcción proporcionado por COFEPRIS — Original',
+      'Programa médico del establecimiento (actividades médicas a realizar) — Original',
+      'Programa médico-arquitectónico (áreas mínimas según tipo y complejidad) — Original',
+      'Memoria descriptiva del proyecto de construcción o remodelación — Original',
+      'Planos arquitectónicos — papel y preferentemente formato electrónico',
+      'Documentos que acrediten la personalidad jurídica o número RUPA del representante legal',
+      'Firma electrónica avanzada (e.firma) para trámites electrónicos',
+    ],
+  },
+  {
+    id:        'licencia-actos-quirurgicos',
+    nombre:    'Licencia para Actos Quirúrgicos u Obstétricos',
+    homoclave: 'COFEPRIS-05-034',
+    tiempo:    '45–90 días hábiles',
+    slug:      'licencia-actos-quirurgicos',
+    aplica:    ['Hospitales con quirófanos', 'Cirugía ambulatoria', 'Cirugía láser excimer', 'Ginecología y obstetricia'],
+    requisitos: [
+      'Recursos materiales del establecimiento — Original en USB',
+      'Recursos humanos del establecimiento — Original en USB',
+      'Formato Servicios de Salud debidamente requisitado — Original',
+      'Permiso Sanitario de Construcción (COFEPRIS-05-033) — 1 copia',
+      'Memoria descriptiva (tamaño, iluminación, servicios sanitarios, actividades) — Original en USB',
+      'Aviso de Responsable Sanitario (COFEPRIS-05-037) — Original',
+      'Programa médico del establecimiento — Original en USB',
+      'Organización interna (estructura organizacional) — Original en USB',
+      'Recursos financieros del establecimiento — Original en USB',
+      'Reglamento interno del establecimiento — Original en USB',
+      'Constancias que acreditan experiencia del Responsable Sanitario — Copias',
+      'Credencial de elector del Responsable Sanitario — Copia',
+    ],
+  },
+  {
+    id:        'licencia-radiacion',
+    nombre:    'Licencia para Fuentes de Radiación (Diagnóstico)',
+    homoclave: 'COFEPRIS-05-024-A',
+    tiempo:    '45–75 días hábiles',
+    slug:      'licencia-radiacion',
+    aplica:    ['Radiografía convencional', 'Tomografía computarizada', 'Mastógrafos', 'Fluoroscopía', 'Panorámica dental', 'Medicina nuclear', 'Radioterapia'],
+    requisitos: [
+      'Formato Servicios de Salud debidamente requisitado — Original',
+      'Comprobante de Pago del trámite — Original y 1 copia',
+      'Constancia de Situación Fiscal (persona moral y/o física) — 1 copia',
+      'Memoria analítica de blindajes y levantamiento de niveles de radiación post-instalación (solo equipos fijos) — Original',
+      'Cédula de información técnica con nombre y firma autógrafa del propietario y/o representante legal — Original',
+      'Copia simple del permiso vigente del Responsable de la Operación y Funcionamiento — 1 copia',
+      'Manual de Procedimientos Técnicos con firma del propietario y Responsable de Operación — Original',
+      'Manual de Seguridad y Protección Radiológica con firma del propietario y Responsable de Operación — Original',
+      'Programa de Garantía de Calidad con firma del propietario y Responsable de Operación — Original',
+    ],
+  },
+  {
+    id:        'licencia-sanguinea',
+    nombre:    'Licencia para Bancos de Sangre',
+    homoclave: 'COFEPRIS-09-025-A',
+    tiempo:    '60–90 días hábiles',
+    slug:      'licencia-sanguinea',
+    aplica:    ['Bancos de sangre independientes', 'Bancos intrahospitalarios'],
+    requisitos: [
+      'Manual de Procedimientos Técnicos y Administrativos (Sistema de Gestión de Calidad) — Original',
+      'Plano Arquitectónico del establecimiento — Original',
+      'Listado de equipamiento, instrumental, reactivos e insumos — Original',
+      'Listado del Personal del Banco de Sangre con documentos de idoneidad (título, cédula, diploma) — Original',
+      'Programa de actualización continua del personal — Original',
+      'Procedimiento para el Control Permanente y Evaluación Periódica del Desempeño — Original',
+      'Copia del Aviso de Responsable Sanitario (COFEPRIS-05-092 o COFEPRIS-05-099) — 1 copia',
+      'Formato Servicios de Salud — Original',
+      'Comprobante de Pago del trámite — Original y 1 copia',
+      'Acta constitutiva de la empresa — Original y 1 copia',
+      'RFC — Original y 1 copia',
+      'Nombramiento de quien representa a la institución — 1 copia',
+      'Atribuciones y facultades del representante legal — 1 copia',
+      'Identificación oficial vigente (INE o pasaporte) — 1 copia',
+    ],
+  },
+  {
+    id:        'licencia-transfusion-hospitalaria',
+    nombre:    'Licencia de Transfusión Hospitalaria',
+    homoclave: 'COFEPRIS-09-025-E',
+    tiempo:    '45–75 días hábiles',
+    slug:      'licencia-transfusion-hospitalaria',
+    aplica:    ['Hospitales con servicio de transfusión', 'Clínicas con administración de hemoderivados', 'Servicios de transfusión hospitalaria'],
+    requisitos: [
+      'Formato Servicios de Salud debidamente requisitado — Original',
+      'Comprobante de Pago del trámite — Original y 1 copia',
+      'Manual de Procedimientos Técnicos y Administrativos — Original',
+      'Plano Arquitectónico del área de transfusión — Original',
+      'Listado del personal con documentos de idoneidad — Original',
+      'Copia del Aviso de Responsable Sanitario (COFEPRIS-05-037) — 1 copia',
+      'Acta constitutiva de la empresa — Original y 1 copia',
+      'RFC — Original y 1 copia',
+      'Identificación oficial vigente (INE o pasaporte) — 1 copia',
+    ],
+  },
+  {
+    id:        'licencia-hemodialisis',
+    nombre:    'Licencia para Servicios de Hemodiálisis',
+    homoclave: 'COFEPRIS-05-123-A',
+    tiempo:    '45–75 días hábiles',
+    slug:      'licencia-hemodialisis',
+    aplica:    ['Centros independientes de hemodiálisis', 'Unidades renales hospitalarias', 'Clínicas de nefrología'],
+    requisitos: [
+      'Formato de Carta de Consentimiento Informado — 1 copia',
+      'Formato Servicios de Salud debidamente requisitado — Original',
+      'Comprobante de Pago del trámite — Original',
+      'Plano Arquitectónico del establecimiento — Original',
+      'Programa médico arquitectónico — Original y copia simple',
+      'Manual de procedimientos — Original',
+      'Organización interna — Original en USB',
+      'Recursos humanos — Original en USB',
+      'Recursos materiales — Original en USB',
+      'Recursos financieros — Original en USB',
+      'Reglamento interno del establecimiento — Original en USB',
+      'Aviso de Responsable Sanitario (COFEPRIS-05-125-A) — Original',
+      'Acta constitutiva de la empresa — Original',
+      'Identificación oficial vigente (INE o pasaporte) — Copia',
+      'Datos del Predio — Original',
+      'Datos del propietario — Original',
+      'Permiso Sanitario de Construcción — Copia',
+      'Memoria descriptiva — Original en USB y copia simple',
+      'Constancias que acreditan la experiencia del Responsable Sanitario — Copias',
+    ],
+  },
+];
+
+const documentosComunes = [
+  { titulo: 'Identificación oficial',   desc: 'INE o pasaporte vigente del solicitante o representante legal.' },
+  { titulo: 'Acta constitutiva',        desc: 'Requerida para personas morales. Original y copia simple.' },
+  { titulo: 'RFC / Situación Fiscal',   desc: 'Constancia de Situación Fiscal vigente del SAT.' },
+  { titulo: 'Comprobante de pago',      desc: 'Derechos ante la Secretaría de Hacienda por el trámite.' },
+  { titulo: 'Formato COFEPRIS',         desc: 'Formato "Servicios de Salud" correctamente requisitado.' },
+];
+---
+
+<Layout
+  title="Requisitos por Licencia COFEPRIS para Establecimientos Médicos"
+  description="Lista completa de documentos requeridos para cada tipo de licencia sanitaria COFEPRIS: permiso de construcción, quirúrgica, radiación, banco de sangre y hemodiálisis."
+  canonical="/requisitos"
+  breadcrumbs={[{ name: 'Requisitos por Licencia', url: '/requisitos' }]}
+>
+
+  <!-- Hero -->
+  <section class="bg-[var(--color-carbon-950)] border-b border-[var(--color-carbon-800)]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20">
+      <nav class="flex items-center gap-2 text-xs text-[var(--color-steel-600)] mb-8" aria-label="Ruta de navegación">
+        <a href="/" class="hover:text-white transition-colors duration-150" style="font-family:var(--font-body);">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-[var(--color-steel-400)]" aria-current="page" style="font-family:var(--font-body);">Requisitos por Licencia</span>
+      </nav>
+      <div class="max-w-2xl">
+        <p class="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-cofepris-500)] mb-4 flex items-center gap-2" style="font-family:var(--font-body);">
+          <span class="w-6 h-px bg-[var(--color-cofepris-700)] inline-block" aria-hidden="true"></span>
+          Referencia oficial
+        </p>
+        <h1 class="text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight mb-4" style="font-family:var(--font-display);">
+          Requisitos por Tipo<br />de Licencia <span class="text-[var(--color-cofepris-500)]">COFEPRIS</span>
+        </h1>
+        <p class="text-[var(--color-steel-400)] text-sm leading-relaxed" style="font-family:var(--font-body);">
+          Documentos requeridos para cada trámite. Usa los atajos para ir directamente a la licencia que necesitas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nav rápida -->
+  <div class="bg-white border-b border-[var(--color-steel-100)] sticky top-0 z-10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <nav aria-label="Ir a licencia" class="flex items-center gap-2 overflow-x-auto py-3">
+        <span class="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-steel-400)] mr-2 flex-shrink-0" style="font-family:var(--font-body);">Ir a:</span>
+        {licencias.map((lic) => (
+          <a
+            href={`#${lic.id}`}
+            class="flex-shrink-0 text-xs font-medium text-[var(--color-steel-500)] hover:text-[var(--color-cofepris-700)] border border-[var(--color-steel-200)] hover:border-[var(--color-cofepris-300)] px-3 py-1.5 rounded-full transition-colors duration-150 whitespace-nowrap"
+            style="font-family:var(--font-body);"
+          >
+            {lic.homoclave}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </div>
+
+  <!-- Contenido -->
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+    <div class="grid lg:grid-cols-[220px_1fr] gap-14 items-start">
+
+      <!-- Sidebar estático -->
+      <aside class="lg:sticky lg:top-24 space-y-5">
+        <div class="border border-[var(--color-steel-200)] rounded-xl overflow-hidden">
+          <div class="px-5 py-4 bg-[var(--color-steel-50)] border-b border-[var(--color-steel-100)]">
+            <p class="text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-500)]" style="font-family:var(--font-body);">Documentos comunes</p>
+          </div>
+          <div class="p-5">
+            <p class="text-xs text-[var(--color-steel-500)] leading-relaxed mb-4" style="font-family:var(--font-body);">
+              Requeridos en prácticamente todos los trámites COFEPRIS.
+            </p>
+            <ul class="space-y-3">
+              {documentosComunes.map((d) => (
+                <li>
+                  <p class="text-xs font-semibold text-[var(--color-carbon-900)]" style="font-family:var(--font-display);">{d.titulo}</p>
+                  <p class="text-[11px] text-[var(--color-steel-500)] mt-0.5 leading-relaxed" style="font-family:var(--font-body);">{d.desc}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div class="border border-[var(--color-steel-200)] rounded-xl p-5">
+          <p class="text-xs font-semibold text-[var(--color-carbon-900)] mb-2" style="font-family:var(--font-display);">¿Necesitas ayuda con el expediente?</p>
+          <p class="text-xs text-[var(--color-steel-500)] mb-4 leading-relaxed" style="font-family:var(--font-body);">Preparamos y gestionamos el expediente completo.</p>
+          <a href="/contacto/" class="flex items-center justify-center w-full bg-[var(--color-cofepris-700)] hover:bg-[var(--color-cofepris-600)] text-white font-semibold px-4 py-2.5 rounded text-xs transition-colors duration-150" style="font-family:var(--font-body);">
+            Consulta gratuita
+          </a>
+        </div>
+      </aside>
+
+      <!-- Licencias -->
+      <main>
+        <div class="space-y-8">
+          {licencias.map((lic) => (
+            <article
+              id={lic.slug}
+              class="bg-white border border-[var(--color-steel-200)] rounded-xl overflow-hidden scroll-mt-20"
+              aria-labelledby={`h2-${lic.slug}`}
+            >
+              <!-- Header -->
+              <div class="px-7 py-6 border-b border-[var(--color-steel-100)] bg-[var(--color-steel-50)]">
+                <div class="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <h2 id={`h2-${lic.slug}`} class="text-base font-bold text-[var(--color-carbon-900)] mb-1" style="font-family:var(--font-display);">
+                      {lic.nombre}
+                    </h2>
+                    <p class="text-[11px] font-mono text-[var(--color-steel-400)]">{lic.homoclave}</p>
+                  </div>
+                  <div class="flex flex-wrap gap-2 flex-shrink-0">
+                    <span class="text-[10px] font-semibold text-[var(--color-cofepris-700)] bg-[var(--color-cofepris-50)] border border-[var(--color-cofepris-100)] px-2.5 py-1 rounded" style="font-family:var(--font-body);">
+                      {lic.tiempo}
+                    </span>
+                    <a
+                      href={`/licencias-cofepris/${lic.slug}/`}
+                      class="text-[10px] font-semibold text-[var(--color-steel-500)] hover:text-[var(--color-cofepris-700)] border border-[var(--color-steel-200)] hover:border-[var(--color-cofepris-300)] px-2.5 py-1 rounded transition-colors duration-150"
+                      style="font-family:var(--font-body);"
+                    >
+                      Página completa →
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Requisitos -->
+              <div class="px-7 py-6">
+                <p class="text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-400)] mb-4" style="font-family:var(--font-body);">
+                  {lic.requisitos.length} documentos requeridos
+                </p>
+                <ol class="space-y-2.5">
+                  {lic.requisitos.map((req: string, i: number) => (
+                    <li class="flex items-start gap-3">
+                      <span
+                        class="flex-shrink-0 w-5 h-5 rounded-full bg-[var(--color-cofepris-700)] text-white text-[10px] font-bold flex items-center justify-center mt-0.5"
+                        style="font-family:var(--font-display);" aria-hidden="true"
+                      >
+                        {i + 1}
+                      </span>
+                      <p class="text-sm text-[var(--color-carbon-800)] leading-relaxed" style="font-family:var(--font-body);">{req}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              <!-- Aplica para -->
+              <div class="px-7 py-5 border-t border-[var(--color-steel-100)] bg-[var(--color-off-white)]">
+                <p class="text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-400)] mb-3" style="font-family:var(--font-body);">Aplica para</p>
+                <ul class="flex flex-wrap gap-2">
+                  {lic.aplica.map((a: string) => (
+                    <li class="text-xs text-[var(--color-steel-600)] border border-[var(--color-steel-200)] bg-white px-2.5 py-1 rounded" style="font-family:var(--font-body);">{a}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+</Layout>

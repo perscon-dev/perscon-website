@@ -1,0 +1,503 @@
+---
+const licencias = [
+  {
+    label: "Permiso Sanitario de Construcción",
+    href: "/licencias-cofepris/permiso-construccion/",
+  },
+  {
+    label: "Licencia Sanitaria para Establecimientos en que se practiquen Actos Quirúrgicos y/u Obstétricos",
+    href: "/licencias-cofepris/licencia-actos-quirurgicos/",
+  },
+  {
+    label: "Licencia Sanitaria para Establecimientos que utilicen Fuentes de Radiación (Rayos X)",
+    href: "/licencias-cofepris/licencia-radiacion/",
+    sub: [
+      {
+        label: "Modalidad A · Rayos X",
+        homoclave: "COFEPRIS-05-024-A",
+        href: "/licencias-cofepris/licencia-radiacion/",
+      },
+    ],
+  },
+  {
+    label: "Licencia para Establecimientos de Salud con Servicios de Sangre",
+    href: "/licencias-cofepris/licencia-sanguinea/",
+    sub: [
+      {
+        label: "Modalidad A · Banco de Sangre",
+        homoclave: "COFEPRIS-09-025-A",
+        href: "/licencias-cofepris/licencia-sanguinea/",
+      },
+      {
+        label: "Modalidad E · Servicio de Transfusión",
+        homoclave: "COFEPRIS-09-025-E",
+        href: "/licencias-cofepris/licencia-transfusion-hospitalaria/",
+      },
+    ],
+  },
+  {
+    label: "Licencia Sanitaria para Unidades de Hemodiálisis",
+    href: "/licencias-cofepris/licencia-hemodialisis/",
+  },
+];
+---
+
+<section
+  class="relative bg-white overflow-hidden min-h-[75vh] flex items-center"
+  aria-labelledby="hero-heading"
+  itemscope
+  itemtype="https://schema.org/ProfessionalService"
+>
+  <!-- Fondo: luz ambiental verde muy tenue -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div
+      class="absolute -top-32 -right-32 w-120 h-120 rounded-full bg-cofepris-900 opacity-20 blur-3xl"
+    ></div>
+    <div
+      class="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-carbon-800 opacity-40 blur-3xl"
+    ></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-8 lg:pt-0">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+      <!-- ── Columna izquierda: Copy ── -->
+      <div class="py-8 lg:py-14 space-y-6">
+
+        <!-- Badge -->
+        <div
+          class="inline-flex items-center gap-2 bg-carbon-700 px-3.5 py-1.5 rounded text-md text-white tracking-wide"
+          style="font-family: var(--font-body);"
+          aria-label="Área de servicio"
+        >
+          <span
+            class="w-1.5 h-1.5 rounded-full bg-cofepris-500 shrink-0"
+            aria-hidden="true"
+          ></span>
+          Asesoría Regulatoria · República Mexicana
+        </div>
+
+        <!--
+          H1 — SEO optimizado:
+          • Keyword principal: "Trámites COFEPRIS"
+          • Modificador de intención: "Asesoría Especializada"
+          • Audiencia: "Establecimientos Médicos"
+          • Geo-qualifier: "en México" (rankea local + nacional)
+        -->
+        <h1
+          id="hero-heading"
+          class="text-4xl sm:text-5xl lg:text-[3.1rem] font-bold leading-[1.08] text-carbon-900 tracking-tight"
+          style="font-family: var(--font-display);"
+          itemprop="name"
+        >
+          Asesoría Especializada en<br />
+          <span class="text-cofepris-700">Trámites COFEPRIS</span><br />
+          para Establecimientos<br />
+          Médicos en México
+        </h1>
+
+        <!-- Descripción -->
+        <p
+          class="text-steel-600 text-base lg:text-lg leading-relaxed max-w-md"
+          style="font-family: var(--font-body);"
+          itemprop="description"
+        >
+          Gestionamos tus <strong class="text-carbon-800 font-semibold"
+            >licencias sanitarias</strong
+          > de principio a fin. Asesoría especializada, reducción de tiempos y
+          acompañamiento en cada etapa del trámite ante COFEPRIS.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a
+            href="/contacto/"
+            class="inline-flex items-center justify-center gap-2 bg-cofepris-700 hover:bg-cofepris-600 text-white font-semibold px-7 py-3 rounded text-sm transition-colors duration-150"
+            style="font-family: var(--font-body);"
+            aria-label="Solicitar asesoría para trámites COFEPRIS"
+          >
+            Solicitar Asesoría Gratuita
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 7l5 5m0 0l-5 5m5-5H6"
+              ></path>
+            </svg>
+          </a>
+          <a
+            href="/licencias-cofepris/"
+            class="inline-flex items-center justify-center gap-2 bg-carbon-700 text-white font-medium px-7 py-3 rounded text-sm transition-colors duration-150"
+            style="font-family: var(--font-body);"
+          >
+            Ver Licencias COFEPRIS
+          </a>
+        </div>
+
+        <!-- Trust signals -->
+        <ul
+          class="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-steel-500 text-xs"
+          style="font-family: var(--font-body);"
+          role="list"
+          aria-label="Nuestras garantías"
+        >
+          {
+            [
+              "Sin costos ocultos",
+              "Proceso 100% documentado",
+              "Respuesta en 24 hrs",
+              "Asesoría personalizada",
+            ].map((item) => (
+              <li class="flex items-center gap-1.5">
+                <svg
+                  class="w-3 h-3 text-cofepris-700"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2.5"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- ── Columna derecha: Panel licencias ── -->
+      <div class="py-8  space-y-3">
+
+        <!-- Card licencias -->
+        <div class="rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+
+          <!--
+            Card header → H2 semántico.
+            Keyword secundaria: "Licencias Sanitarias COFEPRIS"
+            Visualmente idéntico al span original: text-[11px] uppercase.
+            Usamos sr-only para ocultar el texto largo a nivel visual
+            y mostramos la versión corta con las mismas clases que antes.
+          -->
+          <div
+            class="px-4 py-3 bg-gray-50 border-b border-gray-200 flex items-center justify-between"
+          >
+            <h2
+              class="flex items-center gap-2 text-[11px] font-semibold tracking-[0.15em] uppercase text-gray-500"
+              style="font-family: var(--font-body);"
+            >
+              <span
+                class="w-1.5 h-1.5 rounded-full bg-cofepris-600 shrink-0"
+                aria-hidden="true"
+              ></span>
+              Licencias Sanitarias que Gestionamos
+            </h2>
+            <span
+              class="text-[11px] font-bold text-cofepris-700 bg-cofepris-50 border border-cofepris-200 px-2.5 py-0.5 rounded-full"
+            >
+              5 trámites
+            </span>
+          </div>
+
+          <!--
+            Lista de licencias.
+            Cada ítem lleva H3 (nivel correcto bajo H2).
+            font-weight: 400 y clases de color mantienen el aspecto visual original.
+          -->
+          <ul class="divide-y divide-gray-100" role="list">
+            {
+              licencias.map((lic, i) => (
+                <li>
+                  <a
+                    href={lic.href}
+                    class="flex items-center gap-3.5 px-4 py-3.5 bg-white hover:bg-gray-50 transition-colors duration-150 group relative"
+                    aria-label={`Ver detalles: ${lic.label}`}
+                  >
+                    <span
+                      class="absolute left-0 top-0 bottom-0 w-0.5 bg-cofepris-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                      aria-hidden="true"
+                    />
+                    <span
+                      class="shrink-0 w-6 h-6 rounded bg-gray-100 border border-gray-200 group-hover:border-cofepris-300 group-hover:bg-cofepris-50 flex items-center justify-center text-[10px] font-bold text-gray-600 group-hover:text-cofepris-600 transition-all duration-150"
+                      aria-hidden="true"
+                      style="font-family: var(--font-display);"
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+
+                    <!--
+                      H3 — nombre de cada licencia.
+                      font-weight: 400 y clases de color idénticas al span original.
+                    -->
+                    <h3
+                      class="flex-1 text-gray-600 text-sm font-normal group-hover:text-gray-900 transition-colors duration-150 leading-snug"
+                      style="font-family: var(--font-body);"
+                    >
+                      {lic.label}
+                    </h3>
+
+                    <svg
+                      class="w-3.5 h-3.5 text-gray-300 group-hover:text-cofepris-500 transition-colors duration-150 shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </a>
+
+                  {/* Sub-ítems siempre visibles */}
+                  {lic.sub && (
+                    <ul class="border-t border-gray-100 bg-gray-50" role="list">
+                      {lic.sub.map((sub) => (
+                        <li>
+                          <a
+                            href={sub.href}
+                            class="flex items-center gap-3 pl-14 pr-4 py-2.5 hover:bg-cofepris-50 transition-colors duration-150 group"
+                            aria-label={`Ver detalles: ${sub.label}`}
+                          >
+                            <span
+                              class="shrink-0 w-3 h-px bg-gray-300 group-hover:bg-cofepris-400 transition-colors duration-150"
+                              aria-hidden="true"
+                            />
+                            <span class="flex-1 min-w-0">
+                              <span
+                                class="block text-xs text-gray-600 group-hover:text-cofepris-700 font-medium leading-snug transition-colors duration-150"
+                                style="font-family: var(--font-body);"
+                              >
+                                {sub.label}
+                              </span>
+                              <span
+                                class="block text-[10px] font-mono text-gray-600 group-hover:text-cofepris-500 mt-0.5 transition-colors duration-150"
+                              >
+                                {sub.homoclave}
+                              </span>
+                            </span>
+                            <svg
+                              class="w-3 h-3 text-gray-300 group-hover:text-cofepris-400 transition-colors duration-150 shrink-0"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              aria-hidden="true"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 5l7 7-7 7"
+                              />
+                            </svg>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <!-- Facebook -->
+        <a
+          href="https://www.facebook.com/perscon.mx/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-3 border border-gray-200 hover:border-[#1877F2]/50 bg-white hover:bg-[#1877F2]/5 rounded-xl px-4 py-3.5 transition-all duration-200 group shadow-sm hover:shadow-md"
+          aria-label="Visitar Facebook de Perscon"
+        >
+          <div
+            class="w-10 h-10 rounded-xl bg-[#1877F2] flex items-center justify-center shrink-0 shadow-sm"
+          >
+            <svg
+              class="w-5 h-5 text-white"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 5.01 3.657 9.163 8.438 9.879v-6.987H7.898V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.892h-2.33v6.987C18.343 21.163 22 17.01 22 12z"
+              ></path>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <p
+              class="text-sm font-semibold text-gray-800 group-hover:text-[#1877F2] transition-colors duration-150 leading-none"
+              style="font-family: var(--font-body);"
+            >
+              Síguenos en Facebook
+            </p>
+            <p
+              class="text-xs text-gray-500 mt-1"
+              style="font-family: var(--font-body);"
+            >
+              Noticias · Actualizaciones · Contenido
+            </p>
+          </div>
+          <svg
+            class="w-4 h-4 text-gray-300 group-hover:text-[#1877F2] transition-colors duration-150"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            ></path>
+          </svg>
+        </a>
+
+        <!-- Instagram -->
+        <a
+          href="https://www.instagram.com/perscon.mx"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-3 border border-gray-200 hover:border-pink-500/40 bg-white hover:bg-pink-50 rounded-xl px-4 py-3.5 transition-all duration-200 group shadow-sm hover:shadow-md"
+          aria-label="Visitar Instagram de Perscon"
+        >
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 flex items-center justify-center shrink-0 shadow-sm"
+          >
+            <svg
+              class="w-5 h-5 text-white"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M7.75 2C4.574 2 2 4.574 2 7.75v8.5C2 19.426 4.574 22 7.75 22h8.5C19.426 22 22 19.426 22 16.25v-8.5C22 4.574 19.426 2 16.25 2h-8.5zm0 2h8.5A3.75 3.75 0 0 1 20 7.75v8.5A3.75 3.75 0 0 1 16.25 20h-8.5A3.75 3.75 0 0 1 4 16.25v-8.5A3.75 3.75 0 0 1 7.75 4zm8.75 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"
+              ></path>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <p
+              class="text-sm font-semibold text-gray-800 group-hover:text-pink-600 transition-colors duration-150 leading-none"
+              style="font-family: var(--font-body);"
+            >
+              Síguenos en Instagram
+            </p>
+            <p
+              class="text-xs text-gray-500 mt-1"
+              style="font-family: var(--font-body);"
+            >
+              Fotos · Reels · Novedades
+            </p>
+          </div>
+          <svg
+            class="w-4 h-4 text-gray-300 group-hover:text-pink-500 transition-colors duration-150"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            ></path>
+          </svg>
+        </a>
+
+        <!-- YouTube -->
+<a
+  href="https://www.youtube.com/@PERSCON-w6z"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="flex items-center gap-3 border border-gray-200 hover:border-red-500/40 bg-white hover:bg-red-50 rounded-xl px-4 py-3.5 transition-all duration-200 group shadow-sm hover:shadow-md"
+  aria-label="Visitar YouTube de Perscon"
+>
+  <div
+    class="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center shrink-0 shadow-sm"
+  >
+    <svg
+      class="w-5 h-5 text-white"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path
+        d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.56A3.02 3.02 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3.02 3.02 0 0 0 2.12 2.14C4.5 20.5 12 20.5 12 20.5s7.5 0 9.38-.56a3.02 3.02 0 0 0 2.12-2.14C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.5v-7l6.2 3.5-6.2 3.5z"
+      />
+    </svg>
+  </div>
+
+  <div class="flex-1">
+    <p
+      class="text-sm font-semibold text-gray-800 group-hover:text-red-600 transition-colors duration-150 leading-none"
+      style="font-family: var(--font-body);"
+    >
+      Suscríbete en YouTube
+    </p>
+    <p
+      class="text-xs text-gray-500 mt-1"
+      style="font-family: var(--font-body);"
+    >
+      Videos · Guías · Trámites COFEPRIS
+    </p>
+  </div>
+
+  <svg
+    class="w-4 h-4 text-gray-300 group-hover:text-red-500 transition-colors duration-150"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M9 5l7 7-7 7"
+    ></path>
+  </svg>
+</a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes heroFadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-fade-up {
+    opacity: 0;
+    animation: heroFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-delay-1 { animation-delay: 0.05s; }
+  .hero-delay-2 { animation-delay: 0.18s; }
+  .hero-delay-3 { animation-delay: 0.32s; }
+  .hero-delay-4 { animation-delay: 0.46s; }
+  .hero-delay-5 { animation-delay: 0.60s; }
+</style>

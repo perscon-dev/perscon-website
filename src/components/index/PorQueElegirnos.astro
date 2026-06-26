@@ -1,0 +1,190 @@
+---
+const diferenciadores = [
+  {
+    num: '01',
+    title: 'Conocimiento Técnico Especializado',
+    descripcion:
+      'Equipo con experiencia directa en normativa sanitaria mexicana: NOM-016, NOM-229, NOM-253, NOM-003 y demás regulaciones COFEPRIS vigentes. No subcontratamos ni delegamos.',
+  },
+  {
+    num: '02',
+    title: 'Gestión Integral del Trámite',
+    descripcion:
+      'Nos hacemos cargo del expediente completo: recopilación de documentos, presentación ante COFEPRIS, seguimiento de estatus y atención de requerimientos adicionales hasta la obtención de la licencia.',
+  },
+  {
+    num: '03',
+    title: 'Reducción de Tiempos y Rechazos',
+    descripcion:
+      'Los errores en la documentación son la principal causa de rechazo o retraso. Nuestro proceso de revisión previa elimina observaciones antes de la presentación oficial.',
+  },
+  {
+    num: '04',
+    title: 'Transparencia en el Proceso',
+    descripcion:
+      'Reporte de avance en cada etapa del trámite. Sabes exactamente en qué paso está tu expediente, qué sigue y cuándo esperar resolución.',
+  },
+  {
+    num: '05',
+    title: 'Cobertura Nacional',
+    descripcion:
+      'Atendemos establecimientos médicos en toda la República Mexicana. CDMX, Monterrey, Guadalajara, Puebla, Querétaro y demás estados.',
+  },
+  {
+    num: '06',
+    title: 'Asesoría Previa sin Costo',
+    descripcion:
+      'Antes de iniciar, analizamos tu caso sin compromiso para definir el trámite correcto, los requisitos específicos y el tiempo estimado de obtención.',
+  },
+];
+
+const metricas = [
+  { valor: '+50', etiqueta: 'Licencias obtenidas' },
+  { valor: '0',   etiqueta: 'Licencias rechazadas' },
+  { valor: '+5', etiqueta: 'Años en el sector' },
+  { valor: '5',   etiqueta: 'Tipos de licencia' },
+];
+---
+
+<section
+  class="bg-white border-t border-steel-100"
+  aria-labelledby="porque-elegirnos-heading"
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-15 lg:py-15">
+
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+
+      <!-- Columna izquierda: heading + métricas + CTA -->
+      <div class="pqe-left lg:sticky lg:top-24">
+        <p
+          class="text-[10px] font-semibold tracking-[0.2em] uppercase text-cofepris-700 mb-3 flex items-center gap-2"
+          style="font-family: var(--font-body);"
+        >
+          <span class="w-6 h-px bg-cofepris-700 inline-block" aria-hidden="true"></span>
+          Por Qué Elegirnos
+        </p>
+
+        <h2
+          id="porque-elegirnos-heading"
+          class="text-3xl lg:text-4xl font-bold text-carbon-900 tracking-tight leading-tight mb-5"
+          style="font-family: var(--font-display);"
+        >
+          Especialistas en<br />
+          Cumplimiento Normativo<br />
+          <span class="text-cofepris-700">COFEPRIS</span>
+        </h2>
+
+        <p
+          class="text-steel-600 text-base leading-relaxed mb-10 max-w-md"
+          style="font-family: var(--font-body);"
+        >
+          Perscon nació con el propósito de simplificar los procesos regulatorios
+          para establecimientos médicos. Cada trámite que gestionamos lleva años
+          de experiencia práctica en la normativa sanitaria mexicana.
+        </p>
+
+        <!-- Métricas -->
+        <dl class="grid grid-cols-2 gap-px bg-steel-100 border border-steel-100 mb-10">
+          {metricas.map((m) => (
+            <div class="bg-white px-6 py-5">
+              <dt
+                class="text-2xl font-bold text-carbon-900"
+                style="font-family: var(--font-display);"
+              >
+                {m.valor}
+              </dt>
+              <dd
+                class="text-xs text-steel-600 mt-0.5 uppercase tracking-wide"
+                style="font-family: var(--font-body);"
+              >
+                {m.etiqueta}
+              </dd>
+            </div>
+          ))}
+        </dl>
+
+        <a
+          href="/nosotros/"
+          class="inline-flex items-center gap-2 border border-carbon-900 text-carbon-900 hover:bg-carbon-900 hover:text-white font-semibold px-6 py-2.5 rounded text-sm transition-colors duration-150"
+          style="font-family: var(--font-body);"
+        >
+          Conoce a nuestro equipo
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Columna derecha: lista de diferenciadores -->
+      <div>
+        <ul class="divide-y divide-steel-100" role="list">
+          {diferenciadores.map((d, idx) => (
+            <li class="pqe-item py-5 flex gap-5 group" style={`--item-delay: ${idx * 80}ms`}>
+              <span
+                class="shrink-0 text-[11px] font-bold tracking-widest text-steel-300 pt-0.5 w-6"
+                style="font-family: var(--font-display);"
+                aria-hidden="true"
+              >
+                {d.num}
+              </span>
+              <div>
+                <h3
+                  class="text-sm font-bold text-color-carbon-900 mb-1.5 group-hover:text-cofepris-700 transition-colors duration-150"
+                  style="font-family: var(--font-display);"
+                >
+                  {d.title}
+                </h3>
+                <p
+                  class="text-sm text-steel-600 leading-relaxed"
+                  style="font-family: var(--font-body);"
+                >
+                  {d.descripcion}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .pqe-left {
+    opacity: 0;
+    transform: translateX(-28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .pqe-left.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .pqe-item {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition-delay: var(--item-delay, 0ms);
+  }
+  .pqe-item.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
+<script>
+  const pqeObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          pqeObserver.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  document.querySelectorAll('.pqe-left, .pqe-item').forEach((el) => pqeObserver.observe(el));
+</script>

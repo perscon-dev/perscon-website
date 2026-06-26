@@ -1,0 +1,102 @@
+---
+/**
+ * LicenciaFAQ.astro
+ * Acordeón de preguntas frecuentes para páginas de licencia individual
+ * Reutilizable: recibe el array de FAQ del frontmatter del .md
+ */
+
+interface FaqItem {
+  pregunta: string;
+  respuesta: string;
+}
+
+interface Props {
+  faq: FaqItem[];
+}
+
+const { faq } = Astro.props;
+---
+
+<section aria-labelledby="faq-licencia-heading">
+  <h2
+    id="faq-licencia-heading"
+    class="text-xl font-bold text-[var(--color-carbon-900)] mb-6 pb-3 border-b border-[var(--color-steel-100)]"
+    style="font-family: var(--font-display);"
+  >
+    Preguntas Frecuentes
+  </h2>
+
+  <dl class="divide-y divide-[var(--color-steel-100)]">
+    {faq.map((item: FaqItem, idx: number) => (
+      <div class="py-4">
+        <dt>
+          <button
+            class="faq-btn w-full flex items-start justify-between gap-4 text-left group"
+            aria-expanded="false"
+            aria-controls={`faq-lic-${idx}`}
+            id={`faq-lic-q-${idx}`}
+          >
+            <span
+              class="text-sm font-semibold text-[var(--color-carbon-900)] group-hover:text-[var(--color-cofepris-700)] transition-colors duration-150 leading-snug"
+              style="font-family: var(--font-display);"
+            >
+              {item.pregunta}
+            </span>
+            <svg
+              class="faq-plus w-4 h-4 text-[var(--color-steel-400)] flex-shrink-0 mt-0.5"
+              fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+            </svg>
+            <svg
+              class="faq-minus w-4 h-4 text-[var(--color-cofepris-700)] flex-shrink-0 mt-0.5 hidden"
+              fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 12H4" />
+            </svg>
+          </button>
+        </dt>
+        <dd
+          id={`faq-lic-${idx}`}
+          class="faq-answer hidden pt-3 pr-8"
+          role="region"
+          aria-labelledby={`faq-lic-q-${idx}`}
+        >
+          <p
+            class="text-sm text-[var(--color-steel-600)] leading-relaxed"
+            style="font-family: var(--font-body);"
+          >
+            {item.respuesta}
+          </p>
+        </dd>
+      </div>
+    ))}
+  </dl>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const isOpen  = btn.getAttribute('aria-expanded') === 'true';
+      const answer  = document.getElementById(btn.getAttribute('aria-controls') ?? '');
+      const plus    = btn.querySelector<SVGElement>('.faq-plus');
+      const minus   = btn.querySelector<SVGElement>('.faq-minus');
+
+      // Cierra todos los demás
+      document.querySelectorAll<HTMLButtonElement>('.faq-btn').forEach((b) => {
+        if (b === btn) return;
+        b.setAttribute('aria-expanded', 'false');
+        document.getElementById(b.getAttribute('aria-controls') ?? '')?.classList.add('hidden');
+        b.querySelector('.faq-plus')?.classList.remove('hidden');
+        b.querySelector('.faq-minus')?.classList.add('hidden');
+      });
+
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      answer?.classList.toggle('hidden', isOpen);
+      plus?.classList.toggle('hidden', !isOpen);
+      minus?.classList.toggle('hidden', isOpen);
+    });
+  });
+</script>

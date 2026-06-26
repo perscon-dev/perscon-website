@@ -1,0 +1,194 @@
+---
+/**
+ * src/pages/contacto/index.astro
+ * Ruta: /contacto/
+ */
+
+import Layout        from '../../layouts/Layout.astro';
+import ContactoForm  from '../../components/contacto/ContactoForm.astro';
+import ContactoInfo  from '../../components/contacto/ContactoInfo.astro';
+
+const SITE_URL = 'https://www.perscon.com.mx';
+
+const contactPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  '@id': `${SITE_URL}/contacto/#contactpage`,
+  name: 'Contacto — Perscon Asesoría COFEPRIS',
+  description: 'Solicita una consulta gratuita para tu trámite COFEPRIS. Te respondemos en menos de 24 horas hábiles.',
+  url: `${SITE_URL}/contacto/`,
+  inLanguage: 'es-MX',
+};
+
+---
+
+<Layout
+  title="Contacto — Consulta Gratuita COFEPRIS"
+  description="Solicita una consulta gratuita para tu trámite COFEPRIS. Licencias sanitarias para establecimientos médicos en México. Respuesta en menos de 24 horas."
+  canonical="/contacto/"
+  pageSchema={contactPageSchema}
+  breadcrumbs={[{ name: 'Contacto', url: '/contacto/' }]}
+>
+
+  <!-- ── Hero ── -->
+  <section class="bg-[var(--color-carbon-950)] border-b border-[var(--color-carbon-800)]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-18">
+
+      <nav
+        class="ct-fade-up ct-delay-1 flex items-center gap-2 text-xs text-[var(--color-steel-600)] mb-8"
+        aria-label="Ruta de navegación"
+      >
+        <a href="/" class="hover:text-white transition-colors duration-150" style="font-family: var(--font-body);">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-[var(--color-steel-400)]" aria-current="page" style="font-family: var(--font-body);">Contacto</span>
+      </nav>
+
+      <div class="max-w-2xl">
+        <p
+          class="ct-fade-up ct-delay-2 text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-cofepris-500)] mb-4 flex items-center gap-2"
+          style="font-family: var(--font-body);"
+        >
+          <span class="w-6 h-px bg-[var(--color-cofepris-700)] inline-block" aria-hidden="true"></span>
+          Consulta sin compromiso
+        </p>
+        <h1
+          class="ct-fade-up ct-delay-3 text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight mb-4"
+          style="font-family: var(--font-display);"
+        >
+          Cuéntanos tu caso.<br />
+          <span class="text-[var(--color-cofepris-500)]">Te orientamos sin costo.</span>
+        </h1>
+        <p
+          class="ct-fade-up ct-delay-4 text-[var(--color-steel-400)] text-sm leading-relaxed"
+          style="font-family: var(--font-body);"
+        >
+          Antes de iniciar cualquier trámite, analizamos tu situación para definir
+          el trámite correcto, los requisitos específicos de tu establecimiento
+          y el tiempo estimado de obtención. Sin compromiso de contratación.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Formulario + Info ── -->
+  <section
+    class="bg-[var(--color-off-white)] border-t border-[var(--color-steel-100)]"
+    aria-labelledby="contacto-form-heading"
+  >
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-7 lg:py-10">
+      <div class="grid lg:grid-cols-[1fr_360px] gap-10 items-start">
+
+        <!-- Formulario -->
+        <div class="ct-scroll-left">
+          <h2 id="contacto-form-heading" class="sr-only">
+            Formulario de contacto
+          </h2>
+          <ContactoForm />
+        </div>
+
+        <!-- Info panel -->
+        <div class="ct-scroll-right lg:sticky lg:top-24">
+          <ContactoInfo />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Trust strip ── -->
+  <section
+    class="bg-white border-t border-[var(--color-steel-100)]"
+    aria-label="Garantías del servicio"
+  >
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-10">
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--color-steel-100)]" role="list">
+        {[
+          { valor: 'Gratuita',     etiqueta: 'Primera consulta'         },
+          { valor: '24 hrs',       etiqueta: 'Tiempo de respuesta'      },
+          { valor: '0 rechazos',   etiqueta: 'Expedientes ante COFEPRIS' },
+          { valor: 'Nacional',     etiqueta: 'Cobertura en México'      },
+        ].map((t, idx) => (
+          <li class="ct-trust-item bg-white px-6 py-5 text-center" style={`--trust-delay: ${idx * 100}ms`}>
+            <p
+              class="text-lg font-bold text-[var(--color-cofepris-700)] mb-0.5"
+              style="font-family: var(--font-display);"
+            >
+              {t.valor}
+            </p>
+            <p
+              class="text-[10px] uppercase tracking-widest text-[var(--color-steel-500)]"
+              style="font-family: var(--font-body);"
+            >
+              {t.etiqueta}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  @keyframes ctFadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+
+  .ct-fade-up {
+    opacity: 0;
+    animation: ctFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .ct-delay-1 { animation-delay: 0.05s; }
+  .ct-delay-2 { animation-delay: 0.15s; }
+  .ct-delay-3 { animation-delay: 0.28s; }
+  .ct-delay-4 { animation-delay: 0.42s; }
+
+  .ct-scroll-left {
+    opacity: 0;
+    transform: translateX(-28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .ct-scroll-left.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .ct-scroll-right {
+    opacity: 0;
+    transform: translateX(28px);
+    transition: opacity 0.65s ease 0.15s, transform 0.65s ease 0.15s;
+  }
+  .ct-scroll-right.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .ct-trust-item {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition-delay: var(--trust-delay, 0ms);
+  }
+  .ct-trust-item.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const ctObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          ctObserver.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  document.querySelectorAll('.ct-scroll-left, .ct-scroll-right, .ct-trust-item').forEach((el) => ctObserver.observe(el));
+</script>

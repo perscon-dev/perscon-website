@@ -1,0 +1,178 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import CasosExitoCard from "../../components/casos-exito/CasosExitoCard.astro";
+
+const SITE_URL = "https://www.perscon.com.mx";
+
+const todosCasos: CollectionEntry<"casos-exito">[] =
+  await getCollection("casos-exito");
+
+const casosFeatured = todosCasos
+  .filter((caso) => caso.data.featured)
+  .sort((a, b) => a.data.orden - b.data.orden);
+
+const casosOtros = todosCasos
+  .filter((caso) => !caso.data.featured)
+  .sort((a, b) => a.data.orden - b.data.orden);
+
+const casosSortedCorrectamente = [...casosFeatured, ...casosOtros];
+
+const contadorPorSector: Record<string, number> = {};
+todosCasos.forEach((caso) => {
+  contadorPorSector[caso.data.sectorLabel] =
+    (contadorPorSector[caso.data.sectorLabel] || 0) + 1;
+});
+
+const collectionPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${SITE_URL}/casos-exito/#collection`,
+  url: `${SITE_URL}/casos-exito/`,
+  name: "Casos de Éxito",
+  description:
+    "Soluciones exitosas en licencias sanitarias, permisos de construcción y proyectos ejecutivos para instituciones de salud",
+  inLanguage: "es-MX",
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: casosSortedCorrectamente.map((caso, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Article",
+        "@id": `${SITE_URL}/casos-exito/${caso.slug}/#article`,
+        headline: caso.data.empresa,
+        description: caso.data.description,
+        url: `${SITE_URL}/casos-exito/${caso.slug}/`,
+      },
+    })),
+  },
+};
+---
+
+<Layout
+  title="Casos de Éxito | Perscon"
+  description="Soluciones exitosas en licencias sanitarias COFEPRIS, permisos de construcción y proyectos ejecutivos para instituciones de salud en México."
+  canonical="/casos-exito/"
+  ogType="website"
+  pageSchema={[collectionPageSchema]}
+  breadcrumbs={[{ name: "Casos de Éxito", url: "/casos-exito/" }]}
+>
+  <!-- ── Hero ── -->
+  <section
+    class="bg-[var(--color-carbon-950)] border-b border-[var(--color-carbon-800)]"
+  >
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+      <!-- Breadcrumb -->
+      <nav
+        class="nh-fade-up nh-delay-1 flex items-center gap-2 text-xs text-[var(--color-steel-600)] mb-8"
+        aria-label="Ruta de navegación"
+      >
+        <a
+          href="/"
+          class="hover:text-white transition-colors duration-150"
+          style="font-family: var(--font-body);">Inicio</a
+        >
+        <span aria-hidden="true">/</span>
+        <span
+          class="text-[var(--color-steel-400)]"
+          aria-current="page"
+          style="font-family: var(--font-body);">Casos de Éxito</span
+        >
+      </nav>
+      <div class="max-w-3xl mb-8">
+        <p
+          class="nh-fade-up nh-delay-2 text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-cofepris-500)] mb-4 flex items-center gap-2"
+          style="font-family: var(--font-body);"
+        >
+          <span
+            class="w-6 h-px bg-[var(--color-cofepris-700)] inline-block"
+            aria-hidden="true"></span>
+          Trayectoria en Regulación Sanitaria
+        </p>
+        <h1
+          class="text-4xl lg:text-5xl font-bold text-white mb-4"
+          style="font-family: var(--font-heading);"
+        >
+          Casos de Éxito en Licencias COFEPRIS
+        </h1>
+        <p
+          class="text-lg text-[var(--color-steel-400)]"
+          style="font-family: var(--font-body);"
+        >
+          Soluciones exitosas en licencias sanitarias COFEPRIS, permisos de
+          construcción y proyectos ejecutivos para instituciones de salud.
+          Conoce cómo hemos ayudado a nuestros clientes a obtener sus
+          autorizaciones sin complicaciones.
+        </p>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div
+          class="bg-[var(--color-carbon-900)] border border-[var(--color-carbon-700)] rounded-lg p-6"
+        >
+          <div
+            class="text-4xl font-bold text-[var(--color-cofepris-400)] mb-2"
+            style="font-family: var(--font-heading);"
+          >
+            {todosCasos.length}
+          </div>
+          <p
+            class="text-[var(--color-steel-400)] text-sm"
+            style="font-family: var(--font-body);"
+          >
+            casos de éxito documentados
+          </p>
+        </div>
+
+        <div
+          class="bg-[var(--color-carbon-900)] border border-[var(--color-carbon-700)] rounded-lg p-6"
+        >
+          <div
+            class="text-4xl font-bold text-[var(--color-cofepris-400)] mb-2"
+            style="font-family: var(--font-heading);"
+          >
+            {Object.keys(contadorPorSector).length}
+          </div>
+          <p
+            class="text-[var(--color-steel-400)] text-sm"
+            style="font-family: var(--font-body);"
+          >
+            áreas de especialidad
+          </p>
+        </div>
+
+        <div
+          class="bg-[var(--color-carbon-900)] border border-[var(--color-carbon-700)] rounded-lg p-6"
+        >
+          <div
+            class="text-4xl font-bold text-[var(--color-cofepris-400)] mb-2"
+            style="font-family: var(--font-heading);"
+          >
+            100%
+          </div>
+          <p
+            class="text-[var(--color-steel-400)] text-sm"
+            style="font-family: var(--font-body);"
+          >
+            trámites exitosos
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Casos Grid ── -->
+  <section class="bg-[var(--color-carbon-975)]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-7">
+      <!-- Grid de casos -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {casosSortedCorrectamente.map((caso) => <CasosExitoCard caso={caso} />)}
+      </div>
+    </div>
+  </section>
+
+  
+</Layout>

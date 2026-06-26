@@ -1,0 +1,225 @@
+---
+/**
+ * ProyectosObraDetalle.astro
+ * Sección de servicios detallados — Proyectos de Obra Sector Salud
+ */
+
+const servicios = [
+  {
+    num: '01',
+    area: 'Planeación de Obra',
+    descripcion:
+      'Elaboración de programas de obra, análisis de precios unitarios, presupuestos de inversión y cronogramas de ejecución. Coordinación multidisciplinaria entre arquitectura, instalaciones y equipamiento médico desde etapas tempranas del proyecto.',
+    tag: 'Pre-construcción',
+  },
+  {
+    num: '02',
+    area: 'Dirección de Obra',
+    descripcion:
+      'Supervisión técnica permanente en sitio para garantizar que los procedimientos constructivos se apeguen a la normatividad vigente para unidades de salud: NOM, Reglamentos de Construcción y especificaciones del proyecto ejecutivo.',
+    tag: 'Durante construcción',
+  },
+  {
+    num: '03',
+    area: 'Control de Calidad',
+    descripcion:
+      'Verificación de materiales, sistemas constructivos y acabados. Control de calidad en instalaciones especializadas: gases medicinales, cuartos limpios, blindajes radiológicos y áreas de control de infecciones con requisitos técnicos específicos.',
+    tag: 'Durante construcción',
+  },
+  {
+    num: '04',
+    area: 'Conservación y Mantenimiento',
+    descripcion:
+      'Programas de mantenimiento preventivo y correctivo de edificaciones para la salud en instituciones públicas o privadas. Diagnóstico de infraestructura existente, plan de intervención y ejecución de trabajos de conservación.',
+    tag: 'Post-construcción',
+  },
+  {
+    num: '05',
+    area: 'Optimización de Espacios',
+    descripcion:
+      'Rediseño funcional de áreas existentes para maximizar la capacidad operativa, el flujo de pacientes y personal, y el cumplimiento de requisitos sanitarios. Soluciones que aumentan la funcionalidad sin requerir obra mayor.',
+    tag: 'Remodelación',
+  },
+  {
+    num: '06',
+    area: 'Cumplimiento Normativo en Obra',
+    descripcion:
+      'Acompañamiento para garantizar que la obra cumpla con los requisitos del Permiso Sanitario de Construcción COFEPRIS. Coordinación de entregas documentales y visitas de verificación de la autoridad sanitaria durante y al término de la obra.',
+    tag: 'Regulatorio',
+  },
+];
+
+const etapas = [
+  { label: 'Planeación',     desc: 'Programa, presupuesto y cronograma' },
+  { label: 'Dirección',      desc: 'Supervisión técnica en sitio' },
+  { label: 'Control',        desc: 'Calidad de materiales e instalaciones' },
+  { label: 'Entrega',        desc: 'Cumplimiento normativo y documentación' },
+];
+---
+
+<section
+  class="bg-[var(--color-off-white)] border-t border-[var(--color-steel-100)]"
+  aria-labelledby="servicios-obra-heading"
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-24">
+
+    <div class="grid lg:grid-cols-[1fr_340px] gap-14 items-start mb-16">
+      <div class="pod-header">
+        <p
+          class="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-cofepris-700)] mb-3 flex items-center gap-2"
+          style="font-family: var(--font-body);"
+        >
+          <span class="w-6 h-px bg-[var(--color-cofepris-700)] inline-block" aria-hidden="true"></span>
+          Nuestros Servicios
+        </p>
+        <h2
+          id="servicios-obra-heading"
+          class="text-3xl lg:text-4xl font-bold text-[var(--color-carbon-900)] tracking-tight leading-tight mb-4"
+          style="font-family: var(--font-display);"
+        >
+          Ejecución de Obra para<br />
+          Unidades de Salud
+        </h2>
+        <p
+          class="text-[var(--color-steel-500)] text-base leading-relaxed"
+          style="font-family: var(--font-body);"
+        >
+          Desde la planeación, dirección y control, garantizamos que los
+          procedimientos constructivos se apeguen a la normatividad vigente
+          para establecimientos del sector salud, en instituciones públicas
+          y privadas.
+        </p>
+      </div>
+
+      <!-- Etapas del proceso -->
+      <div class="pod-sidebar border border-[var(--color-steel-200)] rounded-lg overflow-hidden">
+        <div class="px-5 py-3.5 border-b border-[var(--color-steel-100)] bg-[var(--color-steel-50)]">
+          <p
+            class="text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-500)]"
+            style="font-family: var(--font-body);"
+          >
+            Etapas del Proyecto
+          </p>
+        </div>
+        <ol class="divide-y divide-[var(--color-steel-100)]">
+          {etapas.map((e, i) => (
+            <li class="flex items-center gap-4 px-5 py-3.5">
+              <span
+                class="flex-shrink-0 w-6 h-6 rounded-full bg-[var(--color-cofepris-700)] text-white text-[10px] font-bold flex items-center justify-center"
+                style="font-family: var(--font-display);"
+                aria-hidden="true"
+              >
+                {i + 1}
+              </span>
+              <div>
+                <p
+                  class="text-sm font-semibold text-[var(--color-carbon-900)]"
+                  style="font-family: var(--font-display);"
+                >
+                  {e.label}
+                </p>
+                <p
+                  class="text-xs text-[var(--color-steel-500)]"
+                  style="font-family: var(--font-body);"
+                >
+                  {e.desc}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+
+    <!-- Grid de servicios -->
+    <ul class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--color-steel-200)]" role="list">
+      {servicios.map((s) => (
+        <li class="pod-card bg-white group" style={`--card-delay: ${parseInt(s.num) * 80}ms`}>
+          <div class="flex flex-col h-full p-7 hover:bg-[var(--color-steel-50)] transition-colors duration-200">
+
+            <div class="flex items-start justify-between mb-5">
+              <span
+                class="text-[10px] font-semibold text-[var(--color-cofepris-700)] bg-[var(--color-cofepris-50)] border border-[var(--color-cofepris-100)] px-2 py-0.5 rounded"
+                style="font-family: var(--font-body);"
+              >
+                {s.tag}
+              </span>
+              <span
+                class="text-[11px] font-bold tracking-widest text-[var(--color-steel-300)]"
+                style="font-family: var(--font-display);"
+                aria-hidden="true"
+              >
+                {s.num}
+              </span>
+            </div>
+
+            <h3
+              class="text-sm font-bold text-[var(--color-carbon-900)] mb-3 leading-snug group-hover:text-[var(--color-cofepris-700)] transition-colors duration-150"
+              style="font-family: var(--font-display);"
+            >
+              {s.area}
+            </h3>
+
+            <p
+              class="text-sm text-[var(--color-steel-500)] leading-relaxed"
+              style="font-family: var(--font-body);"
+            >
+              {s.descripcion}
+            </p>
+
+          </div>
+        </li>
+      ))}
+    </ul>
+
+  </div>
+</section>
+
+<style>
+  .pod-header {
+    opacity: 0;
+    transform: translateX(-28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .pod-header.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .pod-sidebar {
+    opacity: 0;
+    transform: translateX(28px);
+    transition: opacity 0.65s ease 0.15s, transform 0.65s ease 0.15s;
+  }
+  .pod-sidebar.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .pod-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition-delay: var(--card-delay, 0ms);
+  }
+  .pod-card.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const podObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          podObserver.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  document.querySelectorAll('.pod-header, .pod-sidebar, .pod-card').forEach((el) => podObserver.observe(el));
+</script>

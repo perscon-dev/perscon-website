@@ -1,0 +1,202 @@
+---
+/**
+ * ContactoInfo.astro
+ * Panel de información de contacto: NAP, horario, WhatsApp, servicios
+ */
+
+const canales = [
+  {
+    label: "WhatsApp",
+    valor: "+52 55 7911 3086",
+    href: "https://wa.me/5215579113086",
+    target: "_blank",
+    icono: "whatsapp",
+    nota: "Respuesta en menos de 2 horas en horario de oficina",
+  },
+  {
+    label: "Instagram",
+    valor: "@perscon.mx",
+    href: "https://www.instagram.com/perscon.mx?fbclid=IwZXh0bgNhZW0CMTAAYnJpZBExdzN5Sm9hQnV3MWZiRmUybHNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR7yctoBmSu_maHkjW3VLFpx_yzJEtRclBygR6Te8qaGXA1vuws5yrG_9rHVCg_aem_S28W0JBxJmTDNjxidcRCfw",
+    target: "_blank",
+    icono: "instagram",
+    nota: "Síguenos para novedades y contenido informativo",
+  },
+  {
+    label: "Correo electrónico",
+    valor: "contacto@perscon.com.mx",
+    href: "mailto:contacto@perscon.com.mx",
+    target: "_self",
+    icono: "email",
+    nota: "Respuesta en menos de 24 horas hábiles",
+  },
+  {
+    label: "Teléfono",
+    valor: "+52 55 7911 3086",
+    href: "tel:+525579113086",
+    target: "_self",
+    icono: "telefono",
+    nota: "Lun–Vie 9:00–18:00 · Sáb 10:00–13:00",
+  },
+];
+
+const iconPaths: Record<string, string> = {
+  whatsapp:
+    "M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.534 5.856L.057 23.57a.75.75 0 00.914.914l5.714-1.477A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.713 9.713 0 01-4.964-1.363l-.356-.213-3.694.954.974-3.583-.232-.368A9.75 9.75 0 1112 21.75z",
+
+  instagram:
+    "M7.75 2C4.57 2 2 4.57 2 7.75v8.5C2 19.43 4.57 22 7.75 22h8.5C19.43 22 22 19.43 22 16.25v-8.5C22 4.57 19.43 2 16.25 2h-8.5zm0 2h8.5A3.25 3.25 0 0119.5 7.25v8.5A3.25 3.25 0 0116.25 19.5h-8.5A3.25 3.25 0 014.5 16.25v-8.5A3.25 3.25 0 017.75 4zm8.75 1a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z",
+
+  email:
+    "M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z",
+
+  telefono:
+    "M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z",
+};
+
+const serviciosLista = [
+  "Permiso Sanitario de Construcción",
+  "Licencia para Actos Quirúrgicos",
+  "Licencia para Fuentes de Radiación",
+  "Licencia para Bancos de Sangre",
+  "Licencia para Hemodiálisis",
+  "Proyectos Ejecutivos",
+  "Proyectos de Obra Sector Salud",
+];
+---
+
+<div class="flex flex-col gap-6">
+  <!-- Canales de contacto -->
+  <div
+    class="border border-[var(--color-steel-200)] rounded-xl overflow-hidden"
+  >
+    <div
+      class="px-6 py-4 bg-[var(--color-steel-50)] border-b border-[var(--color-steel-100)]"
+    >
+      <p
+        class="text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-500)]"
+        style="font-family: var(--font-body);"
+      >
+        Canales de atención
+      </p>
+    </div>
+    <ul class="divide-y divide-[var(--color-steel-100)]" role="list">
+      {
+        canales.map((c) => (
+          <li>
+            <a
+              href={c.href}
+              target={c.target}
+              rel={c.target === "_blank" ? "noopener noreferrer" : undefined}
+              class="flex items-start gap-4 px-6 py-4 hover:bg-[var(--color-steel-50)] transition-colors duration-150 group"
+            >
+              <div class="flex-shrink-0 w-9 h-9 rounded-lg border border-[var(--color-steel-100)] bg-white flex items-center justify-center group-hover:border-[var(--color-cofepris-200)] group-hover:bg-[var(--color-cofepris-50)] transition-colors duration-200 mt-0.5">
+                <svg
+                  class="w-4 h-4 text-[var(--color-steel-400)] group-hover:text-[var(--color-cofepris-700)] transition-colors duration-200"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d={iconPaths[c.icono]} />
+                </svg>
+              </div>
+              <div class="min-w-0">
+                <p
+                  class="text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-400)] mb-0.5"
+                  style="font-family: var(--font-body);"
+                >
+                  {c.label}
+                </p>
+                <p
+                  class="text-sm font-semibold text-[var(--color-carbon-900)] group-hover:text-[var(--color-cofepris-700)] transition-colors duration-150"
+                  style="font-family: var(--font-body);"
+                >
+                  {c.valor}
+                </p>
+                <p
+                  class="text-xs text-[var(--color-steel-400)] mt-0.5"
+                  style="font-family: var(--font-body);"
+                >
+                  {c.nota}
+                </p>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <!-- Horario -->
+  <div class="border border-[var(--color-steel-200)] rounded-xl p-6">
+    <p
+      class="text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-400)] mb-3"
+      style="font-family: var(--font-body);"
+    >
+      Horario de atención
+    </p>
+    <ul class="space-y-1.5" role="list">
+      {
+        [
+          { dia: "Lunes — Viernes", hora: "8:00 — 17:00" },
+          { dia: "Sábado", hora: "9:00 — 13:00" },
+          { dia: "Domingo", hora: "Cerrado" },
+        ].map((h) => (
+          <li class="flex items-center justify-between">
+            <span
+              class="text-xs text-[var(--color-steel-500)]"
+              style="font-family: var(--font-body);"
+            >
+              {h.dia}
+            </span>
+            <span
+              class="text-xs font-semibold text-[var(--color-carbon-900)]"
+              style="font-family: var(--font-body);"
+            >
+              {h.hora}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+    <p
+      class="text-[10px] text-[var(--color-steel-400)] mt-3 border-t border-[var(--color-steel-100)] pt-3"
+      style="font-family: var(--font-body);"
+    >
+      Zona horaria: Ciudad de México (UTC−6 / UTC−5 en verano)
+    </p>
+  </div>
+
+  <!-- Servicios disponibles -->
+  <div
+    class="border border-[var(--color-steel-200)] rounded-xl overflow-hidden"
+  >
+    <div
+      class="px-6 py-4 bg-[var(--color-steel-50)] border-b border-[var(--color-steel-100)]"
+    >
+      <p
+        class="text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-500)]"
+        style="font-family: var(--font-body);"
+      >
+        Podemos ayudarte con
+      </p>
+    </div>
+    <ul class="divide-y divide-[var(--color-steel-100)]" role="list">
+      {
+        serviciosLista.map((s: string) => (
+          <li class="flex items-center gap-3 px-6 py-2.5">
+            <span
+              class="w-1.5 h-1.5 rounded-full bg-[var(--color-cofepris-700)] flex-shrink-0"
+              aria-hidden="true"
+            />
+            <span
+              class="text-xs text-[var(--color-steel-600)]"
+              style="font-family: var(--font-body);"
+            >
+              {s}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>

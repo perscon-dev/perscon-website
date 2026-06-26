@@ -1,0 +1,49 @@
+---
+import { CIUDADES_SEO } from '../../data/licenciasSeo';
+
+interface Props {
+  licenciaNombre: string;
+}
+
+const { licenciaNombre } = Astro.props;
+---
+
+<section
+  class="border border-[var(--color-steel-200)] rounded-xl overflow-hidden bg-[var(--color-off-white)]"
+  aria-labelledby="cobertura-licencia-heading"
+>
+  <div class="px-6 py-5 border-b border-[var(--color-steel-200)] bg-white">
+    <h2
+      id="cobertura-licencia-heading"
+      class="text-lg font-bold text-[var(--color-carbon-900)]"
+      style="font-family: var(--font-display);"
+    >
+      {licenciaNombre} en toda la República Mexicana
+    </h2>
+    <p
+      class="text-sm text-[var(--color-steel-600)] mt-1 leading-relaxed"
+      style="font-family: var(--font-body);"
+    >
+      Gestionamos este trámite COFEPRIS para establecimientos médicos en cualquier estado.
+      Consulta la guía local en las principales ciudades:
+    </p>
+  </div>
+  <div class="px-6 py-5">
+    <ul class="flex flex-wrap gap-2" role="list">
+      {
+        CIUDADES_SEO.map((ciudad) => (
+          <li>
+            <a
+              href={`/licencias-cofepris/ciudad/${ciudad.slug}/`}
+              class="inline-flex items-center gap-1.5 text-sm text-[var(--color-carbon-800)] border border-[var(--color-steel-200)] bg-white hover:border-[var(--color-cofepris-400)] hover:text-[var(--color-cofepris-700)] px-3 py-1.5 rounded transition-colors duration-150"
+              style="font-family: var(--font-body);"
+            >
+              {ciudad.name}
+              <span class="text-[var(--color-steel-400)] text-xs" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

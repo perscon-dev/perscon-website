@@ -1,0 +1,95 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { LICENCIAS_SEO, CIUDADES_SEO } from '../../data/licenciasSeo';
+
+const articulos = [
+  {
+    href: '/recursos/responsable-sanitario-cofepris/',
+    titulo: 'Responsable Sanitario COFEPRIS',
+    desc: 'Aviso obligatorio, perfil idóneo y relación con cada licencia.',
+  },
+  {
+    href: '/recursos/tiempos-licencias-cofepris/',
+    titulo: 'Tiempos de licencias COFEPRIS',
+    desc: 'Plazos oficiales por trámite y factores de retraso.',
+  },
+  {
+    href: '/recursos/costos-tramites-cofepris/',
+    titulo: 'Costos y derechos COFEPRIS',
+    desc: 'Homoclaves, derechos gubernamentales y presupuesto del trámite.',
+  },
+  {
+    href: '/guia-tramites-cofepris/',
+    titulo: 'Guía paso a paso COFEPRIS',
+    desc: 'Proceso en 5 etapas desde diagnóstico hasta resolución.',
+  },
+  {
+    href: '/requisitos/',
+    titulo: 'Requisitos por licencia',
+    desc: 'Documentos requeridos para cada trámite sanitario.',
+  },
+];
+
+const licencias = Object.entries(LICENCIAS_SEO);
+---
+
+<Layout
+  title="Recursos COFEPRIS | Guías, Requisitos y Trámites"
+  description="Biblioteca de recursos sobre licencias sanitarias COFEPRIS: responsable sanitario, tiempos, costos, requisitos y guías por tipo de trámite para establecimientos médicos en México."
+  canonical="/recursos/"
+  breadcrumbs={[{ name: 'Recursos', url: '/recursos/' }]}
+>
+  <section class="bg-carbon-950 border-b border-carbon-800">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20">
+      <h1 class="text-3xl lg:text-4xl font-bold text-white mb-4" style="font-family: var(--font-display);">
+        Recursos sobre trámites COFEPRIS
+      </h1>
+      <p class="text-steel-400 max-w-2xl" style="font-family: var(--font-body);">
+        Guías técnicas para directores de clínicas, hospitales y proyectos de salud que necesitan
+        licencias sanitarias federales en México.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20">
+    <h2 class="text-xl font-bold text-carbon-900 mb-6" style="font-family: var(--font-display);">Artículos y guías</h2>
+    <ul class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16" role="list">
+      {
+        articulos.map((a) => (
+          <li>
+            <a href={a.href} class="block h-full border border-steel-200 rounded-xl p-5 hover:border-cofepris-300 bg-white transition-colors">
+              <span class="block font-semibold text-carbon-900 mb-1" style="font-family: var(--font-body);">{a.titulo} →</span>
+              <span class="text-sm text-steel-600" style="font-family: var(--font-body);">{a.desc}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <h2 class="text-xl font-bold text-carbon-900 mb-6" style="font-family: var(--font-display);">Licencias por trámite</h2>
+    <ul class="grid sm:grid-cols-2 gap-3 mb-16" role="list">
+      {
+        licencias.map(([slug, seo]) => (
+          <li>
+            <a href={`/licencias-cofepris/${slug}/`} class="text-sm text-cofepris-700 font-semibold hover:underline" style="font-family: var(--font-body);">
+              {seo.h1} ({seo.homoclave})
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <h2 class="text-xl font-bold text-carbon-900 mb-6" style="font-family: var(--font-display);">Licencias por ciudad</h2>
+    <ul class="flex flex-wrap gap-2" role="list">
+      {
+        CIUDADES_SEO.map((c) => (
+          <li>
+            <a href={`/licencias-cofepris/ciudad/${c.slug}/`} class="text-sm border border-steel-200 px-3 py-1.5 rounded hover:bg-cofepris-50 text-carbon-800" style="font-family: var(--font-body);">
+              COFEPRIS en {c.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Layout>

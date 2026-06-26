@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Tipografía ─────────────────────────────────────────────────────────
+     Archivo: geométrico, técnico, institucional — combina con el ícono 3D
+     del logo y el sector regulatorio/gobierno.
+     Archivo Narrow: cuerpo de texto, alta legibilidad en densidad media.
+  ─────────────────────────────────────────────────────────────────────── */
+  --font-display: "Archivo", system-ui, sans-serif;
+  --font-body:    "Archivo Narrow", system-ui, sans-serif;
+
+  /* ── Paleta de colores — derivada del logo + verde COFEPRIS ─────────────
+     Negro/carbón del fondo del logo
+     Grises metálicos del ícono 3D
+     Verde institucional COFEPRIS #006847
+  ─────────────────────────────────────────────────────────────────────── */
+
+  /* Negros y carbones (fondo logo) */
+  --color-carbon-950: #0d0d0d;
+  --color-carbon-900: #1a1a1a;
+  --color-carbon-800: #242424;
+  --color-carbon-700: #2e2e2e;
+
+  /* Grises metálicos (ícono logo) */
+  --color-steel-600:  #4a4a4a;
+  --color-steel-500:  #6b6b6b;
+  --color-steel-400:  #8c8c8c;
+  --color-steel-300:  #adadad;
+  --color-steel-200:  #cecece;
+  --color-steel-100:  #e8e8e8;
+  --color-steel-50:   #f5f5f5;
+
+  /* Verde COFEPRIS institucional */
+  --color-cofepris-900: #003d28;
+  --color-cofepris-800: #005436;
+  --color-cofepris-700: #006847;  /* ← verde base COFEPRIS */
+  --color-cofepris-600: #007d56;
+  --color-cofepris-500: #009165;
+  --color-cofepris-400: #00a874;
+  --color-cofepris-100: #ccede3;
+  --color-cofepris-50:  #e8f7f2;
+
+  /* Blancos */
+  --color-white:      #ffffff;
+  --color-off-white:  #f9f9f9;
+}
+
+/* ─── Scroll margin para anclas con header sticky ───────────────────────── */
+[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* ─── Smooth scroll — desactivado con prefers-reduced-motion ────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.prose-licencia h2 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-carbon-900);
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-steel-100);
+}
+
+.prose-licencia h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-carbon-800);
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-licencia p {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-steel-700);
+  line-height: 1.8;
+  margin-bottom: 1.1rem;
+}
+
+.prose-licencia strong {
+  font-weight: 700;
+  color: var(--color-carbon-800);
+}
+
+.prose-licencia ul {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-steel-700);
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.prose-licencia ul li {
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.prose-licencia ul li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--color-cofepris-700);
+  font-weight: 700;
+}

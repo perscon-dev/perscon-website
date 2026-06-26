@@ -1,0 +1,118 @@
+---
+/**
+ * NosotrosCobertura.astro
+ * Cobertura nacional + CTA final de la página /nosotros/
+ */
+
+const estados = [
+  'Ciudad de México', 'Estado de México', 'Jalisco', 'Nuevo León',
+  'Puebla', 'Querétaro', 'Guanajuato', 'Veracruz', 'Yucatán',
+  'Sonora', 'Chihuahua', 'Coahuila', 'Tamaulipas', 'Sinaloa',
+  'Baja California', 'Oaxaca', 'Hidalgo', 'Michoacán',
+  'San Luis Potosí', 'Aguascalientes', 'Y más estados…',
+];
+---
+
+<section
+  class="bg-white border-t border-[var(--color-steel-100)]"
+  aria-labelledby="cobertura-heading"
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-24">
+    <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+      <!-- Copy -->
+      <div>
+        <p
+          class="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-cofepris-700)] mb-3 flex items-center gap-2"
+          style="font-family: var(--font-body);"
+        >
+          <span class="w-6 h-px bg-[var(--color-cofepris-700)] inline-block" aria-hidden="true"></span>
+          Cobertura
+        </p>
+        <h2
+          id="cobertura-heading"
+          class="text-2xl lg:text-3xl font-bold text-[var(--color-carbon-900)] tracking-tight mb-4"
+          style="font-family: var(--font-display);"
+        >
+          Atendemos establecimientos médicos en toda la República Mexicana
+        </h2>
+        <p
+          class="text-sm text-[var(--color-steel-500)] leading-relaxed mb-6"
+          style="font-family: var(--font-body);"
+        >
+          Los trámites COFEPRIS son federales. Los gestionamos independientemente
+          de la ubicación del establecimiento. El expediente se presenta ante la
+          Subdirección Ejecutiva de Autorizaciones en Servicios de Salud sin
+          importar el estado donde opere tu clínica u hospital.
+        </p>
+        <p
+          class="text-sm text-[var(--color-steel-500)] leading-relaxed"
+          style="font-family: var(--font-body);"
+        >
+          Las reuniones de diagnóstico y seguimiento se realizan de forma
+          presencial en CDMX o por videollamada para clientes en otros estados.
+        </p>
+      </div>
+
+      <!-- Lista de estados -->
+      <div>
+        <p
+          class="text-[10px] font-semibold tracking-widest uppercase text-[var(--color-steel-400)] mb-4"
+          style="font-family: var(--font-body);"
+        >
+          Estados donde hemos gestionado trámites
+        </p>
+        <ul class="flex flex-wrap gap-2" role="list">
+          {estados.map((e: string) => (
+            <li
+              class="text-xs font-medium text-[var(--color-steel-600)] border border-[var(--color-steel-200)] bg-[var(--color-steel-50)] px-3 py-1.5 rounded"
+              style="font-family: var(--font-body);"
+            >
+              {e}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA final -->
+<section class="bg-[var(--color-carbon-900)] border-t border-[var(--color-carbon-800)]">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14">
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2
+          class="text-2xl lg:text-3xl font-bold text-white tracking-tight mb-3"
+          style="font-family: var(--font-display);"
+        >
+          ¿Listo para gestionar tu licencia COFEPRIS?
+        </h2>
+        <p
+          class="text-[var(--color-steel-400)] text-sm leading-relaxed"
+          style="font-family: var(--font-body);"
+        >
+          Consulta gratuita sin compromiso. Analizamos tu caso y te indicamos
+          el trámite correcto, los requisitos específicos y el tiempo estimado.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3 lg:justify-end">
+        <a
+          href="/contacto/"
+          class="inline-flex items-center justify-center gap-2 bg-[var(--color-cofepris-700)] hover:bg-[var(--color-cofepris-600)] text-white font-semibold px-7 py-2.5 rounded text-sm transition-colors duration-150"
+          style="font-family: var(--font-body);"
+        >
+          Solicitar consulta gratuita
+        </a>
+        <a
+          href="/licencias-cofepris/"
+          class="inline-flex items-center justify-center gap-2 border border-[var(--color-carbon-700)] text-[var(--color-steel-300)] hover:text-white hover:border-[var(--color-steel-500)] font-medium px-7 py-2.5 rounded text-sm transition-colors duration-150"
+          style="font-family: var(--font-body);"
+        >
+          Ver licencias COFEPRIS
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

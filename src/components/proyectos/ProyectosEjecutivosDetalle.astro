@@ -1,0 +1,174 @@
+---
+/**
+ * ProyectosEjecutivosDetalle.astro
+ * Sección de servicios detallados — Proyectos Ejecutivos
+ */
+
+const servicios = [
+  {
+    num: '01',
+    area: 'Instalaciones Hidráulicas y Sanitarias',
+    descripcion:
+      'Diseño de redes de distribución de agua potable, agua purificada, drenaje sanitario y pluvial. Dimensionamiento de equipos: bombas, cisternas, tinaco y sistemas de presión constante, cumpliendo con normas de infraestructura hospitalaria.',
+    icono: 'agua',
+  },
+  {
+    num: '02',
+    area: 'Gases Medicinales',
+    descripcion:
+      'Proyección de redes de oxígeno, aire medicinal, vacío clínico, óxido nitroso y CO₂. Dimensionamiento de centrales de gases, válvulas de zona y tomas en cabeceras de paciente conforme a NOM-234-SSA1-2003.',
+    icono: 'gas',
+  },
+  {
+    num: '03',
+    area: 'Instalaciones Eléctricas',
+    descripcion:
+      'Diseño de sistemas de energía normal, de emergencia e ininterrumpible (UPS). Tableros de distribución, alumbrado de áreas críticas, sistema de tierra física hospitalaria y coordinación con equipamiento médico de alta demanda.',
+    icono: 'electrico',
+  },
+  {
+    num: '04',
+    area: 'Aire Acondicionado y Ventilación',
+    descripcion:
+      'Sistemas HVAC para áreas de control de infecciones: quirófanos con flujo laminar, UCI, áreas de aislamiento y laboratorios. Cálculo de cargas térmicas, renovaciones de aire y presión diferencial conforme a normativa sanitaria.',
+    icono: 'hvac',
+  },
+  {
+    num: '05',
+    area: 'Telecomunicaciones e Informática',
+    descripcion:
+      'Infraestructura de voz, datos y red hospitalaria: cableado estructurado, WiFi médico, sistema de llamada de enfermeras, intercomunicación, circuito cerrado de TV y red para equipos de diagnóstico por imagen (PACS/RIS).',
+    icono: 'telecomunicaciones',
+  },
+  {
+    num: '06',
+    area: 'Control y Automatización',
+    descripcion:
+      'Sistemas BMS (Building Management System) para monitoreo centralizado de instalaciones: control de accesos, gestión energética, monitoreo de plantas de emergencia y automatización de sistemas críticos del establecimiento médico.',
+    icono: 'automatizacion',
+  },
+];
+
+const iconPaths: Record<string, string> = {
+  agua:             'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z',
+  gas:              'M12 2a10 10 0 100 20A10 10 0 0012 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z',
+  electrico:        'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
+  hvac:             'M17.66 11.2c-.23-.3-.51-.56-.77-.82-.67-.6-1.43-1.03-2.07-1.66C13.33 7.26 13 4.85 14 3c-1 .23-1.97.8-2.72 1.57-.73.72-1.24 1.65-1.52 2.6-.28.96-.32 1.96-.12 2.94C9.21 9.7 8.49 8.92 8.15 8.04 7.61 9.48 7.8 11.17 8.6 12.5c-.02 0-.04-.01-.06-.01-1.07-.36-1.49-1.59-.97-2.56-.6.43-1.07 1.04-1.32 1.72-.9 2.42.55 5.08 3.35 5.08.36 0 .71-.05 1.05-.14.27-.07.53-.16.78-.28.5-.23.93-.57 1.26-.99.59-.75.87-1.71.71-2.68-.11-.67-.43-1.28-.89-1.75z',
+  telecomunicaciones: 'M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z',
+  automatizacion:   'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',
+};
+---
+
+<section
+  class="bg-[var(--color-off-white)] border-t border-[var(--color-steel-100)]"
+  aria-labelledby="servicios-ejecutivos-heading"
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-24">
+
+    <div class="ped-header mb-14">
+      <p
+        class="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-cofepris-700)] mb-3 flex items-center gap-2"
+        style="font-family: var(--font-body);"
+      >
+        <span class="w-6 h-px bg-[var(--color-cofepris-700)] inline-block" aria-hidden="true"></span>
+        Nuestros Servicios
+      </p>
+      <h2
+        id="servicios-ejecutivos-heading"
+        class="text-3xl lg:text-4xl font-bold text-[var(--color-carbon-900)] tracking-tight leading-tight mb-4"
+        style="font-family: var(--font-display);"
+      >
+        Diseño Integral de Instalaciones<br />
+        para Unidades de Salud
+      </h2>
+      <p
+        class="text-[var(--color-steel-500)] text-base leading-relaxed max-w-2xl"
+        style="font-family: var(--font-body);"
+      >
+        Utilizamos conceptos normativos y procesos operativos para diseñar
+        soluciones que integren todos los aspectos de las Unidades de Atención
+        a la Salud, garantizando compatibilidad con el equipamiento médico,
+        confort del usuario y habitabilidad del espacio.
+      </p>
+    </div>
+
+    <ul class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--color-steel-200)]" role="list">
+      {servicios.map((s) => (
+        <li class="ped-card bg-white group" style={`--card-delay: ${parseInt(s.num) * 80}ms`}>
+          <div class="flex flex-col h-full p-7 hover:bg-[var(--color-steel-50)] transition-colors duration-200">
+
+            <div class="flex items-start justify-between mb-5">
+              <div class="w-9 h-9 rounded border border-[var(--color-steel-100)] bg-[var(--color-steel-50)] flex items-center justify-center group-hover:border-[var(--color-cofepris-200)] group-hover:bg-[var(--color-cofepris-50)] transition-colors duration-200">
+                <svg class="w-4 h-4 text-[var(--color-steel-400)] group-hover:text-[var(--color-cofepris-700)] transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d={iconPaths[s.icono]} />
+                </svg>
+              </div>
+              <span
+                class="text-[11px] font-bold tracking-widest text-[var(--color-steel-300)]"
+                style="font-family: var(--font-display);"
+                aria-hidden="true"
+              >
+                {s.num}
+              </span>
+            </div>
+
+            <h3
+              class="text-sm font-bold text-[var(--color-carbon-900)] mb-3 leading-snug group-hover:text-[var(--color-cofepris-700)] transition-colors duration-150"
+              style="font-family: var(--font-display);"
+            >
+              {s.area}
+            </h3>
+
+            <p
+              class="text-sm text-[var(--color-steel-500)] leading-relaxed"
+              style="font-family: var(--font-body);"
+            >
+              {s.descripcion}
+            </p>
+
+          </div>
+        </li>
+      ))}
+    </ul>
+
+  </div>
+</section>
+
+<style>
+  .ped-header {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .ped-header.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .ped-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition-delay: var(--card-delay, 0ms);
+  }
+  .ped-card.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const pedObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          pedObserver.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  document.querySelectorAll('.ped-header, .ped-card').forEach((el) => pedObserver.observe(el));
+</script>

@@ -1,0 +1,386 @@
+---
+const servicios = [
+  { value: "", label: "Selecciona el trámite o servicio" },
+  { value: "permiso-construccion", label: "Permiso Sanitario de Construcción" },
+  {
+    value: "licencia-quirurgica",
+    label: "Licencia para Actos Quirúrgicos u Obstétricos",
+  },
+  { value: "licencia-radiacion", label: "Licencia para Fuentes de Radiación" },
+  {
+    value: "licencia-sanguinea",
+    label: "Licencia para Bancos de Sangre y Transfusión",
+  },
+  {
+    value: "licencia-hemodialisis",
+    label: "Licencia para Servicios de Hemodiálisis",
+  },
+  { value: "proyecto-ejecutivo", label: "Proyecto Ejecutivo — Instalaciones" },
+  { value: "proyecto-obra", label: "Proyecto de Obra Sector Salud" },
+  { value: "otro", label: "No estoy seguro / Otro" },
+];
+---
+
+<div
+  class="bg-white border border-[var(--color-steel-200)] rounded-xl overflow-hidden"
+>
+  <!-- Header del form -->
+  <div class="px-8 py-6 border-b border-[var(--color-steel-100)]">
+    <h2
+      class="text-xl font-bold text-[var(--color-carbon-900)]"
+      style="font-family: var(--font-display);"
+    >
+      Solicitar consulta gratuita
+    </h2>
+    <p
+      class="text-sm text-[var(--color-steel-500)] mt-1"
+      style="font-family: var(--font-body);"
+    >
+      Sin compromiso. Te respondemos en menos de 24 horas hábiles.
+    </p>
+  </div>
+
+  <form
+    action="https://formspree.io/f/mwvrarvj"
+    method="POST"
+    class="px-8 py-7 space-y-5"
+    novalidate
+    id="form-contacto"
+  >
+
+    <!-- Nombre + Empresa -->
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div>
+        <label
+          for="nombre"
+          class="block text-xs font-semibold text-[var(--color-carbon-800)] mb-1.5"
+          style="font-family: var(--font-body);"
+        >
+          Nombre completo <span
+            class="text-[var(--color-cofepris-700)]"
+            aria-hidden="true">*</span
+          >
+        </label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          required
+          autocomplete="name"
+          placeholder="Dr. Juan García"
+          class="w-full text-sm text-[var(--color-carbon-900)] border border-[var(--color-steel-200)] rounded-lg px-4 py-2.5 bg-white placeholder:text-[var(--color-steel-300)] focus:outline-none focus:ring-2 focus:ring-[var(--color-cofepris-500)] focus:border-transparent transition-shadow duration-150"
+          style="font-family: var(--font-body);"
+        />
+      </div>
+      <div>
+        <label
+          for="empresa"
+          class="block text-xs font-semibold text-[var(--color-carbon-800)] mb-1.5"
+          style="font-family: var(--font-body);"
+        >
+          Nombre del establecimiento
+        </label>
+        <input
+          type="text"
+          id="empresa"
+          name="empresa"
+          autocomplete="organization"
+          placeholder="Clínica / Hospital / Centro médico"
+          class="w-full text-sm text-[var(--color-carbon-900)] border border-[var(--color-steel-200)] rounded-lg px-4 py-2.5 bg-white placeholder:text-[var(--color-steel-300)] focus:outline-none focus:ring-2 focus:ring-[var(--color-cofepris-500)] focus:border-transparent transition-shadow duration-150"
+          style="font-family: var(--font-body);"
+        />
+      </div>
+    </div>
+
+    <!-- Email + Teléfono -->
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div>
+        <label
+          for="email"
+          class="block text-xs font-semibold text-[var(--color-carbon-800)] mb-1.5"
+          style="font-family: var(--font-body);"
+        >
+          Correo electrónico <span
+            class="text-[var(--color-cofepris-700)]"
+            aria-hidden="true">*</span
+          >
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          autocomplete="email"
+          placeholder="doctor@clinica.com"
+          class="w-full text-sm text-[var(--color-carbon-900)] border border-[var(--color-steel-200)] rounded-lg px-4 py-2.5 bg-white placeholder:text-[var(--color-steel-300)] focus:outline-none focus:ring-2 focus:ring-[var(--color-cofepris-500)] focus:border-transparent transition-shadow duration-150"
+          style="font-family: var(--font-body);"
+        />
+      </div>
+      <div>
+        <label
+          for="telefono"
+          class="block text-xs font-semibold text-[var(--color-carbon-800)] mb-1.5"
+          style="font-family: var(--font-body);"
+        >
+          Teléfono / WhatsApp <span
+            class="text-[var(--color-cofepris-700)]"
+            aria-hidden="true">*</span
+          >
+        </label>
+        <input
+          type="tel"
+          id="telefono"
+          name="telefono"
+          required
+          autocomplete="tel"
+          placeholder="+52 55 0000-0000"
+          class="w-full text-sm text-[var(--color-carbon-900)] border border-[var(--color-steel-200)] rounded-lg px-4 py-2.5 bg-white placeholder:text-[var(--color-steel-300)] focus:outline-none focus:ring-2 focus:ring-[var(--color-cofepris-500)] focus:border-transparent transition-shadow duration-150"
+          style="font-family: var(--font-body);"
+        />
+      </div>
+    </div>
+
+    <!-- Trámite / Servicio -->
+    <div>
+      <label
+        for="servicio"
+        class="block text-xs font-semibold text-[var(--color-carbon-800)] mb-1.5"
+        style="font-family: var(--font-body);"
+      >
+        Trámite o servicio de interés <span
+          class="text-[var(--color-cofepris-700)]"
+          aria-hidden="true">*</span
+        >
+      </label>
+      <div class="relative">
+        <select
+          id="servicio"
+          name="servicio"
+          required
+          class="w-full appearance-none text-sm text-[var(--color-carbon-900)] border border-[var(--color-steel-200)] rounded-lg px-4 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-cofepris-500)] focus:border-transparent transition-shadow duration-150 pr-10"
+          style="font-family: var(--font-body);"
+        >
+          {
+            servicios.map((s) => (
+              <option
+                value={s.value}
+                disabled={s.value === ""}
+                selected={s.value === ""}
+              >
+                {s.label}
+              </option>
+            ))
+          }
+        </select>
+        <svg
+          class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-steel-400)] pointer-events-none"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Estado / Ciudad -->
+    <div>
+      <label
+        for="estado"
+        class="block text-xs font-semibold text-[var(--color-carbon-800)] mb-1.5"
+        style="font-family: var(--font-body);"
+      >
+        Estado donde se ubica el establecimiento
+      </label>
+      <input
+        type="text"
+        id="estado"
+        name="estado"
+        autocomplete="address-level1"
+        placeholder="Ciudad de México, Monterrey, Guadalajara…"
+        class="w-full text-sm text-[var(--color-carbon-900)] border border-[var(--color-steel-200)] rounded-lg px-4 py-2.5 bg-white placeholder:text-[var(--color-steel-300)] focus:outline-none focus:ring-2 focus:ring-[var(--color-cofepris-500)] focus:border-transparent transition-shadow duration-150"
+        style="font-family: var(--font-body);"
+      />
+    </div>
+
+    <!-- Mensaje -->
+    <div>
+      <label
+        for="mensaje"
+        class="block text-xs font-semibold text-[var(--color-carbon-800)] mb-1.5"
+        style="font-family: var(--font-body);"
+      >
+        Cuéntanos brevemente tu situación
+      </label>
+      <textarea
+        id="mensaje"
+        name="mensaje"
+        rows={4}
+        placeholder="Tipo de establecimiento, servicios que ofrece, si ya cuenta con algún trámite previo, etc."
+        class="w-full text-sm text-[var(--color-carbon-900)] border border-[var(--color-steel-200)] rounded-lg px-4 py-2.5 bg-white placeholder:text-[var(--color-steel-300)] focus:outline-none focus:ring-2 focus:ring-[var(--color-cofepris-500)] focus:border-transparent transition-shadow duration-150 resize-none"
+        style="font-family: var(--font-body);"></textarea>
+    </div>
+
+
+    <!-- Submit -->
+    <div class="pt-2">
+      <button
+        type="submit"
+        class="w-full flex items-center justify-center gap-2 bg-cofepris-700 hover:bg-[var(--color-cofepris-600)] active:bg-[var(--color-cofepris-800)] text-white font-semibold px-6 py-3 rounded-lg text-sm transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[var(--color-cofepris-500)] focus:ring-offset-2"
+        style="font-family: var(--font-body); cursor:pointer;"
+      >
+        Enviar consulta gratuita
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+        </svg>
+      </button>
+
+      <!-- Mensajes de respuesta -->
+      <div
+        id="success-message"
+        class="hidden mt-4 p-4 bg-green-50 border border-green-200 rounded-lg"
+        role="alert"
+      >
+        <div class="flex items-start gap-3">
+          <svg
+            class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <div>
+            <h3 class="font-semibold text-green-800" style="font-family: var(--font-body);">
+              ¡Consulta enviada correctamente!
+            </h3>
+            <p class="text-sm text-green-700 mt-1" style="font-family: var(--font-body);">
+              Te contactaremos en menos de 24 horas hábiles.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="error-message"
+        class="hidden mt-4 p-4 bg-red-50 border border-red-200 rounded-lg"
+        role="alert"
+      >
+        <div class="flex items-start gap-3">
+          <svg
+            class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <div>
+            <h3 class="font-semibold text-red-800" style="font-family: var(--font-body);">
+              Error al enviar
+            </h3>
+            <p class="text-sm text-red-700 mt-1" id="error-text" style="font-family: var(--font-body);">
+              Por favor intenta nuevamente.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById("form-contacto") as HTMLFormElement | null;
+
+  if (form) {
+    form.addEventListener("submit", async (e: Event) => {
+      e.preventDefault();
+
+      // Validación HTML5
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const submitButton = form.querySelector("button[type='submit']") as HTMLButtonElement | null;
+      const successMessage = document.getElementById("success-message");
+      const errorMessage = document.getElementById("error-message");
+      const errorText = document.getElementById("error-text");
+      const originalText = "Enviar consulta gratuita";
+
+      // Ocultar mensajes previos
+      if (successMessage) successMessage.classList.add("hidden");
+      if (errorMessage) errorMessage.classList.add("hidden");
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.innerHTML = `Enviando... <svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
+      }
+
+      try {
+        // Enviar el formulario a Formspree
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: formData,
+          headers: {
+            "Accept": "application/json"
+          }
+        });
+
+        if (response.ok) {
+          // Mostrar mensaje de éxito
+          if (successMessage) {
+            successMessage.classList.remove("hidden");
+            successMessage.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }
+          form.reset();
+        } else {
+          // Mostrar mensaje de error
+          if (errorMessage && errorText) {
+            errorText.textContent = "Error al enviar la consulta. Por favor intenta nuevamente.";
+            errorMessage.classList.remove("hidden");
+            errorMessage.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        // Mostrar mensaje de error de conexión
+        if (errorMessage && errorText) {
+          errorText.textContent = "Error de conexión. Por favor verifica tu conexión a internet e intenta nuevamente.";
+          errorMessage.classList.remove("hidden");
+          errorMessage.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      } finally {
+        // Restaurar botón
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.innerHTML = `${originalText} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>`;
+        }
+      }
+    });
+  }
+</script>

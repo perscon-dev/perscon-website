@@ -1,0 +1,68 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { LICENCIAS_SEO } from '../../data/licenciasSeo';
+
+const tiempos = [
+  { slug: 'permiso-construccion', plazo: '30–60 días hábiles', nota: 'Depende de complejidad del proyecto arquitectónico' },
+  { slug: 'licencia-actos-quirurgicos', plazo: '45–90 días hábiles', nota: 'Requiere permiso de construcción y aviso de RS previos' },
+  { slug: 'licencia-radiacion', plazo: '45–75 días hábiles', nota: 'Incluye memoria analítica de blindajes en equipos fijos' },
+  { slug: 'licencia-sanguinea', plazo: '60–90 días hábiles', nota: 'Expediente extenso con Sistema de Gestión de Calidad' },
+  { slug: 'licencia-transfusion-hospitalaria', plazo: '45–75 días hábiles', nota: 'Modalidad E — servicio de transfusión hospitalaria' },
+  { slug: 'licencia-hemodialisis', plazo: '45–75 días hábiles', nota: 'Cumplimiento NOM-003-SSA3-2010' },
+];
+---
+
+<Layout
+  title="Tiempos de Licencias COFEPRIS 2026 | Plazos por Trámite"
+  description="Cuánto tarda cada licencia sanitaria COFEPRIS en México: permiso de construcción, actos quirúrgicos, radiación, banco de sangre y hemodiálisis. Factores que retrasan el trámite."
+  canonical="/recursos/tiempos-licencias-cofepris/"
+  breadcrumbs={[
+    { name: 'Recursos', url: '/recursos/' },
+    { name: 'Tiempos de licencias', url: '/recursos/tiempos-licencias-cofepris/' },
+  ]}
+>
+  <article class="max-w-3xl mx-auto px-6 lg:px-8 py-14 lg:py-20 prose-licencia">
+    <h1 class="text-3xl lg:text-4xl font-bold text-carbon-900 mb-6" style="font-family: var(--font-display);">
+      ¿Cuánto tarda una licencia COFEPRIS? Tiempos por trámite
+    </h1>
+
+    <p>
+      Los plazos oficiales de COFEPRIS se cuentan en <strong>días hábiles</strong> desde la presentación de un
+      expediente completo. La causa principal de retrasos no es la autoridad, sino la <strong>documentación
+      incompleta o incongruente</strong> entre planos, memoria descriptiva y programas médicos.
+    </p>
+
+    <h2>Plazos por tipo de licencia</h2>
+    <ul>
+      {
+        tiempos.map((t) => {
+          const seo = LICENCIAS_SEO[t.slug];
+          return (
+            <li>
+              <strong>
+                <a href={`/licencias-cofepris/${t.slug}/`} class="text-cofepris-700 hover:underline">
+                  {seo?.h1}
+                </a>
+              </strong>
+              : {t.plazo}. {t.nota}. Homoclave {seo?.homoclave}.
+            </li>
+          );
+        })
+      }
+    </ul>
+
+    <h2>Factores que alargan el trámite</h2>
+    <ul>
+      <li>Obra sin Permiso Sanitario de Construcción previo</li>
+      <li>Aviso de Responsable Sanitario no ingresado o con perfil incompatible</li>
+      <li>Requerimientos adicionales de COFEPRIS no atendidos en plazo</li>
+      <li>Inconsistencias entre dimensiones en planos y memoria descriptiva</li>
+    </ul>
+
+    <p>
+      <a href="/guia-tramites-cofepris/" class="text-cofepris-700 font-semibold hover:underline">
+        Proceso paso a paso COFEPRIS →
+      </a>
+    </p>
+  </article>
+</Layout>

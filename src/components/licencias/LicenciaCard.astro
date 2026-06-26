@@ -1,0 +1,91 @@
+---
+/**
+ * LicenciaCard.astro
+ * Card reutilizable para el grid del hub /licencias-cofepris/
+ * Props tipadas con CollectionEntry para evitar ts(7006)
+ */
+
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  licencia: CollectionEntry<'licencias'>;
+}
+
+const { licencia } = Astro.props;
+const { data }     = licencia;
+const slug         = licencia.slug;   // Astro 5: slug del nombre del archivo
+const MAX_TAGS     = 3;
+---
+
+<article
+  class="flex flex-col h-full p-7 bg-white group hover:bg-[var(--color-steel-50)] transition-colors duration-200"
+  aria-labelledby={`licencia-card-${slug}`}
+>
+  <div class="flex items-start justify-between mb-5">
+    <span
+      class="text-[11px] font-bold tracking-[0.15em] text-[var(--color-steel-300)]"
+      style="font-family: var(--font-display);"
+      aria-hidden="true"
+    >
+      {String(data.orden).padStart(2, '0')}
+    </span>
+    <span
+      class="text-[10px] font-medium text-[var(--color-cofepris-700)] bg-[var(--color-cofepris-50)] border border-[var(--color-cofepris-100)] px-2 py-0.5 rounded"
+      style="font-family: var(--font-body);"
+    >
+      {data.tiempo}
+    </span>
+  </div>
+
+  <h3
+    id={`licencia-card-${slug}`}
+    class="text-base font-bold text-[var(--color-carbon-900)] leading-snug mb-3 group-hover:text-[var(--color-cofepris-700)] transition-colors duration-150"
+    style="font-family: var(--font-display);"
+  >
+    {data.nombre}
+  </h3>
+
+  {data.norma && (
+    <p
+      class="text-[10px] text-[var(--color-steel-400)] mb-4 font-medium"
+      style="font-family: var(--font-body);"
+    >
+      {data.norma}
+    </p>
+  )}
+
+  <ul class="flex flex-wrap gap-1.5 mb-6 flex-1" role="list" aria-label="Aplica para">
+    {data.aplica.slice(0, MAX_TAGS).map((tag: string) => (
+      <li
+        class="text-[10px] font-medium text-[var(--color-steel-500)] border border-[var(--color-steel-200)] px-2 py-0.5 rounded"
+        style="font-family: var(--font-body);"
+      >
+        {tag}
+      </li>
+    ))}
+    {data.aplica.length > MAX_TAGS && (
+      <li
+        class="text-[10px] font-medium text-[var(--color-steel-400)] px-1 self-center"
+        style="font-family: var(--font-body);"
+      >
+        +{data.aplica.length - MAX_TAGS} más
+      </li>
+    )}
+  </ul>
+
+  <a
+    href={`/licencias-cofepris/${slug}/`}
+    class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-cofepris-700)] hover:text-[var(--color-cofepris-800)] transition-colors duration-150 group/link"
+    style="font-family: var(--font-body);"
+    aria-label={`Ver requisitos y proceso: ${data.nombre}`}
+  >
+    Ver requisitos y proceso
+    <svg
+      class="w-4 h-4 group-hover/link:translate-x-0.5 transition-transform duration-150"
+      fill="none" stroke="currentColor" viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+    </svg>
+  </a>
+</article>

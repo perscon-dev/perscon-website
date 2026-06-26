@@ -1,0 +1,104 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { LICENCIAS_SEO } from '../../data/licenciasSeo';
+
+const enlacesLicencias = Object.entries(LICENCIAS_SEO).map(([slug, seo]) => ({
+  slug,
+  ...seo,
+}));
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '¿Qué es el Responsable Sanitario COFEPRIS?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Es el profesional de la salud designado legalmente para responder ante COFEPRIS por el cumplimiento sanitario del establecimiento. Debe contar con cédula profesional, especialidad compatible con los servicios del establecimiento y, en muchos trámites, experiencia comprobable.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿El Aviso de Responsable Sanitario es lo mismo que la licencia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. El aviso de RS es un trámite previo obligatorio en la mayoría de licencias sanitarias. La licencia autoriza la operación del establecimiento; el aviso acredita quién es el responsable técnico ante la autoridad.',
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  title="Responsable Sanitario COFEPRIS: Requisitos y Aviso 2026"
+  description="Qué es el Responsable Sanitario COFEPRIS, cuándo se requiere el aviso (homoclave 05-037), perfil idóneo y relación con licencias sanitarias de clínicas y hospitales en México."
+  canonical="/recursos/responsable-sanitario-cofepris/"
+  pageSchema={faqSchema}
+  breadcrumbs={[
+    { name: 'Recursos', url: '/recursos/' },
+    { name: 'Responsable Sanitario', url: '/recursos/responsable-sanitario-cofepris/' },
+  ]}
+>
+  <article class="max-w-3xl mx-auto px-6 lg:px-8 py-14 lg:py-20 prose-licencia">
+    <h1 class="text-3xl lg:text-4xl font-bold text-carbon-900 mb-6" style="font-family: var(--font-display);">
+      Responsable Sanitario COFEPRIS: requisitos y aviso obligatorio
+    </h1>
+
+    <p>
+      Antes de tramitar casi cualquier <strong>licencia sanitaria COFEPRIS</strong>, el establecimiento debe
+      contar con un <strong>Responsable Sanitario (RS)</strong> y, en la mayoría de los casos, presentar el
+      <strong>Aviso de Responsable Sanitario</strong> (homoclave COFEPRIS-05-037 u homóloga según el trámite).
+      Es uno de los requisitos que más rechazos genera cuando el perfil del profesional no coincide con los
+      actos médicos declarados.
+    </p>
+
+    <h2>¿Qué hace el Responsable Sanitario?</h2>
+    <p>
+      Es la figura legal que responde ante COFEPRIS por el cumplimiento de la normativa sanitaria: programas
+      médicos, manuales de procedimientos, idoneidad del personal, condiciones del establecimiento y atención
+      de requerimientos. Sin un RS compatible, COFEPRIS detiene o rechaza el expediente.
+    </p>
+
+    <h2>Requisitos generales del RS</h2>
+    <ul>
+      <li>Cédula profesional vigente en medicina o especialidad acorde al servicio</li>
+      <li>Constancias de experiencia o idoneidad (según tipo de licencia)</li>
+      <li>Disponibilidad para firmar manuales, programas y formatos oficiales</li>
+      <li>Coherencia entre su especialidad y los actos médicos del establecimiento</li>
+    </ul>
+
+    <h2>Relación con cada licencia COFEPRIS</h2>
+    <p>El aviso de RS es requisito previo en trámites como:</p>
+    <ul>
+      {
+        enlacesLicencias.map((l) => (
+          <li>
+            <a href={`/licencias-cofepris/${l.slug}/`} class="text-cofepris-700 font-semibold hover:underline">
+              {l.h1}
+            </a>
+            {' '}({l.homoclave})
+          </li>
+        ))
+      }
+    </ul>
+
+    <h2>Errores frecuentes</h2>
+    <ul>
+      <li>Proponer un RS sin especialidad compatible con cirugía, radiación o banco de sangre</li>
+      <li>Presentar constancias de experiencia vencidas al momento del ingreso</li>
+      <li>Iniciar la licencia sin haber ingresado el aviso de RS</li>
+    </ul>
+
+    <p>
+      <a href="/guia-tramites-cofepris/" class="text-cofepris-700 font-semibold hover:underline">
+        Ver guía completa del proceso COFEPRIS →
+      </a>
+      {' · '}
+      <a href="/contacto/" class="text-cofepris-700 font-semibold hover:underline">
+        Consulta gratuita →
+      </a>
+    </p>
+  </article>
+</Layout>

@@ -1,0 +1,54 @@
+---
+/**
+ * LicenciaRequisitos.astro
+ * Lista numerada de requisitos del trámite
+ */
+
+interface Props {
+  requisitos: string[];
+}
+
+const { requisitos } = Astro.props;
+---
+
+<section aria-labelledby="requisitos-heading">
+  <h2
+    id="requisitos-heading"
+    class="text-xl font-bold text-[var(--color-carbon-900)] mb-5 pb-3 border-b border-[var(--color-steel-100)]"
+    style="font-family: var(--font-display);"
+  >
+    Requisitos del Trámite
+  </h2>
+
+  <ul class="space-y-2.5 mb-4" role="list">
+    {
+      requisitos.map((req: string, i: number) => (
+        <li class="flex items-start gap-3">
+          <span
+            class="flex-shrink-0 w-5 h-5 rounded border border-[var(--color-cofepris-200)] bg-[var(--color-cofepris-50)] flex items-center justify-center text-[9px] font-bold text-[var(--color-cofepris-700)] mt-0.5"
+            style="font-family: var(--font-display);"
+            aria-hidden="true"
+          >
+            {i + 1}
+          </span>
+          <span class="whitespace-pre-line">
+            {req.split("\n")[0]}
+            <br />
+            <span class="text-gray-500 text-xs">
+              {req.split("\n").slice(1).join("\n")}
+            </span>
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p
+    class="text-xs text-[var(--color-steel-400)] border-l-2 border-[var(--color-cofepris-200)] pl-3"
+    style="font-family: var(--font-body);"
+  >
+    Los requisitos pueden variar según las características de tu
+    establecimiento. En la consulta inicial te indicamos exactamente qué
+    necesitas.
+  </p>
+</section>

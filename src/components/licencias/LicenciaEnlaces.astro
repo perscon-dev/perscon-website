@@ -1,0 +1,79 @@
+---
+interface Props {
+  slug: string;
+  homoclave?: string;
+}
+
+const { slug, homoclave } = Astro.props;
+
+const enlaces = [
+  {
+    titulo: 'Requisitos documentales',
+    desc: 'Lista completa de documentos para esta licencia',
+    href: `/requisitos/#${slug}`,
+  },
+  {
+    titulo: 'Guía paso a paso COFEPRIS',
+    desc: 'Proceso en 5 etapas: diagnóstico, expediente y resolución',
+    href: '/guia-tramites-cofepris/',
+  },
+  {
+    titulo: 'Tiempos y costos de trámites',
+    desc: 'Plazos oficiales y factores que retrasan la licencia',
+    href: '/recursos/tiempos-licencias-cofepris/',
+  },
+  {
+    titulo: 'Responsable Sanitario',
+    desc: 'Requisito previo obligatorio en la mayoría de licencias',
+    href: '/recursos/responsable-sanitario-cofepris/',
+  },
+  {
+    titulo: 'Preguntas frecuentes',
+    desc: 'Respuestas sobre licencias sanitarias COFEPRIS',
+    href: '/preguntas-frecuentes/',
+  },
+];
+---
+
+<section aria-labelledby="recursos-relacionados-heading">
+  <h2
+    id="recursos-relacionados-heading"
+    class="text-xl font-bold text-[var(--color-carbon-900)] mb-2"
+    style="font-family: var(--font-display);"
+  >
+    Recursos relacionados con este trámite
+  </h2>
+  {
+    homoclave && (
+      <p class="text-sm text-[var(--color-steel-600)] mb-5" style="font-family: var(--font-body);">
+        Homoclave oficial:{' '}
+        <strong class="text-[var(--color-carbon-900)] font-mono">{homoclave}</strong>
+      </p>
+    )
+  }
+  <ul class="grid sm:grid-cols-2 gap-3" role="list">
+    {
+      enlaces.map((e) => (
+        <li>
+          <a
+            href={e.href}
+            class="block h-full border border-[var(--color-steel-200)] rounded-lg px-4 py-3.5 bg-white hover:border-[var(--color-cofepris-300)] hover:bg-[var(--color-cofepris-50)] transition-colors duration-150 group"
+          >
+            <span
+              class="block text-sm font-semibold text-[var(--color-carbon-900)] group-hover:text-[var(--color-cofepris-700)]"
+              style="font-family: var(--font-body);"
+            >
+              {e.titulo} →
+            </span>
+            <span
+              class="block text-xs text-[var(--color-steel-500)] mt-0.5 leading-relaxed"
+              style="font-family: var(--font-body);"
+            >
+              {e.desc}
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

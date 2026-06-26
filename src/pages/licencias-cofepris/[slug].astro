@@ -1,0 +1,222 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import LicenciaHero from "../../components/licencias/LicenciaHero.astro";
+import LicenciaRequisitos from "../../components/licencias/LicenciaRequisitos.astro";
+import LicenciaAplica from "../../components/licencias/LicenciaAplica.astro";
+import LicenciaFAQ from "../../components/licencias/LicenciaFAQ.astro";
+import LicenciaSidebar from "../../components/licencias/LicenciaSidebar.astro";
+import LicenciaCobertura from "../../components/licencias/LicenciaCobertura.astro";
+import LicenciaEnlaces from "../../components/licencias/LicenciaEnlaces.astro";
+import { getLicenciaSeo, CIUDADES_SEO } from "../../data/licenciasSeo";
+
+const SITE_URL = "https://www.perscon.com.mx";
+const OG_FALLBACK = "/og/og-default.webp";
+
+export async function getStaticPaths() {
+  const licencias: CollectionEntry<"licencias">[] =
+    await getCollection("licencias");
+  return licencias.map((entry: CollectionEntry<"licencias">) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<"licencias">;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+const slug = entry.slug;
+const pageUrl = `${SITE_URL}/licencias-cofepris/${slug}/`;
+const seo = getLicenciaSeo(slug);
+const pageTitle = seo?.title ?? data.title;
+const pageDescription = seo?.description ?? data.description;
+const pageH1 = seo?.h1 ?? data.nombre;
+const homoclave = seo?.homoclave;
+
+// ── Licencias relacionadas ────────────────────────────────────────────────────
+const todas: CollectionEntry<"licencias">[] = await getCollection("licencias");
+const relacionadas: CollectionEntry<"licencias">[] = [...todas]
+  .filter((l: CollectionEntry<"licencias">) => l.slug !== slug)
+  .sort(
+    (a: CollectionEntry<"licencias">, b: CollectionEntry<"licencias">) =>
+      a.data.orden - b.data.orden,
+  );
+
+// ── OG Image segura (nunca undefined) ────────────────────────────────────────
+const ogImage = data.ogImage ?? OG_FALLBACK;
+const ogImageUrl = ogImage.startsWith("http")
+  ? ogImage
+  : `${SITE_URL}${ogImage.startsWith("/") ? ogImage : `/${ogImage}`}`;
+
+// ── Schema: Article (guía detallada por licencia) ─────────────────────────────
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": `${pageUrl}#article`,
+  headline: pageTitle,
+  alternateName: data.nombre,
+  description: pageDescription,
+  url: pageUrl,
+  inLanguage: "es-MX",
+  author: {
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    name: "Perscon",
+    url: SITE_URL,
+  },
+  publisher: {
+    "@id": `${SITE_URL}/#organization`,
+  },
+  datePublished: "2025-01-01",
+  dateModified: new Date().toISOString().split("T")[0],
+  image: {
+    "@type": "ImageObject",
+    url: ogImageUrl,
+    width: 1200,
+    height: 630,
+  },
+  keywords: [
+    ...(seo?.keywords ?? []),
+    data.nombre,
+    "COFEPRIS",
+    "licencia sanitaria",
+    "México",
+  ]
+    .filter(Boolean)
+    .join(", "),
+  articleBody: data.textoCofepris || data.description,
+  about: {
+    "@type": "Service",
+    "@id": `${pageUrl}#service`,
+  },
+  mainEntityOfPage: {
+    "@id": `${pageUrl}#webpage`,
+  },
+};
+
+// ── Schema: Service ───────────────────────────────────────────────────────────
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  name: data.nombre,
+  alternateName: data.title,
+  description: pageDescription,
+  url: pageUrl,
+  provider: {
+    "@id": `${SITE_URL}/#organization`,
+  },
+  areaServed: [
+    { "@type": "Country", name: "México" },
+    ...CIUDADES_SEO.map((c) => ({ "@type": "City" as const, name: c.name })),
+  ],
+  serviceType: "Asesoría Regulatoria Sanitaria",
+  category: "Trámites COFEPRIS",
+  offers: {
+    "@type": "Offer",
+    name: `Gestión integral: ${data.nombre}`,
+    description:
+      "Asesoría y gestión completa del trámite ante COFEPRIS. Consulta inicial sin costo.",
+    seller: { "@id": `${SITE_URL}/#organization` },
+    url: `${SITE_URL}/contacto/`,
+    availability: "https://schema.org/InStock",
+  },
+  ...(data.tiempo && {
+    estimatedDuration: `P${parseInt(data.tiempo)}D`,
+  }),
+  ...((homoclave || data.norma) && {
+    ...(homoclave && { identifier: homoclave }),
+    additionalProperty: [
+      ...(homoclave
+        ? [{ "@type": "PropertyValue", name: "Homoclave COFEPRIS", value: homoclave }]
+        : []),
+      ...(data.norma
+        ? [{ "@type": "PropertyValue", name: "Norma aplicable", value: data.norma }]
+        : []),
+    ],
+  }),
+};
+
+const faqSchema = data.faq?.length
+  ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: data.faq.map(
+        (f: { pregunta: string; respuesta: string }) => ({
+          "@type": "Question",
+          name: f.pregunta,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: f.respuesta,
+          },
+        }),
+      ),
+    }
+  : null;
+
+const pageSchemas = [
+  serviceSchema,
+  articleSchema,
+  ...(faqSchema ? [faqSchema] : []),
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonical={`/licencias-cofepris/${slug}/`}
+  ogImage={ogImage}
+  ogTitle={pageH1}
+  articlePublishedTime="2025-01-01"
+  articleModifiedTime={new Date().toISOString()}
+  articleAuthor="Perscon"
+  articleSection="Licencias COFEPRIS"
+  pageSchema={pageSchemas}
+  breadcrumbs={[
+    { name: "Licencias COFEPRIS", url: "/licencias-cofepris/" },
+    { name: data.nombre, url: `/licencias-cofepris/${slug}/` },
+  ]}
+>
+  <LicenciaHero
+    nombre={pageH1}
+    description={pageDescription}
+    textoCofepris={data.textoCofepris}
+    norma={data.norma}
+    tiempo={data.tiempo}
+    slug={slug}
+    homoclave={homoclave}
+  />
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-14 items-start">
+      <div class="space-y-12">
+        <LicenciaEnlaces slug={slug} homoclave={homoclave} />
+
+        <LicenciaRequisitos requisitos={data.requisitos} />
+
+        <LicenciaAplica aplica={data.aplica} />
+
+        <!-- Cuerpo del .md renderizado -->
+        <section aria-labelledby="descripcion-heading">
+          <h2 id="descripcion-heading" class="sr-only">
+            Descripción detallada: {data.nombre}
+          </h2>
+          <div class="prose-licencia">
+            <Content />
+          </div>
+        </section>
+
+        {data.faq && data.faq.length > 0 && <LicenciaFAQ faq={data.faq} />}
+
+        <LicenciaCobertura licenciaNombre={pageH1} />
+      </div>
+
+      <LicenciaSidebar tiempo={data.tiempo} relacionadas={relacionadas} />
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,211 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import { CIUDADES_SEO, LICENCIAS_SEO } from '../../../data/licenciasSeo';
+
+const SITE_URL = 'https://www.perscon.com.mx';
+
+export async function getStaticPaths() {
+  return CIUDADES_SEO.map((ciudad) => ({
+    params: { ciudad: ciudad.slug },
+    props: { ciudad },
+  }));
+}
+
+interface Props {
+  ciudad: (typeof CIUDADES_SEO)[number];
+}
+
+const { ciudad } = Astro.props;
+
+const licencias: CollectionEntry<'licencias'>[] = await getCollection('licencias');
+const ordenadas = [...licencias].sort((a, b) => a.data.orden - b.data.orden);
+
+const pageUrl = `${SITE_URL}/licencias-cofepris/ciudad/${ciudad.slug}/`;
+const title = `Licencias COFEPRIS en ${ciudad.name} | Trámites y Asesoría 2026`;
+const description = `Gestión de licencias sanitarias COFEPRIS en ${ciudad.name}, ${ciudad.state}: permiso de construcción, actos quirúrgicos, radiación, bancos de sangre y hemodiálisis. Consulta gratuita.`;
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  '@id': `${pageUrl}#itemlist`,
+  name: `Licencias COFEPRIS en ${ciudad.name}`,
+  numberOfItems: ordenadas.length,
+  itemListElement: ordenadas.map((lic, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: getLicenciaSeo(lic.slug)?.h1 ?? lic.data.nombre,
+    item: `${SITE_URL}/licencias-cofepris/${lic.slug}/`,
+  })),
+};
+
+function getLicenciaSeo(slug: string) {
+  return LICENCIAS_SEO[slug];
+}
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${pageUrl}#service`,
+  name: `Asesoría COFEPRIS en ${ciudad.name}`,
+  description,
+  url: pageUrl,
+  provider: { '@id': `${SITE_URL}/#organization` },
+  areaServed: {
+    '@type': 'City',
+    name: ciudad.name,
+    containedInPlace: { '@type': 'State', name: ciudad.state },
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: `¿COFEPRIS federal tramita licencias en ${ciudad.name}?`,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: `Sí. Las licencias sanitarias para establecimientos médicos en ${ciudad.name} se gestionan ante COFEPRIS federal. Los requisitos y homoclaves son los mismos que en el resto del país; la diferencia está en la documentación del inmueble y el cumplimiento de NOM aplicables.`,
+      },
+    },
+    {
+      '@type': 'Question',
+      name: `¿Cuánto tarda una licencia COFEPRIS en ${ciudad.name}?`,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Entre 45 y 90 días hábiles según el tipo de licencia, contados desde la presentación de un expediente completo. La documentación incompleta es la principal causa de retrasos en cualquier estado.',
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={`/licencias-cofepris/ciudad/${ciudad.slug}/`}
+  pageSchema={[itemListSchema, serviceSchema, faqSchema]}
+  breadcrumbs={[
+    { name: 'Licencias COFEPRIS', url: '/licencias-cofepris/' },
+    { name: ciudad.name, url: `/licencias-cofepris/ciudad/${ciudad.slug}/` },
+  ]}
+>
+  <section class="bg-carbon-950 border-b border-carbon-800">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20">
+      <nav
+        class="flex items-center gap-2 text-xs text-steel-600 mb-8"
+        aria-label="Ruta de navegación"
+      >
+        <a href="/" class="hover:text-white transition-colors" style="font-family: var(--font-body);">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <a href="/licencias-cofepris/" class="hover:text-white transition-colors" style="font-family: var(--font-body);">Licencias COFEPRIS</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-steel-400" aria-current="page" style="font-family: var(--font-body);">{ciudad.name}</span>
+      </nav>
+
+      <h1
+        class="text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight mb-5 max-w-3xl"
+        style="font-family: var(--font-display);"
+      >
+        Licencias Sanitarias COFEPRIS en {ciudad.name}
+      </h1>
+      <p class="text-steel-400 text-base leading-relaxed max-w-3xl mb-6" style="font-family: var(--font-body);">
+        {ciudad.intro}
+      </p>
+      <p class="text-steel-400 text-sm leading-relaxed max-w-3xl" style="font-family: var(--font-body);">
+        Perscon gestiona el expediente completo ante COFEPRIS: diagnóstico previo, preparación documental,
+        presentación, seguimiento y atención de requerimientos. Cobertura en {ciudad.state} y toda la República Mexicana.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20">
+    <h2 class="text-2xl font-bold text-carbon-900 mb-2" style="font-family: var(--font-display);">
+      Trámites COFEPRIS que gestionamos en {ciudad.name}
+    </h2>
+    <p class="text-steel-600 text-sm mb-8 max-w-2xl" style="font-family: var(--font-body);">
+      Cada enlace lleva a la guía nacional con requisitos, homoclave, tiempos y preguntas frecuentes del trámite.
+    </p>
+
+    <ul class="grid md:grid-cols-2 gap-4" role="list">
+      {
+        ordenadas.map((lic) => {
+          const seo = getLicenciaSeo(lic.slug);
+          return (
+            <li>
+              <article class="h-full border border-steel-200 rounded-xl p-6 bg-white hover:border-cofepris-300 transition-colors">
+                <p class="text-[10px] font-mono text-steel-500 mb-2">{seo?.homoclave}</p>
+                <h3 class="text-lg font-bold text-carbon-900 mb-2" style="font-family: var(--font-display);">
+                  <a href={`/licencias-cofepris/${lic.slug}/`} class="hover:text-cofepris-700 transition-colors">
+                    {seo?.h1 ?? lic.data.nombre}
+                  </a>
+                </h3>
+                <p class="text-sm text-steel-600 leading-relaxed mb-4" style="font-family: var(--font-body);">
+                  {lic.data.description}
+                </p>
+                <div class="flex flex-wrap gap-3 text-xs">
+                  <a
+                    href={`/licencias-cofepris/${lic.slug}/`}
+                    class="font-semibold text-cofepris-700 hover:underline"
+                    style="font-family: var(--font-body);"
+                  >
+                    Ver guía completa →
+                  </a>
+                  <a
+                    href={`/requisitos/#${lic.slug}`}
+                    class="text-steel-500 hover:text-cofepris-700"
+                    style="font-family: var(--font-body);"
+                  >
+                    Requisitos
+                  </a>
+                </div>
+              </article>
+            </li>
+          );
+        })
+      }
+    </ul>
+
+    <div class="mt-12 p-8 bg-cofepris-50 border border-cofepris-100 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <div>
+        <h2 class="text-xl font-bold text-carbon-900" style="font-family: var(--font-display);">
+          ¿Tu establecimiento está en {ciudad.name}?
+        </h2>
+        <p class="text-sm text-steel-600 mt-1" style="font-family: var(--font-body);">
+          Consulta gratuita en 24 horas. Identificamos el trámite correcto y el estado de tu expediente.
+        </p>
+      </div>
+      <a
+        href="/contacto/"
+        class="shrink-0 bg-cofepris-700 hover:bg-cofepris-600 text-white font-semibold px-6 py-3 rounded text-sm transition-colors"
+        style="font-family: var(--font-body);"
+      >
+        Solicitar asesoría
+      </a>
+    </div>
+
+    <div class="mt-10">
+      <p class="text-xs font-semibold tracking-widest uppercase text-steel-400 mb-3" style="font-family: var(--font-body);">
+        Otras ciudades
+      </p>
+      <ul class="flex flex-wrap gap-2" role="list">
+        {
+          CIUDADES_SEO.filter((c) => c.slug !== ciudad.slug).map((c) => (
+            <li>
+              <a
+                href={`/licencias-cofepris/ciudad/${c.slug}/`}
+                class="text-sm text-cofepris-700 border border-steel-200 px-3 py-1 rounded hover:bg-cofepris-50"
+                style="font-family: var(--font-body);"
+              >
+                {c.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</Layout>

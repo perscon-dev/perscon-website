@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Forzar HTTPS + WWW
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\.perscon\.com\.mx$ [NC]
+RewriteRule ^ https://www.perscon.com.mx%{REQUEST_URI} [R=301,L]
+
+# php -- BEGIN cPanel-generated handler, do not edit
+<IfModule mime_module>
+    AddHandler application/x-httpd-ea-php82___lsphp .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

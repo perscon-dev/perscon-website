@@ -1,0 +1,455 @@
+---
+const licencias = [
+  {
+    label: "Permiso Sanitario de Construcción",
+    href: "/licencias-cofepris/permiso-construccion/",
+  },
+  {
+    label: "Licencia para Actos Quirúrgicos",
+    href: "/licencias-cofepris/licencia-actos-quirurgicos/",
+  },
+  {
+    label: "Licencia para Fuentes de Radiación",
+    href: "/licencias-cofepris/licencia-radiacion/",
+  },
+  {
+    label: "Licencia Establecimientos de Salud con Servicios de Sangre",
+    href: "/licencias-cofepris/licencia-sanguinea/",
+  },
+  {
+    label: "Licencia de Transfusión Hospitalaria",
+    href: "/licencias-cofepris/licencia-transfusion-hospitalaria/",
+  },
+  {
+    label: "Licencia de Hemodiálisis",
+    href: "/licencias-cofepris/licencia-hemodialisis/",
+  },
+];
+
+const empresa = [
+  { label: "Nosotros", href: "/nosotros/" },
+  { label: "Casos de Éxito", href: "/casos-exito/" },
+  { label: "Proyectos Ejecutivos", href: "/proyectos/ejecutivos/" },
+  { label: "Proyectos de Obra", href: "/proyectos/obra/" },
+];
+
+const recursos = [
+  { label: "Recursos COFEPRIS", href: "/recursos/" },
+  { label: "Preguntas Frecuentes", href: "/preguntas-frecuentes/" },
+  { label: "Guía de Trámites COFEPRIS", href: "/guia-tramites-cofepris/" },
+  { label: "Requisitos por Licencia", href: "/requisitos/" },
+  {
+    label: "Licencias COFEPRIS CDMX",
+    href: "/licencias-cofepris/ciudad/cdmx/",
+  },
+  { label: "Contacto", href: "/contacto/" },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-carbon-900 text-steel-300" role="contentinfo">
+  <!-- Banda CTA superior -->
+  <div class="border-b border-carbon-700">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-10">
+      <div
+        class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6"
+      >
+        <div>
+          <p
+            class="text-white font-bold text-xl lg:text-2xl tracking-tight"
+            style="font-family: var(--font-display);"
+          >
+            ¿Necesitas una Licencia Sanitaria COFEPRIS?
+          </p>
+          <p
+            class="text-steel-300 mt-1 text-sm"
+            style="font-family: var(--font-body);"
+          >
+            Asesoría personalizada · Reducción de tiempos · Gestión integral del
+            trámite
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+          <a
+            href="/contacto/"
+            class="inline-flex items-center justify-center bg-cofepris-700 hover:bg-cofepris-600 text-white font-semibold px-6 py-2.5 rounded text-sm transition-colors duration-150"
+            style="font-family: var(--font-body);"
+          >
+            Solicitar Asesoría Gratuita
+          </a>
+          <a
+            href="https://wa.me/5215579113086"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 border border-carbon-600 text-steel-300 hover:text-white hover:border-steel-400 font-semibold px-6 py-2.5 rounded text-sm transition-colors duration-150"
+            style="font-family: var(--font-body);"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+              ></path><path
+                d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.534 5.856L.057 23.57a.75.75 0 00.914.914l5.714-1.477A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.713 9.713 0 01-4.964-1.363l-.356-.213-3.694.954.974-3.583-.232-.368A9.75 9.75 0 1112 21.75z"
+              ></path>
+            </svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cuerpo principal -->
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+      <!-- Columna 1: Marca -->
+      <div class="lg:col-span-1">
+        <a
+          href="/"
+          class="flex items-center gap-3 mb-5 w-fit"
+          aria-label="Perscon, ir al inicio"
+        >
+          <img
+            src="/images/Logo/Logo.webp"
+            alt="Perscon logo"
+            class="h-22 w-auto"
+            width="36"
+            height="36"
+            loading="lazy"
+          />
+          <div class="leading-none">
+            <span
+              class="block text-[14px] font-bold tracking-[0.2em] uppercase text-white"
+              style="font-family: var(--font-display);"
+            >
+              PERSCON
+            </span>
+            <span
+              class="block text-[9px] tracking-[0.12em] uppercase text-cofepris-400 mt-0.5"
+              style="font-family: var(--font-body);"
+            >
+              Asesoría COFEPRIS
+            </span>
+          </div>
+        </a>
+
+        <p
+          class="text-steel-300 text-sm leading-relaxed mb-6"
+          style="font-family: var(--font-body);"
+        >
+          Especialistas en asesoría regulatoria y gestión integral de trámites
+          ante COFEPRIS para establecimientos médicos en México.
+        </p>
+
+        <!-- NAP -->
+        <address
+          class="not-italic space-y-2 text-sm"
+          style="font-family: var(--font-body);"
+        >
+          <div class="flex items-start gap-2">
+            <svg
+              class="w-3.5 h-3.5 text-cofepris-600 shrink-0 mt-0.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+              ></path><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span class="text-steel-400">Estado de México, México</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg
+              class="w-3.5 h-3.5 text-cofepris-600 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+            <a
+              href="mailto:contacto@perscon.com.mx"
+              class="text-steel-400 hover:text-white transition-colors duration-150"
+            >
+              contacto@perscon.com.mx
+            </a>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg
+              class="w-3.5 h-3.5 text-cofepris-600 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 5a2 2 0 012-2h2.28a2 2 0 011.9 1.37l1.1 3.3a2 2 0 01-.45 2.11l-1.27 1.27a16 16 0 006.36 6.36l1.27-1.27a2 2 0 012.11-.45l3.3 1.1A2 2 0 0119.72 19H22a2 2 0 012 2v1a1 1 0 01-1 1h-1C10.3 23 1 13.7 1 2V1a1 1 0 011-1h1a2 2 0 012 2v2.28a2 2 0 01-1.37 1.9l-3.3 1.1a2 2 0 01-2.11-.45L3 5z"
+              ></path>
+            </svg>
+            <a
+              href="mailto:contacto@perscon.com.mx"
+              class="text-steel-400 hover:text-white transition-colors duration-150"
+            >
+              +52 55 7911 3086
+            </a>
+          </div>
+        </address>
+
+        <!-- Redes -->
+        <div class="flex gap-2 mt-5">
+          {
+            [
+              {
+                label: "Facebook Perscon",
+                href: "https://www.facebook.com/perscon.mx",
+                path: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z",
+              },
+              {
+                label: "WhatsApp Perscon",
+                href: "https://wa.me/5215579113086?text=Hola%2C%20necesito%20información%20sobre%20trámites%20COFEPRIS",
+                path: "M20.52 3.48A11.92 11.92 0 0012.05 0C5.5 0 .16 5.34.16 11.91c0 2.1.55 4.05 1.52 5.77L0 24l6.48-1.7a11.9 11.9 0 005.57 1.41h.01c6.55 0 11.89-5.34 11.89-11.91 0-3.18-1.24-6.17-3.43-8.32zM12.06 21.3h-.01a9.36 9.36 0 01-4.77-1.3l-.34-.2-3.85 1.01 1.03-3.76-.22-.35a9.33 9.33 0 01-1.43-5c0-5.16 4.2-9.36 9.37-9.36 2.5 0 4.85.97 6.61 2.72a9.28 9.28 0 012.74 6.62c0 5.16-4.2 9.36-9.37 9.36zm5.13-6.97c-.28-.14-1.65-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.08-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.36-.83-.74-1.4-1.66-1.56-1.94-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.35-.26.28-1 1-1 2.44 0 1.44 1.03 2.83 1.18 3.03.14.19 2.03 3.1 4.92 4.34.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.11.56-.08 1.65-.67 1.88-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.19-.53-.33z",
+              },
+              {
+                label: "Instagram Perscon",
+                href: "https://www.instagram.com/perscon.mx?fbclid=IwZXh0bgNhZW0CMTAAYnJpZBExdzN5Sm9hQnV3MWZiRmUybHNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR7yctoBmSu_maHkjW3VLFpx_yzJEtRclBygR6Te8qaGXA1vuws5yrG_9rHVCg_aem_S28W0JBxJmTDNjxidcRCfw",
+                path: "M7.75 2C4.57 2 2 4.57 2 7.75v8.5C2 18.43 4.57 21 7.75 21h8.5C18.43 21 21 18.43 21 15.25v-8.5C21 4.57 18.43 2 15.25 2h-8.5zm0 2h8.5A3.25 3.25 0 0119.5 7.25v8.5A3.25 3.25 0 0116.25 19h-8.5A3.25 3.25 0 014.5 15.75v-8.5A3.25 3.25 0 017.75 4zm8.75 1a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z",
+              },
+              {
+                label: "YouTube Perscon",
+                href: "https://www.youtube.com/@PERSCON-w6z",
+                path: "M23.498 6.186a2.97 2.97 0 0 0-2.09-2.102C19.555 3.5 12 3.5 12 3.5s-7.555 0-9.408.584A2.97 2.97 0 0 0 .502 6.186C0 8.05 0 12 0 12s0 3.95.502 5.814a2.97 2.97 0 0 0 2.09 2.102C4.445 20.5 12 20.5 12 20.5s7.555 0 9.408-.584a2.97 2.97 0 0 0 2.09-2.102C24 15.95 24 12 24 12s0-3.95-.502-5.814zM9.75 15.568V8.432L16.02 12l-6.27 3.568z",
+              },
+            ].map((r) => (
+              <a
+                href={r.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-8 h-8 rounded bg-carbon-800 border border-carbon-700 flex items-center justify-center hover:border-cofepris-700 hover:bg-cofepris-900 transition-colors duration-150"
+                aria-label={r.label}
+              >
+                <svg
+                  class="w-3.5 h-3.5 text-steel-300"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d={r.path} />
+                </svg>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Columna 2: Licencias COFEPRIS -->
+      <div>
+        <h2
+          class="text-[10px] font-semibold tracking-[0.18em] uppercase text-steel-300 mb-4 flex items-center gap-2"
+          style="font-family: var(--font-body);"
+        >
+          <span class="w-3 h-px bg-cofepris-700 inline-block"></span>
+          Licencias COFEPRIS
+        </h2>
+        <ul class="space-y-2.5" role="list">
+          {
+            licencias.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-steel-400 hover:text-white text-sm transition-colors duration-150 flex items-start gap-2 group"
+                  style="font-family: var(--font-body);"
+                >
+                  <svg
+                    class="w-3 h-3 text-cofepris-700 shrink-0 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M9 5l7 7-7 7"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      fill="none"
+                    />
+                  </svg>
+                  <svg
+                    class="w-3 h-3 text-(--color-carbon-600) shrink-0 mt-0.5 group-hover:opacity-0 group-hover:hidden transition-opacity duration-150"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Columna 3: Empresa -->
+      <div>
+        <h2
+          class="text-[10px] font-semibold tracking-[0.18em] uppercase text-steel-300 mb-4 flex items-center gap-2"
+          style="font-family: var(--font-body);"
+        >
+          <span class="w-3 h-px bg-cofepris-700 inline-block"></span>
+          Empresa
+        </h2>
+        <ul class="space-y-2.5" role="list">
+          {
+            empresa.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-steel-400 hover:text-white text-sm transition-colors duration-150"
+                  style="font-family: var(--font-body);"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Columna 4: Recursos -->
+      <div>
+        <h2
+          class="text-[10px] font-semibold tracking-[0.18em] uppercase text-steel-300 mb-4 flex items-center gap-2"
+          style="font-family: var(--font-body);"
+        >
+          <span class="w-3 h-px bg-cofepris-700 inline-block"></span>
+          Recursos
+        </h2>
+        <ul class="space-y-2.5 mb-6" role="list">
+          {
+            recursos.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-steel-400 hover:text-white text-sm transition-colors duration-150"
+                  style="font-family: var(--font-body);"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Columna 5: Legal -->
+      <div>
+        <h2
+          class="text-[10px] font-semibold tracking-[0.18em] uppercase text-steel-300 mb-4 flex items-center gap-2"
+          style="font-family: var(--font-body);"
+        >
+          <span class="w-3 h-px bg-cofepris-700 inline-block"></span>
+          Legal
+        </h2>
+        <ul class="space-y-2.5" role="list">
+          <li>
+            <a
+              href="/privacidad/"
+              class="text-steel-400 hover:text-white text-sm transition-colors duration-150"
+              style="font-family: var(--font-body);"
+            >
+              Política de Privacidad
+            </a>
+          </li>
+          <li>
+            <a
+              href="/terminos/"
+              class="text-steel-400 hover:text-white text-sm transition-colors duration-150"
+              style="font-family: var(--font-body);"
+            >
+              Términos de Servicio
+            </a>
+          </li>
+
+          <!-- Trust signal -->
+          <div class="border border-carbon-700 rounded p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <svg
+                class="w-3.5 h-3.5 text-cofepris-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                ></path>
+              </svg>
+              <span
+                class="text-white text-xs font-semibold"
+                style="font-family: var(--font-body);"
+              >
+                Empresa certificada
+              </span>
+            </div>
+            <p
+              class="text-steel-300 text-xs leading-relaxed"
+              style="font-family: var(--font-body);"
+            >
+              Especialistas en normativa sanitaria mexicana con experiencia
+              comprobada en trámites ante COFEPRIS y SSA.
+            </p>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra inferior -->
+  <div class="border-t border-carbon-800">
+    <div
+      class="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3"
+    >
+      <p class="text-steel-300 text-xs" style="font-family: var(--font-body);">
+        © {year}
+        <a
+          href="/"
+          class="text-steel-200 hover:text-white transition-colors duration-150 font-medium"
+          >Perscon</a
+        >. Todos los derechos reservados.
+      </p>
+    </div>
+  </div>
+</footer>

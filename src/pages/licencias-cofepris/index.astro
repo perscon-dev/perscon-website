@@ -1,0 +1,101 @@
+---
+/**
+ * src/pages/licencias-cofepris/index.astro
+ * Hub: /licencias-cofepris/
+ */
+
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/Layout.astro";
+import LicenciaCard from "../../components/licencias/LicenciaCard.astro";
+import ServiciosGrid from "../../components/index/ServiciosGrid.astro";
+import Stats from "../../components/licencias-page/stats.astro";
+import Hero from "../../components/licencias-page/Hero.astro";
+
+const SITE_URL = "https://www.perscon.com.mx";
+
+const todas: CollectionEntry<"licencias">[] = await getCollection("licencias");
+const ordenadas = [...todas].sort(
+  (a: CollectionEntry<"licencias">, b: CollectionEntry<"licencias">) =>
+    a.data.orden - b.data.orden,
+);
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": `${SITE_URL}/licencias-cofepris/#itemlist`,
+  name: "Licencias Sanitarias COFEPRIS para Establecimientos Médicos en México",
+  description:
+    "Listado de licencias sanitarias COFEPRIS que gestiona Perscon para establecimientos médicos en México.",
+  numberOfItems: ordenadas.length,
+  itemListElement: ordenadas.map((lic, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: lic.data.nombre,
+    item: {
+      "@id": `${SITE_URL}/licencias-cofepris/${lic.slug}/`,
+    },
+  })),
+};
+
+// 🔥 CollectionPage (HUB)
+const collectionPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${SITE_URL}/licencias-cofepris/#collection`,
+  url: `${SITE_URL}/licencias-cofepris/`,
+  name: "Licencias Sanitarias COFEPRIS",
+  description:
+    "Gestionamos todas las licencias sanitarias COFEPRIS para establecimientos médicos en México.",
+  mainEntity: {
+    "@id": `${SITE_URL}/licencias-cofepris/#itemlist`,
+  },
+};
+
+// 🔥 Service (SEO potente)
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${SITE_URL}/licencias-cofepris/#service`,
+  name: "Gestión de Licencias Sanitarias COFEPRIS",
+  description:
+    "Asesoría especializada en gestión integral de licencias sanitarias COFEPRIS para establecimientos médicos en México.",
+  url: `${SITE_URL}/licencias-cofepris/`,
+  provider: {
+    "@id": `${SITE_URL}/#organization`,
+  },
+  areaServed: [
+    { "@type": "Country", name: "México" },
+    { "@type": "State", name: "Estado de México" }
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Licencias y Permisos Sanitarios COFEPRIS",
+    itemListElement: ordenadas.map((lic, i) => ({
+      "@type": "Offer",
+      position: i + 1,
+      name: lic.data.nombre,
+      description: lic.data.description,
+      url: `${SITE_URL}/licencias-cofepris/${lic.slug}/`,
+      seller: { "@id": `${SITE_URL}/#organization` }
+    }))
+  },
+  potentialAction: {
+    "@type": "TradeAction",
+    target: `${SITE_URL}/contacto/`,
+    name: "Solicitar Consulta de Licencia"
+  }
+};
+---
+
+<BaseLayout
+  title="Licencias Sanitarias COFEPRIS para Establecimientos Médicos en México"
+  description="Gestionamos todas las licencias sanitarias COFEPRIS: actos quirúrgicos, radiación, bancos de sangre, hemodiálisis y permisos de construcción. Consulta gratuita."
+  canonical="/licencias-cofepris/"
+  breadcrumbs={[{ name: "Licencias COFEPRIS", url: "/licencias-cofepris/" }]}
+  pageSchema={[itemListSchema, collectionPageSchema, serviceSchema]}
+>
+  <Hero />
+  <ServiciosGrid />
+  <Stats />
+</BaseLayout>

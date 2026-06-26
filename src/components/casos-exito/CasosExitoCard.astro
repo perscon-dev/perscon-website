@@ -1,0 +1,125 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import caso1Img from '../../assets/images/casos/caso1.webp';
+import caso2Img from '../../assets/images/casos/caso2.webp';
+
+interface Props {
+  caso: CollectionEntry<'casos-exito'>;
+}
+
+const { caso } = Astro.props;
+const { data, slug } = caso;
+
+// Mapa de rutas públicas a assets importados
+const imageMap: Record<string, (typeof caso1Img)> = {
+  '/images/casos/caso1.jpg': caso1Img,
+  '/images/casos/caso2.jpg': caso2Img,
+};
+
+// Obtener la imagen del mapa o fallback a URL pública
+const getImage = (imagenUrl: string) => {
+  return imageMap[imagenUrl] || null;
+};
+---
+
+<a href={`/casos-exito/${slug}/`} class="group">
+  <div class="bg-carbon-900 border border-carbon-700 rounded-lg overflow-hidden hover:border-cofepris-500 transition-all duration-300 h-full flex flex-col">
+
+    <!-- Image Header -->
+    {data.imagen ? (
+      <div class="relative h-69 overflow-hidden">
+        {(() => {
+          const optimizedImage = getImage(data.imagen);
+          return optimizedImage ? (
+            <Image
+              src={optimizedImage}
+              alt={data.empresa}
+              class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              quality={80}
+              widths={[400, 800]}
+              sizes="(max-width: 768px) 400px, 800px"
+            />
+          ) : (
+            <img
+              src={data.imagen}
+              alt={data.empresa}
+              class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+          );
+        })()}
+     
+        <div class="absolute inset-0 bg-linear-to-t from-carbon-900 via-transparent to-transparent opacity-70"></div>
+        <div class="absolute bottom-4 left-4">
+          <span class="text-xs font-semibold tracking-wide text-cofepris-400 bg-white backdrop-blur-sm  px-3 py-1 rounded">
+            {data.sectorLabel}
+          </span>
+        </div>
+      </div>
+    ) : (
+      <div class="px-6 pt-6 pb-0">
+        <div class="inline-flex items-center gap-2 mb-4">
+          <span class="text-xs font-semibold tracking-wide text-cofepris-400 bg-(--color-cofepris-950) border border-cofepris-800 px-3 py-1 rounded">
+            {data.sectorLabel}
+          </span>
+        </div>
+      </div>
+    )}
+
+    <!-- Title & tramite -->
+    <div class="px-6 pt-5 pb-4">
+      {!data.imagen && <div class="mb-0" />}
+      <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cofepris-400 transition-colors duration-300" style="font-family: var(--font-heading);">
+        {data.title}
+      </h3>
+      <p class="text-sm text-steel-400" style="font-family: var(--font-body);">
+        {data.tramite}
+      </p>
+    </div>
+
+    <!-- Location -->
+    <div class="px-6 pb-4 flex items-center gap-2 text-xs text-steel-500">
+      <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+      <span>{data.ciudad}, {data.estado}</span>
+    </div>
+
+    <!-- Description -->
+    <div class="px-6 pb-6 grow">
+      <p class="text-sm text-steel-400 line-clamp-3" style="font-family: var(--font-body);">
+        {data.description}
+      </p>
+    </div>
+
+    <!-- Metrics Preview -->
+    <div class="px-6 py-4 bg-carbon-950 border-t border-carbon-700 grid grid-cols-3 gap-3">
+      {data.metricas.slice(0, 3).map((metrica) => (
+        <div class="text-center">
+          <div class="text-sm font-bold text-cofepris-400" style="font-family: var(--font-heading);">
+            {metrica.valor}
+          </div>
+          <div class="text-xs text-steel-500 line-clamp-2" style="font-family: var(--font-body);">
+            {metrica.etiqueta}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Footer -->
+    <div class="px-6 py-4 border-t border-carbon-700">
+      <div class="flex items-center justify-between">
+        <span class="text-sm font-semibold text-cofepris-400 group-hover:text-(--color-cofepris-300) transition-colors duration-300" style="font-family: var(--font-body);">
+          Ver caso de éxito
+        </span>
+        <svg class="w-4 h-4 text-cofepris-400 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+</a>

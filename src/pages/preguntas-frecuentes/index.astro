@@ -1,0 +1,236 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const SITE_URL = 'https://www.perscon.com.mx';
+
+const categorias = [
+  {
+    id:       'general',
+    titulo:   'Generalidades',
+    preguntas: [
+      {
+        pregunta: '¿Qué es una licencia sanitaria COFEPRIS y cuándo la necesito?',
+        respuesta: 'Una licencia sanitaria COFEPRIS es la autorización oficial que emite la Comisión Federal para la Protección contra Riesgos Sanitarios para que un establecimiento médico opere legalmente en México. La necesitas si tu establecimiento realiza actos quirúrgicos u obstétricos, utiliza equipos de radiación ionizante para diagnóstico, opera un banco de sangre o presta servicios de hemodiálisis. Sin ella, COFEPRIS puede ordenar la clausura del establecimiento.',
+      },
+      {
+        pregunta: '¿Qué pasa si opero sin licencia COFEPRIS?',
+        respuesta: 'Operar sin la licencia sanitaria correspondiente es una infracción grave a la Ley General de Salud. Las consecuencias incluyen multas de hasta 20,000 veces el salario mínimo, clausura temporal o definitiva del establecimiento, y responsabilidad penal en casos graves. COFEPRIS realiza verificaciones y puede actuar ante denuncias de terceros.',
+      },
+      {
+        pregunta: '¿La licencia sanitaria tiene vigencia o necesita renovarse?',
+        respuesta: 'La mayoría de las licencias sanitarias no tienen fecha de vencimiento fija, pero sí requieren actualización ante cambios importantes: nuevos servicios o equipos, cambio de Responsable Sanitario, cambio de domicilio o modificaciones en la infraestructura. La excepción es la Licencia para Bancos de Sangre (COFEPRIS-09-025-A), que tiene vigencia de 5 años.',
+      },
+      {
+        pregunta: '¿El Permiso Sanitario de Construcción y la Licencia Sanitaria son el mismo trámite?',
+        respuesta: 'No. Son trámites distintos y secuenciales. El Permiso Sanitario de Construcción se obtiene antes de construir o remodelar, y certifica que el diseño cumple con los requisitos sanitarios. La Licencia Sanitaria se tramita después, una vez terminada la obra, y autoriza la prestación de los servicios médicos. Muchas licencias requieren el Permiso de Construcción como antecedente en el expediente.',
+      },
+    ],
+  },
+  {
+    id:       'proceso',
+    titulo:   'Proceso y tiempos',
+    preguntas: [
+      {
+        pregunta: '¿Cuánto tiempo tarda un trámite de licencia sanitaria ante COFEPRIS?',
+        respuesta: 'Los tiempos varían según el tipo de licencia. El Permiso Sanitario de Construcción toma entre 30 y 60 días hábiles. Las licencias de funcionamiento (quirúrgica, radiación, banco de sangre, hemodiálisis) toman entre 60 días hábiles desde la presentación del expediente completo. El factor principal que retrasa los trámites es la documentación incompleta o con inconsistencias.',
+      },
+      {
+        pregunta: '¿Cuáles son las causas más frecuentes de rechazo o requerimiento adicional por parte de COFEPRIS?',
+        respuesta: 'Las más comunes son: incongruencias entre la memoria descriptiva y los planos aprobados, manuales de procedimientos genéricos que no reflejan la operación real del establecimiento, Responsable Sanitario con perfil incompatible para las actividades declaradas, documentos del personal con cédulas vencidas, y falta del Aviso de Responsable Sanitario previo a la solicitud de licencia.',
+      },
+      {
+        pregunta: '¿Puedo iniciar operaciones mientras tramito la licencia?',
+        respuesta: 'No. La ley es clara: el establecimiento debe contar con la licencia sanitaria antes de iniciar operaciones. No existe un período de gracia oficial. Iniciar antes de obtener la licencia expone al establecimiento a clausura y multas, independientemente del estado del trámite.',
+      },
+      {
+        pregunta: '¿Qué sucede si COFEPRIS emite un requerimiento adicional?',
+        respuesta: 'COFEPRIS puede emitir requerimientos de información o documentación adicional después de revisar el expediente. El establecimiento tiene un plazo determinado para atenderlos. Si no se atienden en tiempo y forma, el trámite puede ser desechado y debe iniciarse de nuevo. Con Perscon, nos encargamos de atender todos los requerimientos hasta la resolución.',
+      },
+    ],
+  },
+  {
+    id:       'responsable',
+    titulo:   'Responsable Sanitario',
+    preguntas: [
+      {
+        pregunta: '¿Qué es el Responsable Sanitario y qué papel tiene en el trámite?',
+        respuesta: 'El Responsable Sanitario es el profesional de la salud que, mediante su firma y acreditación, avala que el establecimiento cumple con los requisitos técnicos para prestar los servicios declarados. Es un requisito previo para casi todas las licencias COFEPRIS: antes de solicitar la licencia de funcionamiento, debe estar presentado y aceptado el Aviso de Responsable Sanitario.',
+      },
+      {
+        pregunta: '¿El Responsable Sanitario puede ser el mismo médico que atiende pacientes?',
+        respuesta: 'Sí, en muchos establecimientos el director médico funge como Responsable Sanitario. Lo importante es que su perfil —especialidad, cédula, experiencia— sea compatible con el tipo de servicios declarados ante COFEPRIS. Un médico general no puede ser Responsable Sanitario de un quirófano de cirugía cardiovascular, por ejemplo.',
+      },
+      {
+        pregunta: '¿Qué pasa si cambia el Responsable Sanitario después de obtener la licencia?',
+        respuesta: 'Cualquier cambio debe notificarse a COFEPRIS mediante un nuevo Aviso de Responsable Sanitario con el perfil del sustituto. Operar con un Responsable Sanitario cuyo aviso no esté actualizado es una irregularidad que puede derivar en sanciones.',
+      },
+    ],
+  },
+  {
+    id:       'costos',
+    titulo:   'Costos y cobertura',
+    preguntas: [
+      {
+        pregunta: '¿Cuánto cuesta la asesoría de Perscon para un trámite COFEPRIS?',
+        respuesta: 'El costo depende del tipo de licencia, la complejidad del establecimiento y el estado actual de la documentación. Ofrecemos una consulta inicial gratuita donde evaluamos el caso y presentamos una propuesta clara sin costos ocultos. Los derechos gubernamentales ante COFEPRIS son adicionales y varían según el trámite.',
+      },
+      {
+        pregunta: '¿Pueden gestionar el trámite si mi establecimiento está fuera de la CDMX?',
+        respuesta: 'Sí. Los trámites COFEPRIS son federales y se presentan de forma centralizada, independientemente del estado donde opere el establecimiento. Atendemos establecimientos en toda la República Mexicana. Las reuniones de diagnóstico y seguimiento se realizan presencialmente en CDMX o por videollamada.',
+      },
+      {
+        pregunta: '¿Perscon se encarga de todo el trámite o solo asesora?',
+        respuesta: 'Nos encargamos de la gestión integral: preparación del expediente, elaboración de documentos técnicos, presentación ante COFEPRIS, seguimiento del estatus y atención de requerimientos adicionales hasta la entrega de la licencia. El cliente no necesita presentarse personalmente ante COFEPRIS.',
+      },
+    ],
+  },
+];
+
+const totalPreguntas = categorias.reduce((acc, c) => acc + c.preguntas.length, 0);
+
+const faqPageSchema = {
+  '@context': 'https://schema.org',
+  '@type':    'FAQPage',
+  mainEntity: categorias.flatMap((cat) =>
+    cat.preguntas.map((p) => ({
+      '@type': 'Question',
+      name:    p.pregunta,
+      acceptedAnswer: { '@type': 'Answer', text: p.respuesta },
+    }))
+  ),
+};
+---
+
+<Layout
+  title="Preguntas Frecuentes sobre Licencias COFEPRIS"
+  description="Respuestas claras sobre licencias sanitarias COFEPRIS: tiempos de trámite, Responsable Sanitario, costos y proceso de obtención para establecimientos médicos en México."
+  canonical="/preguntas-frecuentes/"
+  pageSchema={[faqPageSchema]}
+  breadcrumbs={[{ name: 'Preguntas Frecuentes', url: '/preguntas-frecuentes/' }]}
+>
+
+  <!-- Hero -->
+  <section class="bg-carbon-950 border-b border-carbon-800">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20">
+      <nav class="flex items-center gap-2 text-xs text-steel-600 mb-8" aria-label="Ruta de navegación">
+        <a href="/" class="hover:text-white transition-colors duration-150" style="font-family:var(--font-body);">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-steel-400" aria-current="page" style="font-family:var(--font-body);">Preguntas Frecuentes</span>
+      </nav>
+      <div class="grid lg:grid-cols-[1fr_280px] gap-10 items-end">
+        <div>
+          <p class="text-[10px] font-semibold tracking-[0.2em] uppercase text-cofepris-500 mb-4 flex items-center gap-2" style="font-family:var(--font-body);">
+            <span class="w-6 h-px bg-cofepris-700 inline-block" aria-hidden="true"></span>
+            FAQ
+          </p>
+          <h1 class="text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight mb-4" style="font-family:var(--font-display);">
+            Preguntas Frecuentes<br />sobre Licencias <span class="text-cofepris-500">COFEPRIS</span>
+          </h1>
+          <p class="text-steel-400 text-sm leading-relaxed max-w-lg" style="font-family:var(--font-body);">
+            {totalPreguntas} preguntas organizadas por tema. Si no encuentras tu respuesta, consulta con nuestro equipo sin costo.
+          </p>
+        </div>
+        <!-- Nav de categorías en hero (mobile-friendly) -->
+        <nav aria-label="Categorías" class="hidden lg:block">
+          <p class="text-[10px] font-semibold tracking-widest uppercase text-steel-600 mb-3" style="font-family:var(--font-body);">Categorías</p>
+          <ul class="space-y-1">
+            {categorias.map((cat) => (
+              <li>
+                <a href={`#${cat.id}`} class="flex items-center gap-2 text-sm text-steel-400 hover:text-white transition-colors duration-150 py-0.5" style="font-family:var(--font-body);">
+                  <span class="w-1 h-1 rounded-full bg-cofepris-700" aria-hidden="true"></span>
+                  {cat.titulo}
+                  <span class="text-[10px] text-steel-600">({cat.preguntas.length})</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-off-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20 space-y-12">
+      {categorias.map((cat) => (
+        <div id={cat.id} class="mt-10">
+          <h2
+            class="text-lg font-bold text-carbon-900 pb-1 mb-4 border-b-2 border-cofepris-700 flex items-center gap-3"
+            style="font-family:var(--font-display);"
+          >
+            {cat.titulo}
+            <span class="text-xs font-normal text-steel-400" style="font-family:var(--font-body);">
+              {cat.preguntas.length} preguntas
+            </span>
+          </h2>
+          <dl class="divide-y divide-steel-100 bg-white border border-steel-200 rounded-xl overflow-hidden">
+            {cat.preguntas.map((faq, idx) => (
+              <div class="faq-item">
+                <dt>
+                  <button
+                    class="faq-btn w-full flex items-start justify-between gap-4 text-left px-6 py-5 group hover:bg-steel-50 transition-colors duration-150"
+                    aria-expanded="false"
+                    style="cursor: pointer;"
+                    aria-controls={`faq-${cat.id}-${idx}`}
+                  >
+                    <span class="text-sm font-semibold text-carbon-900 group-hover:text-cofepris-700 transition-colors duration-150 leading-snug" style="font-family:var(--font-display); cursor:pointer">
+                      {faq.pregunta}
+                    </span>
+                    <span class="faq-icon shrink-0 w-6 h-6 rounded-full border border-steel-200 flex items-center justify-center mt-0.5 group-hover:border-cofepris-700 group-hover:bg-cofepris-50 transition-all duration-150" aria-hidden="true">
+                      <svg class="w-2.5 h-2.5 text-steel-400 faq-plus" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
+                      </svg>
+                      <svg class="w-2.5 h-2.5 text-cofepris-700 faq-minus hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 12H4"/>
+                      </svg>
+                    </span>
+                  </button>
+                </dt>
+                <dd id={`faq-${cat.id}-${idx}`} class="faq-answer hidden p-5 pt-1 border-t border-steel-100">
+                  <p class="text-sm text-steel-600 leading-relaxed" style="font-family:var(--font-body);">
+                    {faq.respuesta}
+                  </p>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))}
+
+      <!-- CTA final -->
+      <div class="bg-carbon-900 rounded-xl p-6 text-center mt-5">
+        <h2 class="text-xl font-bold text-white mb-2" style="font-family:var(--font-display);">¿No encontraste tu pregunta?</h2>
+        <p class="text-sm text-steel-400 mb-6" style="font-family:var(--font-body);">Consulta directamente con nuestro equipo. Primera consulta sin costo.</p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href="/contacto/" class="inline-flex items-center gap-2 bg-cofepris-700 hover:bg-cofepris-600 text-white font-semibold px-6 py-2.5 rounded text-sm transition-colors duration-150" style="font-family:var(--font-body);">
+            Consultar gratis
+          </a>
+          <a href="/guia-tramites-cofepris/" class="inline-flex items-center gap-2 border border-carbon-700 text-steel-300 hover:text-white hover:border-steel-500 font-medium px-6 py-2.5 rounded text-sm transition-colors duration-150" style="font-family:var(--font-body);">
+            Ver guía de trámites
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll<HTMLButtonElement>('.faq-btn').forEach((b) => {
+        b.setAttribute('aria-expanded', 'false');
+        b.closest('.faq-item')?.querySelector('.faq-answer')?.classList.add('hidden');
+        b.querySelector('.faq-plus')?.classList.remove('hidden');
+        b.querySelector('.faq-minus')?.classList.add('hidden');
+      });
+      if (!expanded) {
+        btn.setAttribute('aria-expanded', 'true');
+        btn.closest('.faq-item')?.querySelector('.faq-answer')?.classList.remove('hidden');
+        btn.querySelector('.faq-plus')?.classList.add('hidden');
+        btn.querySelector('.faq-minus')?.classList.remove('hidden');
+      }
+    });
+  });
+</script>

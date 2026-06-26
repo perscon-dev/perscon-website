@@ -1,0 +1,100 @@
+---
+/**
+ * NosotrosHero.astro
+ * Hero de la página /nosotros/
+ */
+
+const metricas = [
+  { valor: '+150', etiqueta: 'Licencias obtenidas'   },
+  { valor: '0',    etiqueta: 'Licencias rechazadas'  },
+  { valor: '+10',  etiqueta: 'Años en el sector'     },
+  { valor: '5',    etiqueta: 'Tipos de licencia'     },
+];
+---
+
+<section class="bg-[var(--color-carbon-950)] border-b border-[var(--color-carbon-800)]">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20">
+
+    <!-- Breadcrumb -->
+    <nav
+      class="nh-fade-up nh-delay-1 flex items-center gap-2 text-xs text-[var(--color-steel-600)] mb-8"
+      aria-label="Ruta de navegación"
+    >
+      <a href="/" class="hover:text-white transition-colors duration-150" style="font-family: var(--font-body);">Inicio</a>
+      <span aria-hidden="true">/</span>
+      <span class="text-[var(--color-steel-400)]" aria-current="page" style="font-family: var(--font-body);">Nosotros</span>
+    </nav>
+
+    <div class="grid lg:grid-cols-[1fr_420px] gap-14 items-end">
+
+      <!-- Copy -->
+      <div>
+        <p
+          class="nh-fade-up nh-delay-2 text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-cofepris-500)] mb-4 flex items-center gap-2"
+          style="font-family: var(--font-body);"
+        >
+          <span class="w-6 h-px bg-[var(--color-cofepris-700)] inline-block" aria-hidden="true"></span>
+          Quiénes somos
+        </p>
+
+        <h1
+          class="nh-fade-up nh-delay-3 text-3xl lg:text-5xl font-bold text-white tracking-tight leading-tight mb-6"
+          style="font-family: var(--font-display);"
+        >
+          Especialistas en<br />
+          Asesoría Regulatoria<br />
+          <span class="text-[var(--color-cofepris-500)]">COFEPRIS</span>
+        </h1>
+
+        <p
+          class="nh-fade-up nh-delay-4 text-[var(--color-steel-400)] text-base leading-relaxed max-w-lg"
+          style="font-family: var(--font-body);"
+        >
+          Somos una firma especializada en gestoría regulatoria sanitaria para
+          establecimientos médicos en México. Más de diez años acompañando a
+          médicos, hospitales y empresas del sector salud a operar con seguridad
+          jurídica ante COFEPRIS.
+        </p>
+      </div>
+
+      <!-- Métricas -->
+      <div class="nh-fade-up nh-delay-5 grid grid-cols-2 gap-px bg-[var(--color-carbon-800)]">
+        {metricas.map((m) => (
+          <div class="bg-[var(--color-carbon-900)] px-7 py-6 text-center">
+            <p
+              class="text-3xl font-bold text-white mb-1"
+              style="font-family: var(--font-display);"
+            >
+              {m.valor}
+            </p>
+            <p
+              class="text-[10px] text-[var(--color-steel-500)] uppercase tracking-widest leading-tight"
+              style="font-family: var(--font-body);"
+            >
+              {m.etiqueta}
+            </p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes nhFadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+
+  .nh-fade-up {
+    opacity: 0;
+    animation: nhFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .nh-delay-1 { animation-delay: 0.05s; }
+  .nh-delay-2 { animation-delay: 0.15s; }
+  .nh-delay-3 { animation-delay: 0.28s; }
+  .nh-delay-4 { animation-delay: 0.42s; }
+  .nh-delay-5 { animation-delay: 0.55s; }
+</style>

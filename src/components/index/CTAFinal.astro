@@ -1,0 +1,204 @@
+---
+
+---
+
+<section
+  class="bg-carbon-900 border-t border-carbon-800"
+  aria-labelledby="cta-final-heading"
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-24">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- Copy -->
+      <div class="cta-left">
+        <p
+          class="text-[10px] font-semibold tracking-[0.2em] uppercase text-cofepris-500 mb-4 flex items-center gap-2"
+          style="font-family: var(--font-body);"
+        >
+          <span class="w-6 h-px bg-cofepris-700 inline-block" aria-hidden="true"></span>
+          Empieza Hoy
+        </p>
+
+        <h2
+          id="cta-final-heading"
+          class="text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight mb-5"
+          style="font-family: var(--font-display);"
+        >
+          Tu Establecimiento Médico<br />
+          Merece Operar con<br />
+          <span class="text-cofepris-500">Seguridad Jurídica</span>
+        </h2>
+
+        <p
+          class="text-steel-300 text-base leading-relaxed mb-8 max-w-md"
+          style="font-family: var(--font-body);"
+        >
+          Cada día sin licencia es un riesgo. Inicia la consulta gratuita hoy y
+          en 24 horas tendrás un diagnóstico claro de tu situación regulatoria
+          y los pasos a seguir.
+        </p>
+
+        <!-- Trust bullets -->
+        <ul class="space-y-2.5 mb-10" role="list">
+          {[
+            'Consulta inicial sin costo ni compromiso',
+            'Diagnóstico regulatoria en 24 horas',
+            'Gestión completa del expediente',
+            'Cobertura en toda la República Mexicana',
+          ].map((item) => (
+            <li
+              class="flex items-center gap-3 text-sm text-steel-300"
+              style="font-family: var(--font-body);"
+            >
+              <svg class="w-4 h-4 text-cofepris-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <!-- Canales de contacto -->
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a
+            href="/contacto/"
+            class="inline-flex items-center justify-center gap-2 bg-cofepris-700 hover:bg-cofepris-600 text-white font-semibold px-7 py-3 rounded text-sm transition-colors duration-150"
+            style="font-family: var(--font-body);"
+          >
+            Solicitar Asesoría Gratuita
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Panel de datos de contacto directo -->
+      <div class="cta-right border border-carbon-700 rounded-lg overflow-hidden">
+
+        <div class="px-6 py-4 bg-carbon-800 border-b border-carbon-700">
+          <p
+            class="text-[10px] font-semibold tracking-[0.15em] uppercase text-steel-300"
+            style="font-family: var(--font-body);"
+          >
+            Contacto Directo
+          </p>
+        </div>
+
+        <div class="divide-y divide-carbon-800">
+
+          <!-- Email -->
+          <a
+            href="mailto:contacto@perscon.com.mx"
+            class="flex items-center gap-4 px-6 py-5 hover:bg-carbon-800 transition-colors duration-150 group"
+            aria-label="Enviar correo a Perscon"
+          >
+            <div class="w-9 h-9 rounded border border-carbon-700 bg-carbon-800 flex items-center justify-center shrink-0 group-hover:border-[vfepris-700 transition-colors duration-150">
+              <svg class="w-4 h-4 text-steel-400 group-hover:text-[vfepris-500 transition-colors duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <p
+                class="text-[10px] text-steel-600 uppercase tracking-wide mb-0.5"
+                style="font-family: var(--font-body);"
+              >
+                Correo electrónico
+              </p>
+              <p
+                class="text-sm font-medium text-steel-200 group-hover:text-white transition-colors duration-150"
+                style="font-family: var(--font-body);"
+              >
+                contacto@perscon.com.mx
+              </p>
+            </div>
+          </a>
+       
+          <!-- Horario -->
+          <div class="flex items-center gap-4 px-6 py-5">
+            <div class="w-9 h-9 rounded border border-carbon-700 bg-carbon-800 flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 text-steel-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p
+                class="text-[10px] text-steel-600 uppercase tracking-wide mb-0.5"
+                style="font-family: var(--font-body);"
+              >
+                Horario de atención
+              </p>
+              <p
+                class="text-sm font-medium text-steel-300"
+                style="font-family: var(--font-body);"
+              >
+                Lunes a Viernes · 8:00 – 17:00 h
+              </p>
+            </div>
+          </div>
+
+          <!-- Cobertura -->
+          <div class="flex items-center gap-4 px-6 py-5">
+            <div class="w-9 h-9 rounded border border-carbon-700 bg-carbon-800 flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 text-steel-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p
+                class="text-[10px] text-steel-600 uppercase tracking-wide mb-0.5"
+                style="font-family: var(--font-body);"
+              >
+                Cobertura
+              </p>
+              <p
+                class="text-sm font-medium text-steel-300"
+                style="font-family: var(--font-body);"
+              >
+                República Mexicana
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-left {
+    opacity: 0;
+    transform: translateX(-28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .cta-left.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .cta-right {
+    opacity: 0;
+    transform: translateX(28px);
+    transition: opacity 0.65s ease 0.15s, transform 0.65s ease 0.15s;
+  }
+  .cta-right.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
+<script>
+  const ctaObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          ctaObserver.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  document.querySelectorAll('.cta-left, .cta-right').forEach((el) => ctaObserver.observe(el));
+</script>

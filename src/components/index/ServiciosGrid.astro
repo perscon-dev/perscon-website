@@ -1,0 +1,289 @@
+---
+const servicios = [
+  {
+    num: "01",
+    title: "Permiso Sanitario de Construcción",
+    slug: "permiso-construccion",
+    descripcion:
+      "Requisito obligatorio para construir, ampliar o remodelar cualquier establecimiento médico en México. Incluye revisión de planos, cumplimiento de NOM y acompañamiento ante COFEPRIS.",
+    aplica: ["Hospitales", "Clínicas", "Laboratorios"],
+    tiempo: "60 días hábiles",
+  },
+  {
+    num: "02",
+    title: "Licencia para Establecimientos con Actos Quirúrgicos",
+    slug: "licencia-actos-quirurgicos",
+    descripcion:
+      "Autorización sanitaria para clínicas y hospitales que realizan procedimientos quirúrgicos u obstétricos. Cumplimiento de la NOM-016-SSA3-2012 y demás normativa aplicable.",
+    aplica: ["Quirófanos", "Hospitales", "Clínicas de cirugía", "Maternidades"],
+    tiempo: "60 días hábiles",
+  },
+  {
+    num: "03",
+    title: "Licencia para Fuentes de Radiación Médica",
+    slug: "licencia-radiacion",
+    descripcion:
+      "Licencia sanitaria para establecimientos que operan equipos de rayos X, tomografía, fluoroscopía y otros equipos de diagnóstico por imagen. Cumplimiento de la NOM-229-SSA1-2002.",
+    aplica: ["Rayos X", "Tomografía", "Fluoroscopía", "Densitometría"],
+    tiempo: "60 días hábiles",
+  },
+  {
+    num: "04",
+    title: "Licencia para Bancos de Sangre y Transfusión",
+    slug: "licencia-sanguinea",
+    descripcion:
+      "Autorización para establecimientos que realizan extracción, procesamiento, almacenamiento y transfusión de sangre o sus componentes. Normativa NOM-253-SSA1-2012.",
+    aplica: [
+      "Bancos de sangre",
+      "Servicios de transfusión",
+      "Hospitales con banco propio",
+    ],
+    tiempo: "45 días hábiles",
+  },
+  {
+    num: "05",
+    title: "Licencia para Servicios de Transfusión Hospitalaria",
+    slug: "licencia-transfusion-hospitalaria",
+    descripcion:
+      "Autorización sanitaria para hospitales y establecimientos de salud que realizan recepción, conservación, compatibilidad y administración de componentes sanguíneos conforme a la NOM-253-SSA1-2012.",
+    aplica: [
+      "Hospitales públicos",
+      "Hospitales privados",
+      "Clínicas con servicio de transfusión",
+    ],
+    tiempo: "45 días hábiles",
+  },
+  {
+    num: "06",
+    title: "Licencia de Hemodiálisis",
+    slug: "licencia-hemodialisis",
+    descripcion:
+      "Licencia sanitaria para unidades y centros que brindan servicios de hemodiálisis y diálisis peritoneal. Cumplimiento de la NOM-003-SSA3-2010 y estándares de infraestructura.",
+    aplica: [
+      "Centros de hemodiálisis",
+      "Unidades renales",
+      "Hospitales con servicio propio",
+    ],
+    tiempo: "60 días hábiles",
+  },
+];
+---
+
+<section
+  class="bg-off-white border-t border-steel-100"
+  aria-labelledby="servicios-heading"
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-10 lg:py-14">
+    <!-- Encabezado sección -->
+    <div
+      class="sg-reveal flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-14"
+    >
+      <div class="max-w-2xl">
+        <p
+          class="text-[10px] font-semibold tracking-[0.2em] uppercase text-cofepris-700 mb-3 flex items-center gap-2"
+          style="font-family: var(--font-body);"
+        >
+          <span class="w-6 h-px bg-cofepris-700 inline-block" aria-hidden="true"
+          ></span>
+          Nuestros Servicios
+        </p>
+        <h2
+          id="servicios-heading"
+          class="text-3xl lg:text-4xl font-bold text-carbon-900 tracking-tight leading-tight"
+          style="font-family: var(--font-display);"
+        >
+          Licencias Sanitarias COFEPRIS<br class="hidden lg:block" />
+          para Establecimientos Médicos
+        </h2>
+      </div>
+      <a
+        href="/licencias-cofepris/"
+        class="shrink-0 inline-flex items-center gap-2 text-sm font-semibold text-cofepris-700 hover:text-cofepris-800 transition-colors duration-150 group"
+        style="font-family: var(--font-body);"
+        aria-label="Ver todas las licencias COFEPRIS disponibles"
+      >
+        Ver todas las licencias
+        <svg
+          class="w-4 h-4 transition-transform duration-150 group-hover:translate-x-0.5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Grid de cards -->
+    <ul
+      class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-steel-200"
+      role="list"
+    >
+      {
+        servicios.map((s, idx) => (
+          <li
+            class:list={[
+              "sg-card bg-white group flex flex-col",
+              idx === servicios.length - 1 && servicios.length % 3 !== 0
+                ? "lg:col-span-1"
+                : "",
+            ]}
+            style={`--card-delay: ${(idx % 3) * 100}ms`}
+          >
+            <a
+              href={`/licencias-cofepris/${s.slug}/`}
+              class="flex flex-col h-full p-7 hover:bg-steel-50 transition-colors duration-200"
+              aria-labelledby={`servicio-${s.slug}`}
+            >
+              <div class="flex items-center justify-between mb-5">
+                <span
+                  class="text-[11px] font-bold tracking-[0.15em] text-steel-400"
+                  style="font-family: var(--font-display);"
+                  aria-hidden="true"
+                >
+                  {s.num}
+                </span>
+                <span
+                  class="text-[13px] font-medium text-steel-400 bg-steel-100 px-2 py-0.5 rounded"
+                  style="font-family: var(--font-body);"
+                >
+                  {s.tiempo}
+                </span>
+              </div>
+              <h3
+                id={`servicio-${s.slug}`}
+                class="text-base font-bold text-carbon-900 leading-snug mb-3 group-hover:text-cofepris-700 transition-colors duration-150"
+                style="font-family: var(--font-display);"
+              >
+                {s.title}
+              </h3>
+              <p
+                class="text-sm text-steel-600 leading-relaxed mb-5 flex-1"
+                style="font-family: var(--font-body);"
+              >
+                {s.descripcion}
+              </p>
+
+              <ul
+                class="flex flex-wrap gap-1.5 mb-6"
+                aria-label={`Aplica para: ${s.aplica.join(", ")}`}
+              >
+                {s.aplica.map((tag) => (
+                  <li
+                    class="text-[10px] font-medium text-steel-500 border border-steel-200 px-2 py-0.5 rounded"
+                    style="font-family: var(--font-body);"
+                  >
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+              <span
+                class="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-cofepris-700 hover:text-cofepris-800 transition-colors duration-150 group/link"
+                style="font-family: var(--font-body);"
+              >
+                Ver requisitos y proceso
+                <svg
+                  class="w-4 h-4 transition-transform duration-150 group-hover/link:translate-x-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+
+      <!-- Card CTA "¿No encuentras tu trámite?" -->
+      <!-- <li
+        class="sg-card bg-carbon-900 group flex flex-col"
+        style="--card-delay: 500ms"
+      >
+        <div class="flex flex-col h-full p-7 justify-between">
+          <div>
+            <p
+              class="text-[10px] font-semibold tracking-[0.15em] uppercase text-cofepris-500 mb-4"
+              style="font-family: var(--font-body);"
+            >
+              Consulta personalizada
+            </p>
+            <h3
+              class="text-base font-bold text-white leading-snug mb-3"
+              style="font-family: var(--font-display);"
+            >
+              ¿No encuentras el trámite que necesitas?
+            </h3>
+            <p
+              class="text-sm text-steel-400 leading-relaxed"
+              style="font-family: var(--font-body);"
+            >
+              Contáctanos. Nuestros especialistas analizarán tu caso y te
+              indicarán el trámite correcto ante COFEPRIS.
+            </p>
+          </div>
+          <a
+            href="/contacto/"
+            class="mt-8 inline-flex items-center justify-center gap-2 bg-cofepris-700 hover:bg-cofepris-600 text-white font-semibold px-5 py-2.5 rounded text-sm transition-colors duration-150 w-full"
+            style="font-family: var(--font-body);"
+          >
+            Consultar con un experto
+          </a>
+        </div>
+      </li> -->
+    </ul>
+  </div>
+</section>
+
+<style>
+  /* Estado inicial: invisible y desplazado */
+  .sg-reveal,
+  .sg-card {
+    opacity: 0;
+    transform: translateY(32px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+  }
+
+  .sg-card {
+    transition-delay: var(--card-delay, 0ms);
+  }
+
+  /* Estado activo cuando se intersecta */
+  .sg-reveal.in-view,
+  .sg-card.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("in-view");
+          observer.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.08 },
+  );
+
+  document
+    .querySelectorAll(".sg-reveal, .sg-card")
+    .forEach((el) => observer.observe(el));
+</script>
