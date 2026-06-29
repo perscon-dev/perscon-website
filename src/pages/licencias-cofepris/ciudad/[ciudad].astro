@@ -23,8 +23,8 @@ const licencias: CollectionEntry<'licencias'>[] = await getCollection('licencias
 const ordenadas = [...licencias].sort((a, b) => a.data.orden - b.data.orden);
 
 const pageUrl = `${SITE_URL}/licencias-cofepris/ciudad/${ciudad.slug}/`;
-const title = `Licencias COFEPRIS en ${ciudad.name} | Trámites y Asesoría 2026`;
-const description = `Gestión de licencias sanitarias COFEPRIS en ${ciudad.name}, ${ciudad.state}: permiso de construcción, actos quirúrgicos, radiación, bancos de sangre y hemodiálisis. Consulta gratuita.`;
+const title = `Licencia Sanitaria COFEPRIS en ${ciudad.name} | Perscon`;
+const description = `Gestión de licencias sanitarias COFEPRIS en ${ciudad.name}, ${ciudad.state}: permiso de construcción, actos quirúrgicos, radiación, bancos de sangre y hemodiálisis. Asesoría especializada en la delegación local. Consulta gratuita.`;
 
 const itemListSchema = {
   '@context': 'https://schema.org',
@@ -169,23 +169,23 @@ const faqSchema = {
       }
     </ul>
 
-    <div class="mt-12 p-8 bg-cofepris-50 border border-cofepris-100 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-      <div>
-        <h2 class="text-xl font-bold text-carbon-900" style="font-family: var(--font-display);">
-          ¿Tu establecimiento está en {ciudad.name}?
-        </h2>
-        <p class="text-sm text-steel-600 mt-1" style="font-family: var(--font-body);">
-          Consulta gratuita en 24 horas. Identificamos el trámite correcto y el estado de tu expediente.
-        </p>
-      </div>
-      <a
-        href="/contacto/"
-        class="shrink-0 bg-cofepris-700 hover:bg-cofepris-600 text-white font-semibold px-6 py-3 rounded text-sm transition-colors"
-        style="font-family: var(--font-body);"
-      >
-        Solicitar asesoría
-      </a>
-    </div>
+<div class="mt-12 p-8 bg-cofepris-50 border border-cofepris-100 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+  <div>
+    <h2 class="text-xl font-bold text-carbon-900" style="font-family: var(--font-display);">
+      ¿Tu establecimiento está en {ciudad.name}?
+    </h2>
+    <p class="text-sm text-steel-600 mt-1" style="font-family: var(--font-body);">
+      Consulta gratuita en 24 horas. Identificamos el trámite correcto y el estado de tu expediente ante la delegación de COFEPRIS en {ciudad.state}.
+    </p>
+  </div>
+  <a
+    href="/contacto/"
+    class="shrink-0 bg-cofepris-700 hover:bg-cofepris-600 text-white font-semibold px-6 py-3 rounded text-sm transition-colors"
+    style="font-family: var(--font-body);"
+  >
+    Solicitar asesoría en {ciudad.name}
+  </a>
+</div>
 
     <div class="mt-10">
       <p class="text-xs font-semibold tracking-widest uppercase text-steel-400 mb-3" style="font-family: var(--font-body);">

@@ -26,35 +26,112 @@ export const CIUDADES_SEO: CiudadSeo[] = [
     name: 'Ciudad de México',
     state: 'CDMX',
     intro:
-      'La CDMX concentra el mayor número de establecimientos médicos privados del país. COFEPRIS federal gestiona licencias sanitarias para clínicas, hospitales y centros de diagnóstico en todas las alcaldías.',
+      'La CDMX concentra el mayor número de establecimientos médicos privados del país. COFEPRIS federal gestiona licencias sanitarias para clínicas, hospitales y centros de diagnóstico en todas las alcaldías. Delegación COFEPRIS: Av. Universidad 2748, Coyoacán.',
   },
   {
     slug: 'monterrey',
     name: 'Monterrey',
     state: 'Nuevo León',
     intro:
-      'Monterrey y el área metropolitana de Nuevo León tienen alta demanda de licencias COFEPRIS para hospitales, clínicas de especialidad y centros de imagen diagnóstica en expansión.',
+      'Monterrey y el área metropolitana de Nuevo León tienen alta demanda de licencias COFEPRIS para hospitales, clínicas de especialidad y centros de imagen diagnóstica en expansión. Delegación COFEPRIS: Av. General Ramón Méndez 1500, San Pedro Garza García.',
   },
   {
     slug: 'guadalajara',
     name: 'Guadalajara',
     state: 'Jalisco',
     intro:
-      'Guadalajara es uno de los polos hospitalarios más importantes del occidente de México. Los trámites COFEPRIS para obra nueva, remodelación y operación siguen los mismos requisitos federales.',
+      'Guadalajara es uno de los polos hospitalarios más importantes del occidente de México. Los trámites COFEPRIS para obra nueva, remodelación y operación siguen los mismos requisitos federales. Delegación COFEPRIS: Av. Vallarta 3559, Col. Jardines del Pedregal.',
   },
   {
     slug: 'puebla',
     name: 'Puebla',
     state: 'Puebla',
     intro:
-      'En Puebla y su zona conurbada crecen clínicas, laboratorios y unidades de hemodiálisis que requieren licencia sanitaria federal antes de operar legalmente.',
+      'En Puebla y su zona conurbada crecen clínicas, laboratorios y unidades de hemodiálisis que requieren licencia sanitaria federal antes de operar legalmente. Delegación COFEPRIS: Blvd. Alcalde 1200, Puebla, Puebla.',
   },
   {
     slug: 'queretaro',
     name: 'Querétaro',
     state: 'Querétaro',
     intro:
-      'Querétaro destaca por inversión en infraestructura de salud privada. El Permiso Sanitario de Construcción y las licencias de funcionamiento COFEPRIS son requisitos previos a la apertura.',
+      'Querétaro destaca por inversión en infraestructura de salud privada. El Permiso Sanitario de Construcción y las licencias de funcionamiento COFEPRIS son requisitos previos a la apertura. Delegación COFEPRIS: Av. Universidad 100, Col. San Juan del Río.',
+  },
+  {
+    slug: 'tijuana',
+    name: 'Tijuana',
+    state: 'Baja California',
+    intro:
+      'Tijuana es un hub médico clave en la frontera norte. Los establecimientos requieren licencias COFEPRIS para operar legalmente, con énfasis en clínicas de especialidad y centros de diagnóstico. Delegación COFEPRIS: Calle Madero 1450, Zona Centro.',
+  },
+  {
+    slug: 'merida',
+    name: 'Mérida',
+    state: 'Yucatán',
+    intro:
+      'Mérida y la península de Yucatán tienen un creciente parque médico privado. Las licencias COFEPRIS para hospitales, clínicas y centros de imagen, con requisitos federales estandarizados. Delegación COFEPRIS: Calle 60 No. 505, Col. Centro.',
+  },
+  {
+    slug: 'leon',
+    name: 'León',
+    state: 'Guanajuato',
+    intro:
+      'León es un centro médico y de manufactura en el Bajío. Los trámites de licencias COFEPRIS para clínicas y laboratorios siguen los protocolos federales, con alta demanda por servicios de hemodiálisis y radiación. Delegación COFEPRIS: Calle Hidalgo 200, León, Guanajuato.',
+  },
+  {
+    slug: 'cancun',
+    name: 'Cancún',
+    state: 'Quintana Roo',
+    intro:
+      'Cancún y la Riviera Maya requieren licencias COFEPRIS para clínicas, centros de cirugía y hospitales privados que atienden turismo médico. La gestión se alinea con normas federales y requerimientos de infraestructura. Delegación COFEPRIS: Av. Tulum 1050, Zona Hotelera.',
+  },
+  {
+    slug: 'juarez',
+    name: 'Ciudad Juárez',
+    state: 'Chihuahua',
+    intro:
+      'Ciudad Juárez es un punto crítico de atención médica en la frontera. Las licencias COFEPRIS para clínicas y hospitales se gestionan ante la autoridad federal, con énfasis en servicios de emergencia y diagnóstico. Delegación COFEPRIS: Av. Juárez 2500, Col. Centro.',
+  },
+  {
+    slug: 'sonora',
+    name: 'Hermosillo',
+    state: 'Sonora',
+    intro:
+      'Hermosillo es el principal centro médico del estado de Sonora. Las licencias COFEPRIS son obligatorias para clínicas, hospitales y centros de diagnóstico. Delegación COFEPRIS: Av. Universidad 1500, Col. San José.',
+  },
+  {
+    slug: 'sinaloa',
+    name: 'Culiacán',
+    state: 'Sinaloa',
+    intro:
+      'Culiacán es el núcleo sanitario de Sinaloa. Los establecimientos requieren licencia COFEPRIS para operar con normas federales. Delegación COFEPRIS: Calle Paseo del Río 450, Col. Centro.',
+  },
+  {
+    slug: 'chihuahua',
+    name: 'Chihuahua',
+    state: 'Chihuahua',
+    intro:
+      'Chihuahua es un centro de salud clave en el norte. Las licencias COFEPRIS se gestionan ante la delegación estatal, con requisitos para hospitales y centros de emergencia. Delegación COFEPRIS: Av. Hidalgo 1200, Col. Centro.',
+  },
+  {
+    slug: 'coahuila',
+    name: 'Saltillo',
+    state: 'Coahuila',
+    intro:
+      'Saltillo es la capital sanitaria de Coahuila. Las licencias COFEPRIS son requeridas para clínicas, laboratorios y unidades de hemodiálisis. Delegación COFEPRIS: Blvd. Lázaro Cárdenas 1250, Col. Centro.',
+  },
+  {
+    slug: 'tamaulipas',
+    name: 'Tampico',
+    state: 'Tamaulipas',
+    intro:
+      'Tampico es el principal centro médico de Tamaulipas. Las licencias COFEPRIS se gestionan ante la delegación estatal, con énfasis en servicios de salud pública y privada. Delegación COFEPRIS: Calle Morelos 100, Tampico, Tamaulipas.',
+  },
+  {
+    slug: 'estado-de-mexico',
+    name: 'Estado de México',
+    state: 'Estado de México',
+    intro:
+      'El Estado de México es el segundo estado con mayor número de establecimientos médicos del país. COFEPRIS opera con delegación en Toluca y Naucalpan. Trámites para clínicas, laboratorios y centros de diagnóstico en toda la zona metropolitana.',
   },
 ];
 

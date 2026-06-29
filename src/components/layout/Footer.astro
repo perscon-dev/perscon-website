@@ -42,6 +42,58 @@ const recursos = [
     label: "Licencias COFEPRIS CDMX",
     href: "/licencias-cofepris/ciudad/cdmx/",
   },
+  {
+    label: "Licencias COFEPRIS Monterrey",
+    href: "/licencias-cofepris/ciudad/monterrey/",
+  },
+  {
+    label: "Licencias COFEPRIS Guadalajara",
+    href: "/licencias-cofepris/ciudad/guadalajara/",
+  },
+  {
+    label: "Licencias COFEPRIS Puebla",
+    href: "/licencias-cofepris/ciudad/puebla/",
+  },
+  {
+    label: "Licencias COFEPRIS Querétaro",
+    href: "/licencias-cofepris/ciudad/queretaro/",
+  },
+  {
+    label: "Licencias COFEPRIS Tijuana",
+    href: "/licencias-cofepris/ciudad/tijuana/",
+  },
+  {
+    label: "Licencias COFEPRIS Mérida",
+    href: "/licencias-cofepris/ciudad/merida/",
+  },
+  {
+    label: "Licencias COFEPRIS León",
+    href: "/licencias-cofepris/ciudad/leon/",
+  },
+  {
+    label: "Licencias COFEPRIS Hermosillo",
+    href: "/licencias-cofepris/ciudad/sonora/",
+  },
+  {
+    label: "Licencias COFEPRIS Culiacán",
+    href: "/licencias-cofepris/ciudad/sinaloa/",
+  },
+  {
+    label: "Licencias COFEPRIS Chihuahua",
+    href: "/licencias-cofepris/ciudad/chihuahua/",
+  },
+  {
+    label: "Licencias COFEPRIS Saltillo",
+    href: "/licencias-cofepris/ciudad/coahuila/",
+  },
+  {
+    label: "Licencias COFEPRIS Tampico",
+    href: "/licencias-cofepris/ciudad/tamaulipas/",
+  },
+  {
+    label: "Licencias COFEPRIS Estado de México",
+    href: "/licencias-cofepris/ciudad/estado-de-mexico/",
+  },
   { label: "Contacto", href: "/contacto/" },
 ];
 
@@ -345,31 +397,57 @@ const year = new Date().getFullYear();
         </ul>
       </div>
 
-      <!-- Columna 4: Recursos -->
-      <div>
-        <h2
-          class="text-[10px] font-semibold tracking-[0.18em] uppercase text-steel-300 mb-4 flex items-center gap-2"
-          style="font-family: var(--font-body);"
-        >
-          <span class="w-3 h-px bg-cofepris-700 inline-block"></span>
-          Recursos
-        </h2>
-        <ul class="space-y-2.5 mb-6" role="list">
-          {
-            recursos.map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  class="text-steel-400 hover:text-white text-sm transition-colors duration-150"
-                  style="font-family: var(--font-body);"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+<!-- Columna 4: Recursos -->
+<div>
+  <h2
+    class="text-[10px] font-semibold tracking-[0.18em] uppercase text-steel-300 mb-4 flex items-center gap-2"
+    style="font-family: var(--font-body);"
+  >
+    <span class="w-3 h-px bg-cofepris-700 inline-block"></span>
+    Recursos
+  </h2>
+  <ul class="space-y-2.5 mb-6" role="list">
+    {
+      recursos.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class="text-steel-400 hover:text-white text-sm transition-colors duration-150"
+            style="font-family: var(--font-body);"
+          >
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<!-- Columna 5: Cobertura Nacional -->
+<div>
+  <h2
+    class="text-[10px] font-semibold tracking-[0.18em] uppercase text-steel-300 mb-4 flex items-center gap-2"
+    style="font-family: var(--font-body);"
+  >
+    <span class="w-3 h-px bg-cofepris-700 inline-block"></span>
+    Cobertura Nacional
+  </h2>
+  <ul class="space-y-2.5" role="list">
+    {
+      CIUDADES_SEO.map((ciudad) => (
+        <li>
+          <a
+            href={`/licencias-cofepris/ciudad/${ciudad.slug}/`}
+            class="text-steel-400 hover:text-white text-sm transition-colors duration-150"
+            style="font-family: var(--font-body);"
+          >
+            {ciudad.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
 
       <!-- Columna 5: Legal -->
       <div>
