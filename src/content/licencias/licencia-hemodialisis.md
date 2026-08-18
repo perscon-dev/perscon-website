@@ -2,7 +2,7 @@
 title: "Licencia COFEPRIS Hemodiálisis | Requisitos y Guía"
 description: "Obtén la Licencia Sanitaria COFEPRIS para hemodiálisis. Requisitos, homoclave COFEPRIS-05-123-A y asesoría especializada en México."
 textoCofepris: "La Licencia Sanitaria para Establecimientos de Hemodiálisis es la autorización obligatoria que otorga la COFEPRIS para asegurar que las unidades de hemodiálisis cumplan con los estándares de seguridad e higiene necesarios."
-nombre: "Licencia Sanitaria para Establecimientos que ofrecen Servicios de Hemodiálisis"
+nombre: "Solicitud de Licencia Sanitaria para Establecimientos en que se presten Servicio de Hemodiálisis"
 norma: "Ley General de Salud (Arts. 198, 315, 369, 370, 371) · NOM-003-SSA3-2010"
 tiempo: "60 días hábiles"
 orden: 5

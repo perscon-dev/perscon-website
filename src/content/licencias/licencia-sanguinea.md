@@ -2,7 +2,7 @@
 title: "Licencia COFEPRIS Banco de Sangre | Requisitos y Asesoramiento"
 description: "Obtén la Licencia Sanitaria COFEPRIS para Bancos de Sangre. Requisitos, homoclave COFEPRIS-09-025-A, costos y asesoría especializada en México."
 textoCofepris: "La licencia sanitaria para un Banco de Sangre es la autorización técnica y legal emitida por la COFEPRIS que permite a un establecimiento obtener, recolectar, analizar, fraccionar, conservar, aplicar y proveer sangre humana; así como para analizar, conservar, aplicar y proveer los componentes de la misma."
-nombre: "Licencia Sanitaria COFEPRIS para Bancos de Sangre"
+nombre: "Solicitud de Licencia Sanitaria para Establecimientos de Salud con Servicios de Sangre."
 norma: "Ley General de Salud (Arts. 198, 315, 369, 370 y 371) · NOM-253-SSA1-2012"
 tiempo: "45 días hábiles"
 orden: 4

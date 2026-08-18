@@ -2,7 +2,7 @@
 title: "Licencia COFEPRIS Radiación | Requisitos y Trámite"
 description: "Tramita la Licencia Sanitaria COFEPRIS para rayos X, tomografía, mastografía y más. Requisitos, homoclave COFEPRIS-05-024-A y asesoría en México."
 textoCofepris: "La solicitud de licencia sanitaria para establecimientos que utilizan fuentes de radiación en la Modalidad de Rayos X para operar legalmente equipos de diagnóstico médico que generen radiación ionizante. Este trámite asegura que el establecimiento cumple con las condiciones de seguridad y protección radiológica dictadas por la normativa mexicana."
-nombre: "Licencia sanitaria para establecimientos que utilizan fuentes de radiación para fines médicos o de diagnóstico"
+nombre: "Solicitud de licencia sanitaria para establecimiento que utiliza fuentes de radiación para fines médicos o de diagnóstico."
 norma: "Ley General de Salud (Arts. 198, 315, 369, 370, 371) · NOM-229-SSA1-2002"
 tiempo: "60 días hábiles"
 orden: 3

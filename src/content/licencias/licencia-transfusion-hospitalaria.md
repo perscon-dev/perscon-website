@@ -2,7 +2,7 @@
 title: "Licencia COFEPRIS Servicio de Transfusión Hospitalario | Requisitos y Asesoramiento"
 description: "Obtén la Licencia Sanitaria COFEPRIS para Servicios de Transfusión Hospitalario. Requisitos, costo, trámite y asesoría especializada en México."
 textoCofepris: "La solicitud de Licencia Sanitaria para Servicio de Transfusión Hospitalario es la autorización oficial emitida por COFEPRIS que permite a los hospitales realizar la recepción, conservación, compatibilidad y administración de componentes sanguíneos, obtenidos de un banco de sangre."
-nombre: "Licencia Sanitaria para Establecimientos de Salud con Servicios de Transfusión Hospitalario"
+nombre: "Solicitud de Licencia Sanitaria para Servicio de Transfusión Hospitalario"
 norma: "Ley General de Salud (Arts. 315, 369, 370 y 371) · NOM-253-SSA1-2012"
 tiempo: "45 días hábiles"
 orden: 4

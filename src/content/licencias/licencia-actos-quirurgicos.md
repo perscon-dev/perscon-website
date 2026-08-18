@@ -2,7 +2,7 @@
 title: "Licencia Sanitaria COFEPRIS para Quirófanos y Cirugía | Asesoría y Gestión Integral"
 description: "Obtén tu Licencia Sanitaria COFEPRIS para quirófanos, hospitales y cirugía ambulatoria. Asesoría especializada, integración de expediente y gestión del trámite."
 textoCofepris: "La solicitud de Licencia Sanitaria es la autorización emitida por COFEPRIS para hospitales, clínicas y sanatorios que realizan actos quirúrgicos, obstétricos o procedimientos de cirugía ambulatoria. Evalúa la infraestructura, diseño arquitectónico y equipo médico del establecimiento, asegurando las condiciones sanitarias y de seguridad antes de iniciar operaciones."
-nombre: "Licencia Sanitaria para Establecimientos en que se practiquen Actos Quirúrgicos y/u Obstétricos"
+nombre: "Solicitud de Licencia Sanitaria para Establecimientos en que se practiquen Actos Quirúrgicos y/u Obstétricos."
 norma: "Ley General de Salud (Arts. 198, 315, 369, 370, 371) · NOM-016-SSA3-2012 · Reglamento LGS Art. 222"
 tiempo: "60 días hábiles"
 orden: 2

@@ -1,6 +1,13 @@
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /admin/
 
-Sitemap: https://www.perscon.com.mx/sitemap-index.xml
+Sitemap: https://www.perscon.com.mx/sitemap.xml
+
+# Disallow crawl of admin and private pages
+Disallow: /admin/
+Disallow: /contacto/thanks/
+Disallow: /privacidad/
+Disallow: /terminos/
+
+# Crawl-delay
+Crawl-delay: 5

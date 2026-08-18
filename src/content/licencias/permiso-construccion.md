@@ -2,7 +2,7 @@
 title: "Permiso Sanitario de Construcción COFEPRIS | Asesoría y Gestión para Clínicas y Hospitales"
 description: "Obtén el Permiso Sanitario de Construcción COFEPRIS para hospitales, clínicas y laboratorios. Asesoría especializada y gestión completa del trámite."
 textoCofepris: "El Permiso Sanitario de Construcción COFEPRIS es una autorización obligatoria para la construcción, ampliación o remodelación de hospitales, clínicas, laboratorios y otros establecimientos de atención médica en México."
-nombre: "Permiso Sanitario de Construcción de Establecimientos Médicos"
+nombre: "Solicitud de permiso sanitario de construcción de establecimientos médicos: Gestión y Asesoría"
 norma: "Reglamento de la Ley General de Salud en Materia de Prestación de Servicios de Atención Médica"
 tiempo: "60 días hábiles"
 orden: 1
