@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://www.perscon.com.mx',
+  site: 'https://perscon.com.mx',
 
   vite: {
     plugins: [tailwindcss()],
