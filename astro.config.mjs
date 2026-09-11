@@ -27,7 +27,7 @@ export default defineConfig({
         } else if (url.includes('/recursos/')) {
           item.priority = 0.8;
           item.changefreq = 'monthly';
-        } else if (url === 'https://www.perscon.com.mx/') {
+        } else if (url === 'https://perscon.com.mx/') {
           item.priority = 1;
           item.changefreq = 'weekly';
         }
