@@ -12,6 +12,7 @@ export default defineConfig({
 
   integrations: [
     sitemap({
+      filter: (page) => !/\/(privacidad|terminos|404)\/?$/.test(page),
       serialize(item) {
         const url = item.url;
 

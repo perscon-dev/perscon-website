@@ -8,11 +8,15 @@ export interface CiudadSeo {
   name: string;
   state: string;
   intro: string;
+  /** Municipios o zonas donde atendemos establecimientos */
+  zonas: string[];
+  /** Slug de un caso de éxito real en la zona (opcional) */
+  casoSlug?: string;
 }
 
 export interface LicenciaSeoMeta {
   homoclave: string;
-  /** Meta title (Layout añade | Perscon) */
+  /** Meta title sin marca (Layout añade " | Perscon"); ≤ 50 caracteres */
   title: string;
   description: string;
   /** Variante corta para H1 si el nombre oficial es muy largo */
@@ -20,128 +24,53 @@ export interface LicenciaSeoMeta {
   keywords: string[];
 }
 
+function ciudad(
+  slug: string,
+  name: string,
+  state: string,
+  zonas: string[],
+  extra = '',
+  casoSlug?: string,
+): CiudadSeo {
+  const ambito = name === state ? name : `${name} y ${state}`;
+  return {
+    slug,
+    name,
+    state,
+    zonas,
+    casoSlug,
+    intro: `${extra ? extra + ' ' : ''}Te asesoramos para tramitar licencias sanitarias COFEPRIS en ${ambito}: clínicas, hospitales, bancos de sangre, centros de hemodiálisis y establecimientos con fuentes de radiación. La licencia es un trámite federal, con los mismos requisitos en todo el país.`,
+  };
+}
+
 export const CIUDADES_SEO: CiudadSeo[] = [
-  {
-    slug: 'cdmx',
-    name: 'Ciudad de México',
-    state: 'CDMX',
-    intro:
-      'La CDMX concentra el mayor número de establecimientos médicos privados del país. COFEPRIS federal gestiona licencias sanitarias para clínicas, hospitales y centros de diagnóstico en todas las alcaldías. Delegación COFEPRIS: Av. Universidad 2748, Coyoacán.',
-  },
-  {
-    slug: 'monterrey',
-    name: 'Monterrey',
-    state: 'Nuevo León',
-    intro:
-      'Monterrey y el área metropolitana de Nuevo León tienen alta demanda de licencias COFEPRIS para hospitales, clínicas de especialidad y centros de imagen diagnóstica en expansión. Delegación COFEPRIS: Av. General Ramón Méndez 1500, San Pedro Garza García.',
-  },
-  {
-    slug: 'guadalajara',
-    name: 'Guadalajara',
-    state: 'Jalisco',
-    intro:
-      'Guadalajara es uno de los polos hospitalarios más importantes del occidente de México. Los trámites COFEPRIS para obra nueva, remodelación y operación siguen los mismos requisitos federales. Delegación COFEPRIS: Av. Vallarta 3559, Col. Jardines del Pedregal.',
-  },
-  {
-    slug: 'puebla',
-    name: 'Puebla',
-    state: 'Puebla',
-    intro:
-      'En Puebla y su zona conurbada crecen clínicas, laboratorios y unidades de hemodiálisis que requieren licencia sanitaria federal antes de operar legalmente. Delegación COFEPRIS: Blvd. Alcalde 1200, Puebla, Puebla.',
-  },
-  {
-    slug: 'queretaro',
-    name: 'Querétaro',
-    state: 'Querétaro',
-    intro:
-      'Querétaro destaca por inversión en infraestructura de salud privada. El Permiso Sanitario de Construcción y las licencias de funcionamiento COFEPRIS son requisitos previos a la apertura. Delegación COFEPRIS: Av. Universidad 100, Col. San Juan del Río.',
-  },
-  {
-    slug: 'tijuana',
-    name: 'Tijuana',
-    state: 'Baja California',
-    intro:
-      'Tijuana es un hub médico clave en la frontera norte. Los establecimientos requieren licencias COFEPRIS para operar legalmente, con énfasis en clínicas de especialidad y centros de diagnóstico. Delegación COFEPRIS: Calle Madero 1450, Zona Centro.',
-  },
-  {
-    slug: 'merida',
-    name: 'Mérida',
-    state: 'Yucatán',
-    intro:
-      'Mérida y la península de Yucatán tienen un creciente parque médico privado. Las licencias COFEPRIS para hospitales, clínicas y centros de imagen, con requisitos federales estandarizados. Delegación COFEPRIS: Calle 60 No. 505, Col. Centro.',
-  },
-  {
-    slug: 'leon',
-    name: 'León',
-    state: 'Guanajuato',
-    intro:
-      'León es un centro médico y de manufactura en el Bajío. Los trámites de licencias COFEPRIS para clínicas y laboratorios siguen los protocolos federales, con alta demanda por servicios de hemodiálisis y radiación. Delegación COFEPRIS: Calle Hidalgo 200, León, Guanajuato.',
-  },
-  {
-    slug: 'cancun',
-    name: 'Cancún',
-    state: 'Quintana Roo',
-    intro:
-      'Cancún y la Riviera Maya requieren licencias COFEPRIS para clínicas, centros de cirugía y hospitales privados que atienden turismo médico. La gestión se alinea con normas federales y requerimientos de infraestructura. Delegación COFEPRIS: Av. Tulum 1050, Zona Hotelera.',
-  },
-  {
-    slug: 'juarez',
-    name: 'Ciudad Juárez',
-    state: 'Chihuahua',
-    intro:
-      'Ciudad Juárez es un punto crítico de atención médica en la frontera. Las licencias COFEPRIS para clínicas y hospitales se gestionan ante la autoridad federal, con énfasis en servicios de emergencia y diagnóstico. Delegación COFEPRIS: Av. Juárez 2500, Col. Centro.',
-  },
-  {
-    slug: 'sonora',
-    name: 'Hermosillo',
-    state: 'Sonora',
-    intro:
-      'Hermosillo es el principal centro médico del estado de Sonora. Las licencias COFEPRIS son obligatorias para clínicas, hospitales y centros de diagnóstico. Delegación COFEPRIS: Av. Universidad 1500, Col. San José.',
-  },
-  {
-    slug: 'sinaloa',
-    name: 'Culiacán',
-    state: 'Sinaloa',
-    intro:
-      'Culiacán es el núcleo sanitario de Sinaloa. Los establecimientos requieren licencia COFEPRIS para operar con normas federales. Delegación COFEPRIS: Calle Paseo del Río 450, Col. Centro.',
-  },
-  {
-    slug: 'chihuahua',
-    name: 'Chihuahua',
-    state: 'Chihuahua',
-    intro:
-      'Chihuahua es un centro de salud clave en el norte. Las licencias COFEPRIS se gestionan ante la delegación estatal, con requisitos para hospitales y centros de emergencia. Delegación COFEPRIS: Av. Hidalgo 1200, Col. Centro.',
-  },
-  {
-    slug: 'coahuila',
-    name: 'Saltillo',
-    state: 'Coahuila',
-    intro:
-      'Saltillo es la capital sanitaria de Coahuila. Las licencias COFEPRIS son requeridas para clínicas, laboratorios y unidades de hemodiálisis. Delegación COFEPRIS: Blvd. Lázaro Cárdenas 1250, Col. Centro.',
-  },
-  {
-    slug: 'tamaulipas',
-    name: 'Tampico',
-    state: 'Tamaulipas',
-    intro:
-      'Tampico es el principal centro médico de Tamaulipas. Las licencias COFEPRIS se gestionan ante la delegación estatal, con énfasis en servicios de salud pública y privada. Delegación COFEPRIS: Calle Morelos 100, Tampico, Tamaulipas.',
-  },
-  {
-    slug: 'estado-de-mexico',
-    name: 'Estado de México',
-    state: 'Estado de México',
-    intro:
-      'El Estado de México es el segundo estado con mayor número de establecimientos médicos del país. COFEPRIS opera con delegación en Toluca y Naucalpan. Trámites para clínicas, laboratorios y centros de diagnóstico en toda la zona metropolitana.',
-  },
+  ciudad('cdmx', 'Ciudad de México', 'CDMX', ['Cuauhtémoc', 'Miguel Hidalgo', 'Benito Juárez', 'Coyoacán', 'Álvaro Obregón', 'Tlalpan', 'Gustavo A. Madero', 'Iztapalapa'], 'La Ciudad de México se divide en 16 alcaldías y atendemos establecimientos en cualquiera de ellas.'),
+  ciudad('monterrey', 'Monterrey', 'Nuevo León', ['Monterrey', 'San Pedro Garza García', 'San Nicolás de los Garza', 'Guadalupe', 'Apodaca', 'General Escobedo', 'Santa Catarina']),
+  ciudad('guadalajara', 'Guadalajara', 'Jalisco', ['Guadalajara', 'Zapopan', 'San Pedro Tlaquepaque', 'Tonalá', 'Tlajomulco de Zúñiga', 'El Salto']),
+  ciudad('puebla', 'Puebla', 'Puebla', ['Puebla', 'San Andrés Cholula', 'San Pedro Cholula', 'Cuautlancingo', 'Amozoc']),
+  ciudad('queretaro', 'Querétaro', 'Querétaro', ['Querétaro', 'Corregidora', 'El Marqués', 'San Juan del Río']),
+  ciudad('tijuana', 'Tijuana', 'Baja California', ['Tijuana', 'Playas de Rosarito', 'Tecate']),
+  ciudad('merida', 'Mérida', 'Yucatán', ['Mérida', 'Kanasín', 'Umán', 'Progreso', 'Valladolid']),
+  ciudad('leon', 'León', 'Guanajuato', ['León', 'Silao de la Victoria', 'Irapuato', 'San Francisco del Rincón', 'Purísima del Rincón']),
+  ciudad('guanajuato', 'Guanajuato', 'Guanajuato', ['Guanajuato capital', 'Irapuato', 'Celaya', 'Salamanca', 'San Miguel de Allende', 'Silao de la Victoria']),
+  ciudad('cancun', 'Cancún', 'Quintana Roo', ['Cancún', 'Playa del Carmen', 'Puerto Morelos', 'Tulum', 'Isla Mujeres', 'Cozumel']),
+  ciudad('juarez', 'Ciudad Juárez', 'Chihuahua', ['Ciudad Juárez'], 'Ciudad Juárez es ciudad fronteriza con El Paso, Texas.'),
+  ciudad('sonora', 'Hermosillo', 'Sonora', ['Hermosillo', 'Guaymas', 'Cajeme (Ciudad Obregón)', 'Nogales', 'San Luis Río Colorado']),
+  ciudad('sinaloa', 'Culiacán', 'Sinaloa', ['Culiacán', 'Mazatlán', 'Ahome (Los Mochis)', 'Navolato'], '', 'licencia-clinica-munich'),
+  ciudad('chihuahua', 'Chihuahua', 'Chihuahua', ['Chihuahua', 'Cuauhtémoc', 'Delicias', 'Hidalgo del Parral']),
+  ciudad('coahuila', 'Saltillo', 'Coahuila', ['Saltillo', 'Ramos Arizpe', 'Torreón', 'Monclova', 'Piedras Negras']),
+  ciudad('tamaulipas', 'Tampico', 'Tamaulipas', ['Tampico', 'Ciudad Madero', 'Altamira', 'Reynosa', 'Matamoros', 'Ciudad Victoria', 'Nuevo Laredo']),
+  ciudad('toluca', 'Toluca', 'Estado de México', ['Toluca', 'Metepec', 'Zinacantepec', 'Lerma', 'San Mateo Atenco']),
+  ciudad('estado-de-mexico', 'Estado de México', 'Estado de México', ['Naucalpan de Juárez', 'Ecatepec de Morelos', 'Tlalnepantla de Baz', 'Cuautitlán Izcalli', 'Huixquilucan', 'Nezahualcóyotl'], '', 'permiso-construccion-unidad-hemodialisis-estado-de-mexico'),
 ];
 
 export const LICENCIAS_SEO: Record<string, LicenciaSeoMeta> = {
   'permiso-construccion': {
     homoclave: 'COFEPRIS-05-033',
-    title: 'Permiso Sanitario de Construcción COFEPRIS 2026 | Requisitos y Trámite',
+    title: 'Permiso Sanitario de Construcción COFEPRIS',
     description:
-      'Tramita el Permiso Sanitario de Construcción COFEPRIS (homoclave 05-033) para clínicas, hospitales y laboratorios en México. Requisitos, tiempos y asesoría especializada.',
-    h1: 'Permiso Sanitario de Construcción COFEPRIS',
+      'Permiso sanitario de construcción de establecimientos médicos (homoclave 05-033) para clínicas, hospitales y laboratorios. Requisitos y consulta gratuita.',
+    h1: 'Permiso Sanitario de Construcción de Establecimientos Médicos',
     keywords: [
       'permiso sanitario de construcción COFEPRIS',
       'permiso COFEPRIS construcción clínica',
@@ -151,9 +80,9 @@ export const LICENCIAS_SEO: Record<string, LicenciaSeoMeta> = {
   },
   'licencia-actos-quirurgicos': {
     homoclave: 'COFEPRIS-05-034',
-    title: 'Licencia Actos Quirúrgicos COFEPRIS 2026 | Requisitos y Trámite',
+    title: 'Licencia Sanitaria COFEPRIS para Actos Quirúrgicos',
     description:
-      'Obtén la licencia COFEPRIS para actos quirúrgicos y obstétricos (homoclave 05-034). Requisitos NOM-016, tiempos, costos de derechos y gestión integral del trámite en México.',
+      'Licencia COFEPRIS para clínicas y hospitales con actos quirúrgicos y obstétricos (homoclave 05-034): requisitos NOM-016 y acompañamiento. Consulta gratuita.',
     h1: 'Licencia COFEPRIS para Actos Quirúrgicos y Obstétricos',
     keywords: [
       'licencia actos quirúrgicos COFEPRIS',
@@ -164,9 +93,9 @@ export const LICENCIAS_SEO: Record<string, LicenciaSeoMeta> = {
   },
   'licencia-radiacion': {
     homoclave: 'COFEPRIS-05-024-A',
-    title: 'Licencia Rayos X y Radiación COFEPRIS 2026 | Requisitos',
+    title: 'Licencia Sanitaria Fuentes de Radiación COFEPRIS',
     description:
-      'Licencia sanitaria COFEPRIS para rayos X, tomografía y equipos de radiación (homoclave 05-024-A). Requisitos NOM-229, blindajes, tiempos y asesoría en México.',
+      'Licencia sanitaria COFEPRIS para rayos X, tomografía y equipos de radiación (homoclave 05-024-A): requisitos NOM-229 y acompañamiento. Consulta gratuita.',
     h1: 'Licencia COFEPRIS para Fuentes de Radiación Médica',
     keywords: [
       'licencia rayos x COFEPRIS',
@@ -177,9 +106,9 @@ export const LICENCIAS_SEO: Record<string, LicenciaSeoMeta> = {
   },
   'licencia-sanguinea': {
     homoclave: 'COFEPRIS-09-025-A',
-    title: 'Licencia Banco de Sangre COFEPRIS 2026 | Requisitos y Trámite',
+    title: 'Licencia Sanitaria Banco de Sangre COFEPRIS',
     description:
-      'Licencia sanitaria COFEPRIS para bancos de sangre (homoclave 09-025-A). Requisitos NOM-253, documentación, tiempos y asesoría para obtener la autorización en México.',
+      'Licencia sanitaria COFEPRIS para bancos de sangre (homoclave 09-025-A): requisitos NOM-253, documentación y acompañamiento en el trámite. Consulta gratuita.',
     h1: 'Licencia COFEPRIS para Bancos de Sangre',
     keywords: [
       'licencia banco de sangre COFEPRIS',
@@ -190,10 +119,10 @@ export const LICENCIAS_SEO: Record<string, LicenciaSeoMeta> = {
   },
   'licencia-transfusion-hospitalaria': {
     homoclave: 'COFEPRIS-09-025-E',
-    title: 'Licencia Transfusión Hospitalaria COFEPRIS 2026 | Requisitos',
+    title: 'Licencia de Transfusión Sanguínea COFEPRIS',
     description:
-      'Licencia COFEPRIS para servicios de transfusión hospitalaria (homoclave 09-025-E). Requisitos, costos de derechos, tiempos y gestión del trámite ante COFEPRIS en México.',
-    h1: 'Licencia COFEPRIS de Transfusión Hospitalaria',
+      'Licencia COFEPRIS-09-025-E para servicios de transfusión sanguínea hospitalaria: requisitos, documentación y acompañamiento en el trámite. Consulta gratuita.',
+    h1: 'Licencia COFEPRIS de Transfusión Sanguínea Hospitalaria',
     keywords: [
       'licencia transfusión hospitalaria COFEPRIS',
       'COFEPRIS-09-025-E',
@@ -203,9 +132,9 @@ export const LICENCIAS_SEO: Record<string, LicenciaSeoMeta> = {
   },
   'licencia-hemodialisis': {
     homoclave: 'COFEPRIS-05-123-A',
-    title: 'Licencia Hemodiálisis COFEPRIS 2026 | Requisitos y Trámite',
+    title: 'Licencia Sanitaria Hemodiálisis COFEPRIS',
     description:
-      'Licencia sanitaria COFEPRIS para centros y unidades de hemodiálisis (homoclave 05-123-A). Requisitos NOM-003, documentación, tiempos y asesoría especializada en México.',
+      'Licencia sanitaria COFEPRIS para unidades de hemodiálisis (homoclave 05-123-A): requisitos NOM-003, documentación y acompañamiento. Consulta gratuita.',
     h1: 'Licencia COFEPRIS para Servicios de Hemodiálisis',
     keywords: [
       'licencia hemodiálisis COFEPRIS',

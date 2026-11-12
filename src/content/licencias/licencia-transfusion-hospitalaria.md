@@ -186,7 +186,7 @@ faq:
 ogImage: "/og/licencias/licencia-transfusion-hospitalaria.webp"
 ---
 
-# **Licencia Sanitaria COFEPRIS para Servicios de Transfusión Hospitalario en México**
+**Licencia Sanitaria COFEPRIS para Servicios de Transfusión Hospitalario en México**
 -
 La solicitud de Licencia Sanitaria para Servicio de Transfusión Hospitalario es la autorización oficial emitida por COFEPRIS que permite a los hospitales realizar la recepción, conservación, compatibilidad y administración de componentes sanguíneos, obtenidos de un banco de sangre.
 

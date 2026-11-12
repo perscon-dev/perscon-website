@@ -39,63 +39,8 @@ const recursos = [
   { label: "Recursos COFEPRIS", href: "/recursos/" },
   { label: "Preguntas Frecuentes", href: "/preguntas-frecuentes/" },
   { label: "Guía de Trámites COFEPRIS", href: "/guia-tramites-cofepris/" },
+  { label: "Asesoría para Licencias Sanitarias", href: "/asesoria-licencias-sanitarias/" },
   { label: "Requisitos por Licencia", href: "/requisitos/" },
-  {
-    label: "Licencias COFEPRIS CDMX",
-    href: "/licencias-cofepris/ciudad/cdmx/",
-  },
-  {
-    label: "Licencias COFEPRIS Monterrey",
-    href: "/licencias-cofepris/ciudad/monterrey/",
-  },
-  {
-    label: "Licencias COFEPRIS Guadalajara",
-    href: "/licencias-cofepris/ciudad/guadalajara/",
-  },
-  {
-    label: "Licencias COFEPRIS Puebla",
-    href: "/licencias-cofepris/ciudad/puebla/",
-  },
-  {
-    label: "Licencias COFEPRIS Querétaro",
-    href: "/licencias-cofepris/ciudad/queretaro/",
-  },
-  {
-    label: "Licencias COFEPRIS Tijuana",
-    href: "/licencias-cofepris/ciudad/tijuana/",
-  },
-  {
-    label: "Licencias COFEPRIS Mérida",
-    href: "/licencias-cofepris/ciudad/merida/",
-  },
-  {
-    label: "Licencias COFEPRIS León",
-    href: "/licencias-cofepris/ciudad/leon/",
-  },
-  {
-    label: "Licencias COFEPRIS Hermosillo",
-    href: "/licencias-cofepris/ciudad/sonora/",
-  },
-  {
-    label: "Licencias COFEPRIS Culiacán",
-    href: "/licencias-cofepris/ciudad/sinaloa/",
-  },
-  {
-    label: "Licencias COFEPRIS Chihuahua",
-    href: "/licencias-cofepris/ciudad/chihuahua/",
-  },
-  {
-    label: "Licencias COFEPRIS Saltillo",
-    href: "/licencias-cofepris/ciudad/coahuila/",
-  },
-  {
-    label: "Licencias COFEPRIS Tampico",
-    href: "/licencias-cofepris/ciudad/tamaulipas/",
-  },
-  {
-    label: "Licencias COFEPRIS Estado de México",
-    href: "/licencias-cofepris/ciudad/estado-de-mexico/",
-  },
   { label: "Contacto", href: "/contacto/" },
 ];
 
@@ -170,7 +115,7 @@ const year = new Date().getFullYear();
         >
           <img
             src="/images/Logo/Logo.webp"
-            alt="Perscon logo"
+            alt="Perscon — Asesoría COFEPRIS"
             class="h-22 w-auto"
             width="36"
             height="36"
@@ -320,13 +265,13 @@ const year = new Date().getFullYear();
 
       <!-- Columna 2: Licencias COFEPRIS -->
       <div>
-        <h2
+        <p
           class="text-[10px] font-semibold tracking-[0.18em] uppercase text-steel-300 mb-4 flex items-center gap-2"
           style="font-family: var(--font-body);"
         >
           <span class="w-3 h-px bg-cofepris-700 inline-block"></span>
           Licencias COFEPRIS
-        </h2>
+        </p>
         <ul class="space-y-2.5" role="list">
           {
             licencias.map((item) => (
@@ -375,13 +320,13 @@ const year = new Date().getFullYear();
 
       <!-- Columna 3: Empresa -->
       <div>
-        <h2
+        <p
           class="text-[10px] font-semibold tracking-[0.18em] uppercase text-steel-300 mb-4 flex items-center gap-2"
           style="font-family: var(--font-body);"
         >
           <span class="w-3 h-px bg-cofepris-700 inline-block"></span>
           Empresa
-        </h2>
+        </p>
         <ul class="space-y-2.5" role="list">
           {
             empresa.map((item) => (
@@ -401,13 +346,13 @@ const year = new Date().getFullYear();
 
       <!-- Columna 4: Recursos -->
       <div>
-        <h2
+        <p
           class="text-[10px] font-semibold tracking-[0.18em] uppercase text-steel-300 mb-4 flex items-center gap-2"
           style="font-family: var(--font-body);"
         >
           <span class="w-3 h-px bg-cofepris-700 inline-block"></span>
           Recursos
-        </h2>
+        </p>
         <ul class="space-y-2.5 mb-6" role="list">
           {
             recursos.map((item) => (
@@ -427,13 +372,13 @@ const year = new Date().getFullYear();
 
       <!-- Columna 5: Cobertura Nacional -->
       <div>
-        <h2
+        <p
           class="text-[10px] font-semibold tracking-[0.18em] uppercase text-steel-300 mb-4 flex items-center gap-2"
           style="font-family: var(--font-body);"
         >
           <span class="w-3 h-px bg-cofepris-700 inline-block"></span>
           Cobertura Nacional
-        </h2>
+        </p>
         <ul class="space-y-2.5" role="list">
           {
             CIUDADES_SEO.map((ciudad) => (
@@ -468,6 +413,10 @@ const year = new Date().getFullYear();
           >Perscon</a
         >. Todos los derechos reservados.
       </p>
+      <nav aria-label="Información legal" class="flex items-center gap-4 text-xs" style="font-family: var(--font-body);">
+        <a href="/privacidad/" class="text-steel-300 hover:text-white transition-colors duration-150">Política de privacidad</a>
+        <a href="/terminos/" class="text-steel-300 hover:text-white transition-colors duration-150">Términos de servicio</a>
+      </nav>
     </div>
   </div>
 </footer>

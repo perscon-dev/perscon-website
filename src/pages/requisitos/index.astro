@@ -144,10 +144,10 @@ const documentosComunes = [
 ---
 
 <Layout
-  title="Requisitos por Licencia COFEPRIS para Establecimientos Médicos"
-  description="Lista completa de documentos requeridos para cada tipo de licencia sanitaria COFEPRIS: permiso de construcción, quirúrgica, radiación, banco de sangre y hemodiálisis."
-  canonical="/requisitos"
-  breadcrumbs={[{ name: 'Requisitos por Licencia', url: '/requisitos' }]}
+  title="Requisitos COFEPRIS por Tipo de Licencia"
+  description="Requisitos COFEPRIS y documentos para cada licencia sanitaria: construcción, quirúrgica, radiación, banco de sangre y hemodiálisis. Consulta gratuita."
+  canonical="/requisitos/"
+  breadcrumbs={[{ name: 'Requisitos por Licencia', url: '/requisitos/' }]}
 >
 
   <!-- Hero -->
@@ -225,7 +225,7 @@ const documentosComunes = [
       </aside>
 
       <!-- Licencias -->
-      <main>
+      <div>
         <div class="space-y-8">
           {licencias.map((lic) => (
             <article
@@ -289,7 +289,7 @@ const documentosComunes = [
             </article>
           ))}
         </div>
-      </main>
+      </div>
 
     </div>
   </div>

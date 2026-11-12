@@ -168,7 +168,7 @@ faq:
 ogImage: "/og/licencias/licencia-sangre.webp"
 ---
 
-# **Licencia Sanitaria COFEPRIS para Bancos de Sangre en México**
+**Licencia Sanitaria COFEPRIS para Bancos de Sangre en México**
 -
 La licencia sanitaria para un Banco de Sangre es la autorización técnica y legal emitida por la COFEPRIS que permite a un establecimiento obtener, recolectar, analizar, fraccionar, conservar, aplicar y proveer sangre humana; así como para analizar, conservar, aplicar y proveer los componentes de la misma.
 

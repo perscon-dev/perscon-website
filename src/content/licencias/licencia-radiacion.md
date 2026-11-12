@@ -100,7 +100,7 @@ faq:
 ogImage: "/og/licencias/licencia-radiacion.webp"
 ---
 
-# **Licencia Sanitaria COFEPRIS para Fuentes de Radiación en México**
+**Licencia Sanitaria COFEPRIS para Fuentes de Radiación en México**
 -
 La solicitud de **licencia sanitaria para establecimientos que utilizan fuentes de radiación en la Modalidad de Rayos X** para operar legalmente equipos de diagnóstico médico que generen radiación ionizante. Este trámite **asegura que el establecimiento cumple con las condiciones de seguridad y protección radiológica dictadas por la normativa mexicana**.
 
