@@ -16,7 +16,7 @@ metricas:
     etiqueta: "años de vigencia"
   - valor: "Acondicionamiento"
     etiqueta: "modalidad"
-featured: false
+featured: true
 orden: 3
 ---
 

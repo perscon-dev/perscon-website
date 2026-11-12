@@ -7,7 +7,7 @@ licencias:
   - licencia-sanguinea
   - licencia-transfusion-hospitalaria
   - licencia-hemodialisis
-borrador: true
+borrador: false
 ---
 
 Una licencia sanitaria COFEPRIS es la autorización oficial para que un establecimiento médico opere legalmente en México. Cuál necesitas depende de la actividad que realizas.

@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import { CIUDADES_SEO } from "../../data/licenciasSeo";
 
 const licencias = [
@@ -43,6 +44,12 @@ const recursos = [
   { label: "Requisitos por Licencia", href: "/requisitos/" },
   { label: "Contacto", href: "/contacto/" },
 ];
+
+const articulosFooter = (await getCollection("articulos", ({ data }) => !data.borrador)).map((a) => ({
+  label: a.data.title,
+  href: `/recursos/${a.slug}/`,
+}));
+recursos.splice(recursos.length - 1, 0, ...articulosFooter);
 
 const year = new Date().getFullYear();
 ---

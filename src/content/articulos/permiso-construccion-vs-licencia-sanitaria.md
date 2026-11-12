@@ -4,7 +4,7 @@ description: "Diferencia entre el Permiso Sanitario de Construcción y la Licenc
 licencias:
   - permiso-construccion
   - licencia-actos-quirurgicos
-borrador: true
+borrador: false
 ---
 
 Muchos establecimientos médicos confunden el Permiso Sanitario de Construcción con la Licencia Sanitaria. **Son trámites distintos y secuenciales.**

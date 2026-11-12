@@ -1,4 +1,6 @@
 ---
+import { getCollection } from 'astro:content';
+
 interface Props {
   slug: string;
   homoclave?: string;
@@ -6,11 +8,19 @@ interface Props {
 
 const { slug, homoclave } = Astro.props;
 
+const articulosRel = (await getCollection('articulos', ({ data }) => !data.borrador && data.licencias.includes(slug)))
+  .map((a) => ({ titulo: a.data.title, desc: a.data.description, href: `/recursos/${a.slug}/` }));
+
 const enlaces = [
   {
     titulo: 'Requisitos documentales',
     desc: 'Lista completa de documentos para esta licencia',
     href: `/requisitos/#${slug}`,
+  },
+  {
+    titulo: 'Asesoría según tu situación',
+    desc: 'Abrir, actualizar o atender un requerimiento de COFEPRIS',
+    href: '/asesoria-licencias-sanitarias/',
   },
   {
     titulo: 'Guía paso a paso COFEPRIS',
@@ -38,6 +48,8 @@ const enlaces = [
     href: '/preguntas-frecuentes/',
   },
 ];
+
+enlaces.push(...articulosRel);
 ---
 
 <section aria-labelledby="recursos-relacionados-heading">
