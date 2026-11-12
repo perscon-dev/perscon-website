@@ -4,7 +4,6 @@ import Footer from "../components/layout/Footer.astro";
 import CookieBanner from "../components/layout/CookieBanner.astro";
 import "../styles/global.css";
 import WhatsAppFloat from "../components/layout/WhatsAppFloat.astro";
-import { CIUDADES_SEO } from "../data/licenciasSeo.ts";
 
 interface BreadcrumbItem {
   name: string;
@@ -55,7 +54,7 @@ const {
   ogTitle,
 } = Astro.props;
 
-const fullTitle = `${title} | ${SITE_NAME}`;
+const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
 const ogPageTitle = ogTitle || title;
 const canonicalUrl = canonical.startsWith("http")
   ? canonical
@@ -94,7 +93,6 @@ const schemaOrganization = {
   "@id": `${SITE_URL}/#organization`,
   name: SITE_NAME,
   url: SITE_URL,
-  foundingDate: "2015",
   logo: {
     "@type": "ImageObject",
     url: `${SITE_URL}/og/logo.png`,
@@ -106,24 +104,10 @@ const schemaOrganization = {
   description: SITE_DESC,
   telephone: PHONE,
   email: EMAIL,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Sor Juana Ines de la Cruz Manzana 032 Lote Teléfo",
-    addressLocality: "Ricardo Flores Magon",
-    postalCode: "54607",
-    addressRegion: "Tepotzotlán",
-    addressCountry: "MX",
+  areaServed: {
+    "@type": "Country",
+    name: "México",
   },
-  areaServed: [
-    {
-      "@type": "State",
-      name: "Estado de México",
-    },
-    {
-      "@type": "Country",
-      name: "México",
-    },
-  ],
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "Customer Support",
@@ -132,21 +116,9 @@ const schemaOrganization = {
   },
   inLanguage: "es-MX",
   sameAs: [
-    "https://www.linkedin.com/company/perscon",
-    "https://www.facebook.com/perscon",
+    "https://www.facebook.com/perscon.mx",
+    "https://share.google/i7ukk8Rce8Vrg5H6f",
   ],
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 19.8126,
-    longitude: -99.3514,
-  },
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    opens: "09:00",
-    closes: "18:00",
-  },
-  priceRange: "$$$",
 };
 
 // Website
@@ -298,7 +270,7 @@ const allSchemas = [
 
   <body class={bodyClass}>
     <noscript>
-			<iframe 
+			<iframe title="Google Tag Manager" 
 				src="https://www.googletagmanager.com/ns.html?id=GTM-TGPV253D"
 				height="0" width="0" style="display:none;visibility:hidden">
 			</iframe>

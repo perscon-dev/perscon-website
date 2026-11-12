@@ -11,6 +11,7 @@ import LicenciaCard from "../../components/licencias/LicenciaCard.astro";
 import ServiciosGrid from "../../components/index/ServiciosGrid.astro";
 import Stats from "../../components/licencias-page/stats.astro";
 import Hero from "../../components/licencias-page/Hero.astro";
+import CiudadesGrid from "../../components/index/CiudadesGrid.astro";
 
 const SITE_URL = "https://www.perscon.com.mx";
 
@@ -89,8 +90,8 @@ const serviceSchema = {
 ---
 
 <BaseLayout
-  title="Licencias Sanitarias COFEPRIS para Establecimientos Médicos en México"
-  description="Gestionamos todas las licencias sanitarias COFEPRIS: actos quirúrgicos, radiación, bancos de sangre, hemodiálisis y permisos de construcción. Consulta gratuita."
+  title="Licencias Sanitarias COFEPRIS: Listado y Requisitos"
+  description="Listado de licencias sanitarias COFEPRIS para clínicas, hospitales, bancos de sangre, hemodiálisis y radiación. Conoce cada trámite. Consulta gratuita."
   canonical="/licencias-cofepris/"
   breadcrumbs={[{ name: "Licencias COFEPRIS", url: "/licencias-cofepris/" }]}
   pageSchema={[itemListSchema, collectionPageSchema, serviceSchema]}
@@ -98,4 +99,5 @@ const serviceSchema = {
   <Hero />
   <ServiciosGrid />
   <Stats />
+  <CiudadesGrid />
 </BaseLayout>

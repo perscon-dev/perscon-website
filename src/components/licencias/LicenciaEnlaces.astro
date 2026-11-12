@@ -1,10 +1,15 @@
 ---
+import { getCollection } from 'astro:content';
+
 interface Props {
   slug: string;
   homoclave?: string;
 }
 
 const { slug, homoclave } = Astro.props;
+
+const articulosRel = (await getCollection('articulos', ({ data }) => !data.borrador && data.licencias.includes(slug)))
+  .map((a) => ({ titulo: a.data.title, desc: a.data.description, href: `/recursos/${a.slug}/` }));
 
 const enlaces = [
   {
@@ -13,14 +18,24 @@ const enlaces = [
     href: `/requisitos/#${slug}`,
   },
   {
+    titulo: 'Asesoría según tu situación',
+    desc: 'Abrir, actualizar o atender un requerimiento de COFEPRIS',
+    href: '/asesoria-licencias-sanitarias/',
+  },
+  {
     titulo: 'Guía paso a paso COFEPRIS',
     desc: 'Proceso en 5 etapas: diagnóstico, expediente y resolución',
     href: '/guia-tramites-cofepris/',
   },
   {
-    titulo: 'Tiempos y costos de trámites',
-    desc: 'Plazos oficiales y factores que retrasan la licencia',
+    titulo: 'Tiempos de la licencia',
+    desc: 'Plazos de referencia y factores que retrasan el trámite',
     href: '/recursos/tiempos-licencias-cofepris/',
+  },
+  {
+    titulo: 'Costos y derechos COFEPRIS',
+    desc: 'Derechos gubernamentales y qué incluye la asesoría',
+    href: '/recursos/costos-tramites-cofepris/',
   },
   {
     titulo: 'Responsable Sanitario',
@@ -33,6 +48,8 @@ const enlaces = [
     href: '/preguntas-frecuentes/',
   },
 ];
+
+enlaces.push(...articulosRel);
 ---
 
 <section aria-labelledby="recursos-relacionados-heading">

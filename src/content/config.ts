@@ -63,7 +63,23 @@ const casosExitoCollection = defineCollection({
   }),
 });
 
+const articulosCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title:       z.string().max(70),
+    description: z.string().max(160),
+    /** Fechas solo si son reales; si faltan no se emiten en el schema */
+    fechaPublicacion:    z.string().optional(),
+    fechaActualizacion:  z.string().optional(),
+    /** Licencias relacionadas (slugs) para enlazar al final */
+    licencias:   z.array(z.string()).default([]),
+    /** true = no se publica ni entra al sitemap hasta que se apruebe */
+    borrador:    z.boolean().default(true),
+  }),
+});
+
 export const collections = {
   licencias: licenciasCollection,
   'casos-exito': casosExitoCollection,
+  articulos: articulosCollection,
 };

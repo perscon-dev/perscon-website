@@ -24,8 +24,10 @@ const licencias: CollectionEntry<"licencias">[] =
 const ordenadas = [...licencias].sort((a, b) => a.data.orden - b.data.orden);
 
 const pageUrl = `${SITE_URL}/licencias-cofepris/ciudad/${ciudad.slug}/`;
-const title = `Licencia Sanitaria COFEPRIS en ${ciudad.name} | Perscon`;
-const description = `Gestión de licencias sanitarias COFEPRIS en ${ciudad.name}, ${ciudad.state}: permiso de construcción, actos quirúrgicos, radiación, bancos de sangre y hemodiálisis. Asesoría especializada en la delegación local. Consulta gratuita.`;
+const title = `Licencia Sanitaria COFEPRIS en ${ciudad.name}`;
+const lugar =
+  ciudad.name === ciudad.state ? ciudad.name : `${ciudad.name}, ${ciudad.state}`;
+const description = `Licencias sanitarias COFEPRIS en ${lugar}: construcción, quirúrgica, radiación, banco de sangre y hemodiálisis. Consulta gratuita.`;
 
 const itemListSchema = {
   "@context": "https://schema.org",
@@ -60,28 +62,34 @@ const serviceSchema = {
   },
 };
 
+const faqs = [
+  {
+    pregunta: `¿COFEPRIS federal tramita licencias en ${ciudad.name}?`,
+    respuesta: `Sí. Las licencias sanitarias para establecimientos médicos en ${lugar} se gestionan ante COFEPRIS federal. Los requisitos y homoclaves son los mismos que en el resto del país; lo que cambia es la documentación de cada inmueble y las NOM aplicables al tipo de establecimiento.`,
+  },
+  {
+    pregunta: `¿En qué zonas de ${ciudad.name} atienden establecimientos médicos?`,
+    respuesta: `Trabajamos con clínicas, hospitales y otros establecimientos ubicados en ${ciudad.zonas.join(", ")}, así como en el resto de ${ciudad.state}.`,
+  },
+  {
+    pregunta: `¿Cuánto tarda una licencia COFEPRIS en ${ciudad.name}?`,
+    respuesta: "El plazo depende del tipo de licencia y de que el expediente se presente completo; el criterio es federal y no cambia por ciudad. En la consulta gratuita revisamos tu caso para darte una referencia.",
+  },
+];
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: `¿COFEPRIS federal tramita licencias en ${ciudad.name}?`,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: `Sí. Las licencias sanitarias para establecimientos médicos en ${ciudad.name} se gestionan ante COFEPRIS federal. Los requisitos y homoclaves son los mismos que en el resto del país; la diferencia está en la documentación del inmueble y el cumplimiento de NOM aplicables.`,
-      },
-    },
-    {
-      "@type": "Question",
-      name: `¿Cuánto tarda una licencia COFEPRIS en ${ciudad.name}?`,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Entre 45 y 90 días hábiles según el tipo de licencia, contados desde la presentación de un expediente completo. La documentación incompleta es la principal causa de retrasos en cualquier estado.",
-      },
-    },
-  ],
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.pregunta,
+    acceptedAnswer: { "@type": "Answer", text: f.respuesta },
+  })),
 };
+
+const caso = ciudad.casoSlug
+  ? (await getCollection("casos-exito")).find((c) => c.slug === ciudad.casoSlug)
+  : undefined;
 ---
 
 <Layout
@@ -283,6 +291,83 @@ const faqSchema = {
       }
     </ul>
 
+    <section class="mt-12" aria-labelledby="zonas-heading">
+      <h2
+        id="zonas-heading"
+        class="text-2xl font-bold text-carbon-900 mb-2"
+        style="font-family: var(--font-display);"
+      >
+        Zonas de {ciudad.name} donde atendemos
+      </h2>
+      <p
+        class="text-steel-600 text-sm mb-4 max-w-2xl"
+        style="font-family: var(--font-body);"
+      >
+        Acompañamos a establecimientos médicos en estos municipios y zonas, y en el resto de {ciudad.state}.
+      </p>
+      <ul class="flex flex-wrap gap-2" role="list">
+        {
+          ciudad.zonas.map((z) => (
+            <li class="text-sm text-carbon-800 border border-steel-200 px-3 py-1 rounded bg-white" style="font-family: var(--font-body);">
+              {z}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    {
+      caso && (
+        <section class="mt-10" aria-labelledby="caso-heading">
+          <h2
+            id="caso-heading"
+            class="text-xl font-bold text-carbon-900 mb-2"
+            style="font-family: var(--font-display);"
+          >
+            Un caso real en {caso.data.estado}
+          </h2>
+          <p class="text-sm text-steel-600" style="font-family: var(--font-body);">
+            <a
+              href={`/casos-exito/${caso.slug}/`}
+              class="font-semibold text-cofepris-700 hover:underline"
+            >
+              {caso.data.title}
+            </a>
+            {" "}({caso.data.ciudad}, {caso.data.estado}).
+          </p>
+        </section>
+      )
+    }
+
+    <section class="mt-10" aria-labelledby="faq-ciudad-heading">
+      <h2
+        id="faq-ciudad-heading"
+        class="text-2xl font-bold text-carbon-900 mb-4"
+        style="font-family: var(--font-display);"
+      >
+        Preguntas frecuentes sobre licencias COFEPRIS en {ciudad.name}
+      </h2>
+      <div class="space-y-3">
+        {
+          faqs.map((f) => (
+            <details class="border border-steel-200 rounded-lg bg-white px-5 py-4">
+              <summary class="cursor-pointer text-sm font-semibold text-carbon-900" style="font-family: var(--font-display);">
+                {f.pregunta}
+              </summary>
+              <p class="text-sm text-steel-600 leading-relaxed mt-3" style="font-family: var(--font-body);">
+                {f.respuesta}
+              </p>
+            </details>
+          ))
+        }
+      </div>
+      <p class="mt-4 text-sm" style="font-family: var(--font-body);">
+        <a href="/recursos/tiempos-licencias-cofepris/" class="text-cofepris-700 font-semibold hover:underline">Plazos de referencia por licencia</a>
+        ·
+        <a href="/guia-tramites-cofepris/" class="text-cofepris-700 font-semibold hover:underline">Guía de trámites COFEPRIS</a>
+      </p>
+    </section>
+
     <div
       class="mt-12 p-8 bg-cofepris-50 border border-cofepris-100 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
     >
@@ -297,10 +382,7 @@ const faqSchema = {
           class="text-sm text-steel-600 mt-1"
           style="font-family: var(--font-body);"
         >
-          Consulta gratuita en 24 horas. Identificamos el trámite correcto y el
-          estado de tu expediente ante la delegación de COFEPRIS en {
-            ciudad.state
-          }.
+          Consulta gratuita. Identificamos el trámite correcto y revisamos el estado de tu expediente ante COFEPRIS.
         </p>
       </div>
       <a

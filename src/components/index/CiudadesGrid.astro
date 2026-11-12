@@ -1,0 +1,41 @@
+---
+import { CIUDADES_SEO } from '../../data/licenciasSeo';
+---
+
+<section class="bg-steel-50 border-t border-steel-100" aria-labelledby="ciudades-heading">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+    <p
+      class="text-[10px] font-semibold tracking-[0.2em] uppercase text-cofepris-700 mb-3 flex items-center gap-2"
+      style="font-family: var(--font-body);"
+    >
+      <span class="w-6 h-px bg-cofepris-700 inline-block" aria-hidden="true"></span>
+      Cobertura nacional
+    </p>
+    <h2
+      id="ciudades-heading"
+      class="text-2xl lg:text-3xl font-bold text-carbon-900 tracking-tight mb-3"
+      style="font-family: var(--font-display);"
+    >
+      Licencias sanitarias COFEPRIS en tu ciudad
+    </h2>
+    <p class="text-sm text-steel-600 mb-6 max-w-2xl" style="font-family: var(--font-body);">
+      Asesoramos a establecimientos médicos en todo México. Consulta la guía de tu ciudad.
+    </p>
+    <ul class="flex flex-wrap gap-2" role="list">
+      {
+        CIUDADES_SEO.map((c) => (
+          <li>
+            <a
+              href={`/licencias-cofepris/ciudad/${c.slug}/`}
+              class="inline-flex items-center gap-1.5 text-sm text-carbon-800 border border-steel-200 bg-white hover:border-cofepris-400 hover:text-cofepris-700 px-3 py-1.5 rounded transition-colors duration-150"
+              style="font-family: var(--font-body);"
+            >
+              {c.name}
+              <span class="text-steel-400 text-xs" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

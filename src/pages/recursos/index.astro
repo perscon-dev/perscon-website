@@ -1,6 +1,9 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { LICENCIAS_SEO, CIUDADES_SEO } from '../../data/licenciasSeo';
+
+const publicados = await getCollection('articulos', ({ data }) => !data.borrador);
 
 const articulos = [
   {
@@ -28,6 +31,16 @@ const articulos = [
     titulo: 'Requisitos por licencia',
     desc: 'Documentos requeridos para cada trámite sanitario.',
   },
+  {
+    href: '/asesoria-licencias-sanitarias/',
+    titulo: 'Asesoría según tu situación',
+    desc: 'Abrir, actualizar o atender un requerimiento de COFEPRIS.',
+  },
+  ...publicados.map((a) => ({
+    href: `/recursos/${a.slug}/`,
+    titulo: a.data.title,
+    desc: a.data.description,
+  })),
 ];
 
 const licencias = Object.entries(LICENCIAS_SEO);
@@ -35,7 +48,7 @@ const licencias = Object.entries(LICENCIAS_SEO);
 
 <Layout
   title="Recursos COFEPRIS | Guías, Requisitos y Trámites"
-  description="Biblioteca de recursos sobre licencias sanitarias COFEPRIS: responsable sanitario, tiempos, costos, requisitos y guías por tipo de trámite para establecimientos médicos en México."
+  description="Guías sobre licencias sanitarias COFEPRIS: Responsable Sanitario, tiempos, costos y requisitos por tipo de trámite para establecimientos médicos en México."
   canonical="/recursos/"
   breadcrumbs={[{ name: 'Recursos', url: '/recursos/' }]}
 >

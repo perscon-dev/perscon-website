@@ -149,7 +149,7 @@ faq:
 ogImage: "/og/licencias/licencia-hemodialisis.webp"
 ---
 
-# **Licencia Sanitaria COFEPRIS para Hemodiálisis en México**
+**Licencia Sanitaria COFEPRIS para Hemodiálisis en México**
 -
 
 La Licencia Sanitaria para Establecimientos de Hemodiálisis es la autorización obligatoria que otorga la COFEPRIS para asegurar que las unidades de hemodiálisis cumplan con los estándares de seguridad e higiene necesarios.

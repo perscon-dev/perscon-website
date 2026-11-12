@@ -84,7 +84,7 @@ faq:
 ogImage: "/og/licencias/permiso-construccion.webp"
 ---
 
-# **Permiso Sanitario de Construcción COFEPRIS en México**
+**Permiso Sanitario de Construcción COFEPRIS en México**
 -
 El Permiso Sanitario de Construcción COFEPRIS es una autorización obligatoria para la construcción, ampliación o remodelación de hospitales, clínicas, laboratorios y otros establecimientos de atención médica en México.
 

@@ -1,0 +1,168 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LicenciaCTA from '../../components/licencias/LicenciaCTA.astro';
+import { LICENCIAS_SEO } from '../../data/licenciasSeo';
+
+const SITE_URL = 'https://www.perscon.com.mx';
+
+const title = 'Asesoría para Licencias Sanitarias COFEPRIS';
+const description =
+  'Asesoría para abrir, regularizar o actualizar tu establecimiento médico ante COFEPRIS: diagnóstico previo, expediente y seguimiento. Consulta gratuita.';
+
+const situaciones = [
+  {
+    id: 'establecimiento-nuevo',
+    titulo: 'Voy a abrir un establecimiento médico',
+    intro:
+      'Clínica, hospital, banco de sangre, unidad de hemodiálisis o consultorio con equipos de radiación. Conviene definir el trámite correcto antes de construir o remodelar.',
+    puntos: [
+      'El Permiso Sanitario de Construcción se obtiene antes de construir o remodelar; la Licencia Sanitaria se tramita una vez terminada la obra.',
+      'Muchas licencias requieren el Permiso de Construcción como antecedente en el expediente.',
+      'El Aviso de Responsable Sanitario debe presentarse antes de solicitar la licencia.',
+    ],
+    enlaces: [
+      { href: '/licencias-cofepris/permiso-construccion/', texto: 'Permiso Sanitario de Construcción' },
+      { href: '/guia-tramites-cofepris/', texto: 'Guía de trámites COFEPRIS' },
+    ],
+  },
+  {
+    id: 'establecimiento-en-operacion',
+    titulo: 'Mi establecimiento ya opera y algo cambió',
+    intro:
+      'Algunas licencias requieren actualización cuando el establecimiento cambia. Si además no estás seguro de qué licencia te corresponde, la consulta gratuita sirve para identificarlo.',
+    puntos: [
+      'Nuevos servicios o equipos.',
+      'Cambio de Responsable Sanitario.',
+      'Cambio de domicilio o modificaciones en la infraestructura.',
+    ],
+    enlaces: [
+      { href: '/recursos/responsable-sanitario-cofepris/', texto: 'Responsable Sanitario COFEPRIS' },
+      { href: '/requisitos/', texto: 'Requisitos por licencia' },
+    ],
+  },
+  {
+    id: 'requerimiento-cofepris',
+    titulo: 'COFEPRIS pidió información adicional',
+    intro:
+      'Si ya presentaste el trámite y recibiste un requerimiento, revisamos el expediente y te acompañamos en la atención. Estas son causas frecuentes:',
+    puntos: [
+      'Incongruencias entre la memoria descriptiva y los planos.',
+      'Manuales de procedimientos genéricos que no reflejan la operación real.',
+      'Responsable Sanitario con perfil incompatible con las actividades declaradas.',
+      'Documentos del personal con cédulas vencidas o falta del Aviso de Responsable Sanitario.',
+    ],
+    enlaces: [
+      { href: '/guia-tramites-cofepris/', texto: 'Errores que invalidan el expediente' },
+      { href: '/preguntas-frecuentes/', texto: 'Preguntas frecuentes' },
+    ],
+  },
+];
+
+const incluye = [
+  'Diagnóstico previo para definir el trámite correcto.',
+  'Preparación documental del expediente.',
+  'Presentación del trámite ante COFEPRIS.',
+  'Seguimiento del expediente.',
+  'Atención de requerimientos.',
+];
+
+const licencias = Object.entries(LICENCIAS_SEO);
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${SITE_URL}/asesoria-licencias-sanitarias/#service`,
+  name: title,
+  description,
+  url: `${SITE_URL}/asesoria-licencias-sanitarias/`,
+  provider: { '@id': `${SITE_URL}/#organization` },
+  areaServed: { '@type': 'Country', name: 'México' },
+  serviceType: 'Asesoría Regulatoria Sanitaria',
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="/asesoria-licencias-sanitarias/"
+  pageSchema={[serviceSchema]}
+  breadcrumbs={[{ name: 'Asesoría para licencias sanitarias', url: '/asesoria-licencias-sanitarias/' }]}
+>
+  <section class="bg-carbon-950 border-b border-carbon-800">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20">
+      <nav class="flex items-center gap-2 text-xs text-steel-600 mb-8" aria-label="Ruta de navegación">
+        <a href="/" class="hover:text-white transition-colors duration-150" style="font-family:var(--font-body);">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-steel-400" aria-current="page" style="font-family:var(--font-body);">Asesoría para licencias sanitarias</span>
+      </nav>
+      <h1 class="text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight mb-4 max-w-3xl" style="font-family:var(--font-display);">
+        Asesoría para Licencias Sanitarias <span class="text-cofepris-500">COFEPRIS</span>
+      </h1>
+      <p class="text-steel-400 text-base leading-relaxed max-w-2xl" style="font-family:var(--font-body);">
+        Te acompañamos según el momento en que estás: abrir un establecimiento, actualizar uno que ya opera o atender un requerimiento de COFEPRIS.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20 space-y-16">
+    <section aria-labelledby="situaciones-heading">
+      <h2 id="situaciones-heading" class="text-2xl lg:text-3xl font-bold text-carbon-900 tracking-tight mb-8" style="font-family:var(--font-display);">
+        ¿En qué situación estás?
+      </h2>
+      <div class="grid lg:grid-cols-3 gap-6">
+        {situaciones.map((s) => (
+          <article id={s.id} class="border border-steel-200 rounded-xl p-6 bg-white flex flex-col">
+            <h3 class="text-lg font-bold text-carbon-900 mb-3" style="font-family:var(--font-display);">{s.titulo}</h3>
+            <p class="text-sm text-steel-600 leading-relaxed mb-4" style="font-family:var(--font-body);">{s.intro}</p>
+            <ul class="space-y-2 mb-5 list-disc pl-5 text-sm text-steel-600" style="font-family:var(--font-body);">
+              {s.puntos.map((p) => <li>{p}</li>)}
+            </ul>
+            <ul class="mt-auto flex flex-col gap-1.5" role="list">
+              {s.enlaces.map((e) => (
+                <li>
+                  <a href={e.href} class="text-sm font-semibold text-cofepris-700 hover:underline" style="font-family:var(--font-body);">{e.texto} →</a>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="tipo-heading">
+      <h2 id="tipo-heading" class="text-2xl lg:text-3xl font-bold text-carbon-900 tracking-tight mb-2" style="font-family:var(--font-display);">
+        ¿Qué licencia necesita tu establecimiento?
+      </h2>
+      <p class="text-sm text-steel-600 mb-8 max-w-2xl" style="font-family:var(--font-body);">
+        Elige según la actividad que realizas. Cada guía incluye requisitos, homoclave y preguntas frecuentes.
+      </p>
+      <ul class="grid md:grid-cols-2 gap-4" role="list">
+        {licencias.map(([slug, seo]) => (
+          <li>
+            <a href={`/licencias-cofepris/${slug}/`} class="block h-full border border-steel-200 rounded-xl p-5 bg-white hover:border-cofepris-300 transition-colors">
+              <p class="text-[10px] font-mono text-steel-500 mb-1">{seo.homoclave}</p>
+              <p class="text-base font-bold text-carbon-900" style="font-family:var(--font-display);">{seo.h1 ?? seo.title}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section aria-labelledby="incluye-heading">
+      <h2 id="incluye-heading" class="text-2xl lg:text-3xl font-bold text-carbon-900 tracking-tight mb-6" style="font-family:var(--font-display);">
+        Qué incluye nuestra asesoría
+      </h2>
+      <ul class="space-y-2 list-disc pl-5 text-sm text-steel-600 mb-4" style="font-family:var(--font-body);">
+        {incluye.map((i) => <li>{i}</li>)}
+      </ul>
+      <p class="text-sm text-steel-500 max-w-2xl" style="font-family:var(--font-body);">
+        La resolución de cada trámite corresponde a COFEPRIS; Perscon no garantiza resultados ni plazos.
+      </p>
+    </section>
+
+    <LicenciaCTA
+      titulo="Cuéntanos tu caso"
+      texto="En la consulta gratuita identificamos el trámite que corresponde a tu establecimiento y los siguientes pasos."
+    />
+  </div>
+</Layout>
